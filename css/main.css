@@ -384,7 +384,7 @@ body.scrolled .e-header { box-shadow: 0 10px 40px rgba(0, 21, 43, 0.12); }
   padding: var(--spacing) 0;
   background-size: cover;
   background-position: center;
-  background-attachment: fixed;
+  
   color: var(--white);
   overflow: hidden;
 }
@@ -816,7 +816,7 @@ body.scrolled .e-header { box-shadow: 0 10px 40px rgba(0, 21, 43, 0.12); }
   .img-small { right: 0; }
   .stack-carousel .card { grid-template-columns: 1fr; grid-template-rows: auto 1fr; }
   .stack-carousel .card .content { padding: 28px; }
-  .hp-skills-block { background-attachment: scroll; }
+
   .e-footer__cols { grid-template-columns: 1fr 1fr; }
 }
 @media (max-width: 700px) {
@@ -916,9 +916,7 @@ body.scrolled .e-header { box-shadow: 0 10px 40px rgba(0, 21, 43, 0.12); }
 }
 
 /* ---------- HUD prvky (hodiny, souřadnice, indexy, dotted hover) ---------- */
-.mono, .bento__big, .step__num, .hud { font-variant-numeric: tabular-nums; }
-.hud { display: inline-flex; gap: 6px; align-items: center; color: rgba(255, 255, 255, 0.55); user-select: none; }
-.hud-sep { color: var(--amber); font-size: 8px; }
+.mono, .bento__big, .step__num { font-variant-numeric: tabular-nums; }
 
 /* tečkovaný rámeček na hover — news, manuály, aplikace, reference, team */
 .news-card, .man-card, .app-card, .ref-card, .team__card, .bento__tile { position: relative; }
@@ -946,4 +944,18 @@ body.scrolled .e-header { box-shadow: 0 10px 40px rgba(0, 21, 43, 0.12); }
   letter-spacing: 0.08em;
   backdrop-filter: blur(4px);
 }
-@media (max-width: 992px) { .hud { display: none; } }
+
+/* ---------- plynulé načtení ---------- */
+.hp-header-banner__video .hero-poster {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+#hero-video { opacity: 0; transition: opacity 1s ease; }
+#hero-video.ready { opacity: 1; }
+.marquee__track { will-change: transform; }
+img { content-visibility: auto; }
+.hp-header-banner__video img, .hp-header-banner__video video { content-visibility: visible; }
+.prod-item__img img { aspect-ratio: 4/3; }
+@keyframes pagein { from { opacity: 0; } to { opacity: 1; } }
+body { animation: pagein 0.4s ease; }

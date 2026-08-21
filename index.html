@@ -6,6 +6,7 @@
 <title>Číslo jedna ve vašem kraji | Helion.cz</title>
 <meta name="description" content="Jsme číslo jedna ve vašem kraji v oblasti fotovoltaiky. Profesionální přístup, individuální řešení, dlouholeté zkušenosti.">
 <link rel="icon" href="https://www.helion.cz/wp-content/themes/helion/images/favicon.png">
+<link rel="preconnect" href="https://www.helion.cz">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -25,13 +26,12 @@
       <span id="spot-price" class="topbar__spot mono" title="Aktuální spotová cena elektřiny"></span>
       <a class="mono" href="caste-dotazy.html">Časté dotazy</a>
       <a class="mono" href="manualy.html">Manuály</a>
-      <span class="hud mono" aria-hidden="true"><span id="hud-clock">--:--:--</span> CET <span class="hud-sep">■</span> <span id="hud-x">0000</span> X <span id="hud-y">0000</span> Y</span>
     </div>
   </div>
 </div>
 <header class="e-header">
   <div class="container e-header__inner">
-    <a class="logo" href="index.html"><img src="https://www.helion.cz/wp-content/uploads/2025/01/logo-new%20(2).png" alt="HELION.CZ"></a>
+    <a class="logo" href="index.html"><img decoding="async" src="https://www.helion.cz/wp-content/uploads/2025/01/logo-new%20(2).png" alt="HELION.CZ"></a>
     <nav class="primary-nav" id="primary-nav">
       <ul>
         <li class="has-sub"><a href="produkty.html">Produkty</a>
@@ -70,8 +70,9 @@
 
 <section class="hp-header-banner">
   <div class="hp-header-banner__video">
-    <video autoplay muted loop playsinline poster="https://www.helion.cz/wp-content/uploads/2025/01/PXL_20221107_151400957.jpg">
-      <source src="https://www.helion.cz/wp-content/uploads/2025/03/HELION-Sigenergy3.mp4" type="video/mp4">
+    <img decoding="async" class="hero-poster" src="media/poster.jpg" alt="" fetchpriority="high" decoding="async">
+    <video id="hero-video" muted loop playsinline preload="none" poster="media/poster.jpg">
+      <source src="media/hero.mp4" type="video/mp4">
     </video>
   </div>
   <div class="hp-header-banner__overlay"></div>
@@ -124,8 +125,8 @@
     </div>
     <div class="hp-intro-block__bottom">
       <div class="hp-intro-block__imgs">
-        <div class="img-main"><img src="https://www.helion.cz/wp-content/uploads/2025/01/Strecha_panely_2-1024x768.jpg" alt="Instalace fotovoltaiky Helion.cz" loading="lazy"></div>
-        <div class="img-small"><img src="https://www.helion.cz/wp-content/uploads/2025/01/WhatsApp-Image-2023-02-21-at-16.06.21-1024x768.jpeg" alt="Reference Helion.cz" loading="lazy"></div>
+        <div class="img-main"><img decoding="async" src="https://www.helion.cz/wp-content/uploads/2025/01/Strecha_panely_2-1024x768.jpg" alt="Instalace fotovoltaiky Helion.cz" loading="lazy"></div>
+        <div class="img-small"><img decoding="async" src="https://www.helion.cz/wp-content/uploads/2025/01/WhatsApp-Image-2023-02-21-at-16.06.21-1024x768.jpeg" alt="Reference Helion.cz" loading="lazy"></div>
         <div class="img-badge mono">od r. 2003</div>
       </div>
       <div class="hp-intro-block__text">
@@ -158,7 +159,7 @@
             <p>Žádné krabicové řešení – vždy individuální návrh podle reálné spotřeby vaší domácnosti.</p>
             <span class="arrow-link">Zjistit víc</span>
           </div>
-          <div class="image"><img src="https://www.helion.cz/wp-content/uploads/2025/01/PXL_20221107_151400957.jpg" alt="Řešení pro rodinné domy" loading="lazy"></div>
+          <div class="image"><img decoding="async" src="https://www.helion.cz/wp-content/uploads/2025/01/PXL_20221107_151400957.jpg" alt="Řešení pro rodinné domy" loading="lazy"></div>
         </article>
         <article class="card" data-i="1">
           <div class="content">
@@ -167,7 +168,7 @@
             <p>Snižte náklady celého domu. Od roku 2023 stačí souhlas většiny vlastníků.</p>
             <span class="arrow-link">Zjistit víc</span>
           </div>
-          <div class="image"><img src="https://www.helion.cz/wp-content/uploads/2025/01/Obrazek-WhatsApp-2023-07-12-v-07.15.41-768x1024.jpg" alt="Bytové domy a SVJ" loading="lazy"></div>
+          <div class="image"><img decoding="async" src="https://www.helion.cz/wp-content/uploads/2025/01/Obrazek-WhatsApp-2023-07-12-v-07.15.41-768x1024.jpg" alt="Bytové domy a SVJ" loading="lazy"></div>
         </article>
         <article class="card" data-i="2">
           <div class="content">
@@ -176,7 +177,7 @@
             <p>Střešní, fasádní i pozemní instalace navržené podle reálného provozu firmy.</p>
             <span class="arrow-link">Zjistit víc</span>
           </div>
-          <div class="image"><img src="https://www.helion.cz/wp-content/uploads/2025/01/IMG-20230623-WA0005-1024x768.jpg" alt="Řešení pro firmy" loading="lazy"></div>
+          <div class="image"><img decoding="async" src="https://www.helion.cz/wp-content/uploads/2025/01/IMG-20230623-WA0005-1024x768.jpg" alt="Řešení pro firmy" loading="lazy"></div>
         </article>
         <article class="card" data-i="3">
           <div class="content">
@@ -185,7 +186,7 @@
             <p>Home Assistant nebo Loxone – řízení výroby, spotřeby, baterie a přebytků.</p>
             <span class="arrow-link">Zjistit víc</span>
           </div>
-          <div class="image"><img src="https://www.helion.cz/wp-content/uploads/2025/01/IMG_6898.jpg" alt="Chytré řízení fotovoltaiky" loading="lazy"></div>
+          <div class="image"><img decoding="async" src="https://www.helion.cz/wp-content/uploads/2025/01/IMG_6898.jpg" alt="Chytré řízení fotovoltaiky" loading="lazy"></div>
         </article>
         <article class="card" data-i="4">
           <div class="content">
@@ -194,7 +195,7 @@
             <p>Až 140 000 Kč na rodinný dům. S vyřízením dotace vám pomůžeme.</p>
             <span class="arrow-link">Zjistit víc</span>
           </div>
-          <div class="image"><img src="https://www.helion.cz/wp-content/uploads/2025/01/IMG_20210607_133342_0.jpg" alt="Nová zelená úsporám" loading="lazy"></div>
+          <div class="image"><img decoding="async" src="https://www.helion.cz/wp-content/uploads/2025/01/IMG_20210607_133342_0.jpg" alt="Nová zelená úsporám" loading="lazy"></div>
         </article>
         <article class="card" data-i="5">
           <div class="content">
@@ -203,7 +204,7 @@
             <p>Servis a údržba střídačů – i pro klienty, které jejich instalační firma opustila.</p>
             <span class="arrow-link">Zjistit víc</span>
           </div>
-          <div class="image"><img src="https://www.helion.cz/wp-content/uploads/2025/01/WP_20151103_16_01_59_Rich.jpg" alt="Opravy střídačů" loading="lazy"></div>
+          <div class="image"><img decoding="async" src="https://www.helion.cz/wp-content/uploads/2025/01/WP_20151103_16_01_59_Rich.jpg" alt="Opravy střídačů" loading="lazy"></div>
         </article>
         <article class="card" data-i="6">
           <div class="content">
@@ -212,7 +213,7 @@
             <p>Termovizní kontrola elektrárny dronem DJI – rychlá detekce problémů.</p>
             <span class="arrow-link">Zjistit víc</span>
           </div>
-          <div class="image"><img src="https://www.helion.cz/wp-content/uploads/2025/01/WhatsApp-Image-2023-01-30-at-10.38.34.jpeg" alt="Termovize a drony" loading="lazy"></div>
+          <div class="image"><img decoding="async" src="https://www.helion.cz/wp-content/uploads/2025/01/WhatsApp-Image-2023-01-30-at-10.38.34.jpeg" alt="Termovize a drony" loading="lazy"></div>
         </article>
       </div>
       <div class="controls">
@@ -232,7 +233,7 @@
     </div>
     <div class="news-grid news-grid--3">
       <a class="news-card" href="clanky/nove-u-nas-chytre-rizeni-fotovoltaiky-se-systemem-loxone.html">
-  <div class="news-card__img"><img src="https://www.helion.cz/wp-content/uploads/custom-images/fs_co_loxone_technology_mobile@2x-1024x1024.jpg" alt="" loading="lazy"></div>
+  <div class="news-card__img"><img decoding="async" src="https://www.helion.cz/wp-content/uploads/custom-images/fs_co_loxone_technology_mobile@2x-1024x1024.jpg" alt="" loading="lazy"></div>
   <div class="news-card__body">
     <div class="news-card__meta"><span class="chip">Fotovoltaika</span><span class="mono">16.01.2026</span></div>
     <h3>Nově u nás: Chytré řízení fotovoltaiky se systémem Loxone</h3>
@@ -241,7 +242,7 @@
   </div>
 </a>
       <a class="news-card" href="clanky/bezpecna-energie-jak-helion-cz-posouva-fve-na-dalsi-uroven.html">
-  <div class="news-card__img"><img src="https://www.helion.cz/wp-content/uploads/custom-images/772f41c66554b792c6f71124ad6cde3f_depositphotos_64015179_l-2015.jpg" alt="" loading="lazy"></div>
+  <div class="news-card__img"><img decoding="async" src="https://www.helion.cz/wp-content/uploads/custom-images/772f41c66554b792c6f71124ad6cde3f_depositphotos_64015179_l-2015.jpg" alt="" loading="lazy"></div>
   <div class="news-card__body">
     <div class="news-card__meta"><span class="chip">Fotovoltaika</span><span class="mono">22.12.2025</span></div>
     <h3>Bezpečná energie: jak HELION.CZ posouvá FVE na další úroveň</h3>
@@ -250,7 +251,7 @@
   </div>
 </a>
       <a class="news-card" href="clanky/podpora-oze-na-rok-2026.html">
-  <div class="news-card__img"><img src="https://www.helion.cz/wp-content/uploads/custom-images/logo-eru-cz-1024x444.png" alt="" loading="lazy"></div>
+  <div class="news-card__img"><img decoding="async" src="https://www.helion.cz/wp-content/uploads/custom-images/logo-eru-cz-1024x444.png" alt="" loading="lazy"></div>
   <div class="news-card__body">
     <div class="news-card__meta"><span class="chip">Fotovoltaika</span><span class="mono">06.10.2025</span></div>
     <h3>PODPORA OZE NA ROK 2026</h3>
@@ -274,7 +275,7 @@
     </div>
   </div>
   <div class="marquee"><div class="marquee__track">
-    <figure class="marquee__item"><img src="https://www.helion.cz/wp-content/uploads/2025/01/DJI_20241012154857_0002_V-1024x768.jpg" alt="Plochá PVC střecha" loading="lazy"><figcaption class="mono">100 kWp, Trutnov 2025</figcaption></figure><figure class="marquee__item"><img src="https://www.helion.cz/wp-content/uploads/2025/01/DJI_20241012154815_0001_V-1024x768.jpg" alt="Plochá PVC střecha" loading="lazy"><figcaption class="mono">100 kWp, Trutnov 2025</figcaption></figure><figure class="marquee__item"><img src="https://www.helion.cz/wp-content/uploads/2025/01/DJI_20241012155343_0007_V-1024x768.jpg" alt="Plochá PVC střecha" loading="lazy"><figcaption class="mono">100 kWp, Trutnov 2025</figcaption></figure><figure class="marquee__item"><img src="https://www.helion.cz/wp-content/uploads/2025/01/Strecha_panely_1-3-1024x768.jpg" alt="Barevné panely na šikmé střeše" loading="lazy"><figcaption class="mono">oranžové panely, 2.88kWp, Trutnov 2024</figcaption></figure><figure class="marquee__item"><img src="https://www.helion.cz/wp-content/uploads/2025/01/Strecha_panely-2-768x1024.jpg" alt="Šikmá tašková střecha" loading="lazy"><figcaption class="mono">10 kWp, Ostroměř 2024</figcaption></figure><figure class="marquee__item"><img src="https://www.helion.cz/wp-content/uploads/2025/01/Strecha_panely_2-1024x768.jpg" alt="Šikmá plechová krytina" loading="lazy"><figcaption class="mono">2,7 kWp, Pilníkov 2024</figcaption></figure><figure class="marquee__item"><img src="https://www.helion.cz/wp-content/uploads/2025/01/DJI_20240216115156_0001_V-1024x768.jpg" alt="Plochá PVC střecha" loading="lazy"><figcaption class="mono">2.7 kWp, Trutnov 2024</figcaption></figure><figure class="marquee__item"><img src="https://www.helion.cz/wp-content/uploads/2025/01/Obrazek-WhatsApp-2023-06-15-v-15.43.00-1024x768.jpg" alt="Plochá PVC střecha" loading="lazy"><figcaption class="mono">10 kWp, Trutnov 2024</figcaption></figure><figure class="marquee__item"><img src="https://www.helion.cz/wp-content/uploads/2025/01/DJI_20231219085852_0003_V-1024x768.jpg" alt="Plochá lepenková střecha" loading="lazy"><figcaption class="mono">300 kWp, Trutnov 2024</figcaption></figure><figure class="marquee__item"><img src="https://www.helion.cz/wp-content/uploads/2025/01/Strecha_panely_3-1024x768.jpg" alt="Plochá PVC střecha" loading="lazy"><figcaption class="mono">10 kWp, Trutnov 2024</figcaption></figure><figure class="marquee__item"><img src="https://www.helion.cz/wp-content/uploads/2025/01/DJI_20241012154857_0002_V-1024x768.jpg" alt="Plochá PVC střecha" loading="lazy"><figcaption class="mono">100 kWp, Trutnov 2025</figcaption></figure><figure class="marquee__item"><img src="https://www.helion.cz/wp-content/uploads/2025/01/DJI_20241012154815_0001_V-1024x768.jpg" alt="Plochá PVC střecha" loading="lazy"><figcaption class="mono">100 kWp, Trutnov 2025</figcaption></figure><figure class="marquee__item"><img src="https://www.helion.cz/wp-content/uploads/2025/01/DJI_20241012155343_0007_V-1024x768.jpg" alt="Plochá PVC střecha" loading="lazy"><figcaption class="mono">100 kWp, Trutnov 2025</figcaption></figure><figure class="marquee__item"><img src="https://www.helion.cz/wp-content/uploads/2025/01/Strecha_panely_1-3-1024x768.jpg" alt="Barevné panely na šikmé střeše" loading="lazy"><figcaption class="mono">oranžové panely, 2.88kWp, Trutnov 2024</figcaption></figure><figure class="marquee__item"><img src="https://www.helion.cz/wp-content/uploads/2025/01/Strecha_panely-2-768x1024.jpg" alt="Šikmá tašková střecha" loading="lazy"><figcaption class="mono">10 kWp, Ostroměř 2024</figcaption></figure><figure class="marquee__item"><img src="https://www.helion.cz/wp-content/uploads/2025/01/Strecha_panely_2-1024x768.jpg" alt="Šikmá plechová krytina" loading="lazy"><figcaption class="mono">2,7 kWp, Pilníkov 2024</figcaption></figure><figure class="marquee__item"><img src="https://www.helion.cz/wp-content/uploads/2025/01/DJI_20240216115156_0001_V-1024x768.jpg" alt="Plochá PVC střecha" loading="lazy"><figcaption class="mono">2.7 kWp, Trutnov 2024</figcaption></figure><figure class="marquee__item"><img src="https://www.helion.cz/wp-content/uploads/2025/01/Obrazek-WhatsApp-2023-06-15-v-15.43.00-1024x768.jpg" alt="Plochá PVC střecha" loading="lazy"><figcaption class="mono">10 kWp, Trutnov 2024</figcaption></figure><figure class="marquee__item"><img src="https://www.helion.cz/wp-content/uploads/2025/01/DJI_20231219085852_0003_V-1024x768.jpg" alt="Plochá lepenková střecha" loading="lazy"><figcaption class="mono">300 kWp, Trutnov 2024</figcaption></figure><figure class="marquee__item"><img src="https://www.helion.cz/wp-content/uploads/2025/01/Strecha_panely_3-1024x768.jpg" alt="Plochá PVC střecha" loading="lazy"><figcaption class="mono">10 kWp, Trutnov 2024</figcaption></figure>
+    <figure class="marquee__item"><img decoding="async" src="https://www.helion.cz/wp-content/uploads/2025/01/DJI_20241012154857_0002_V-1024x768.jpg" alt="Plochá PVC střecha" loading="lazy"><figcaption class="mono">100 kWp, Trutnov 2025</figcaption></figure><figure class="marquee__item"><img decoding="async" src="https://www.helion.cz/wp-content/uploads/2025/01/DJI_20241012154815_0001_V-1024x768.jpg" alt="Plochá PVC střecha" loading="lazy"><figcaption class="mono">100 kWp, Trutnov 2025</figcaption></figure><figure class="marquee__item"><img decoding="async" src="https://www.helion.cz/wp-content/uploads/2025/01/DJI_20241012155343_0007_V-1024x768.jpg" alt="Plochá PVC střecha" loading="lazy"><figcaption class="mono">100 kWp, Trutnov 2025</figcaption></figure><figure class="marquee__item"><img decoding="async" src="https://www.helion.cz/wp-content/uploads/2025/01/Strecha_panely_1-3-1024x768.jpg" alt="Barevné panely na šikmé střeše" loading="lazy"><figcaption class="mono">oranžové panely, 2.88kWp, Trutnov 2024</figcaption></figure><figure class="marquee__item"><img decoding="async" src="https://www.helion.cz/wp-content/uploads/2025/01/Strecha_panely-2-768x1024.jpg" alt="Šikmá tašková střecha" loading="lazy"><figcaption class="mono">10 kWp, Ostroměř 2024</figcaption></figure><figure class="marquee__item"><img decoding="async" src="https://www.helion.cz/wp-content/uploads/2025/01/Strecha_panely_2-1024x768.jpg" alt="Šikmá plechová krytina" loading="lazy"><figcaption class="mono">2,7 kWp, Pilníkov 2024</figcaption></figure><figure class="marquee__item"><img decoding="async" src="https://www.helion.cz/wp-content/uploads/2025/01/DJI_20240216115156_0001_V-1024x768.jpg" alt="Plochá PVC střecha" loading="lazy"><figcaption class="mono">2.7 kWp, Trutnov 2024</figcaption></figure><figure class="marquee__item"><img decoding="async" src="https://www.helion.cz/wp-content/uploads/2025/01/Obrazek-WhatsApp-2023-06-15-v-15.43.00-1024x768.jpg" alt="Plochá PVC střecha" loading="lazy"><figcaption class="mono">10 kWp, Trutnov 2024</figcaption></figure><figure class="marquee__item"><img decoding="async" src="https://www.helion.cz/wp-content/uploads/2025/01/DJI_20231219085852_0003_V-1024x768.jpg" alt="Plochá lepenková střecha" loading="lazy"><figcaption class="mono">300 kWp, Trutnov 2024</figcaption></figure><figure class="marquee__item"><img decoding="async" src="https://www.helion.cz/wp-content/uploads/2025/01/Strecha_panely_3-1024x768.jpg" alt="Plochá PVC střecha" loading="lazy"><figcaption class="mono">10 kWp, Trutnov 2024</figcaption></figure><figure class="marquee__item"><img decoding="async" src="https://www.helion.cz/wp-content/uploads/2025/01/DJI_20241012154857_0002_V-1024x768.jpg" alt="Plochá PVC střecha" loading="lazy"><figcaption class="mono">100 kWp, Trutnov 2025</figcaption></figure><figure class="marquee__item"><img decoding="async" src="https://www.helion.cz/wp-content/uploads/2025/01/DJI_20241012154815_0001_V-1024x768.jpg" alt="Plochá PVC střecha" loading="lazy"><figcaption class="mono">100 kWp, Trutnov 2025</figcaption></figure><figure class="marquee__item"><img decoding="async" src="https://www.helion.cz/wp-content/uploads/2025/01/DJI_20241012155343_0007_V-1024x768.jpg" alt="Plochá PVC střecha" loading="lazy"><figcaption class="mono">100 kWp, Trutnov 2025</figcaption></figure><figure class="marquee__item"><img decoding="async" src="https://www.helion.cz/wp-content/uploads/2025/01/Strecha_panely_1-3-1024x768.jpg" alt="Barevné panely na šikmé střeše" loading="lazy"><figcaption class="mono">oranžové panely, 2.88kWp, Trutnov 2024</figcaption></figure><figure class="marquee__item"><img decoding="async" src="https://www.helion.cz/wp-content/uploads/2025/01/Strecha_panely-2-768x1024.jpg" alt="Šikmá tašková střecha" loading="lazy"><figcaption class="mono">10 kWp, Ostroměř 2024</figcaption></figure><figure class="marquee__item"><img decoding="async" src="https://www.helion.cz/wp-content/uploads/2025/01/Strecha_panely_2-1024x768.jpg" alt="Šikmá plechová krytina" loading="lazy"><figcaption class="mono">2,7 kWp, Pilníkov 2024</figcaption></figure><figure class="marquee__item"><img decoding="async" src="https://www.helion.cz/wp-content/uploads/2025/01/DJI_20240216115156_0001_V-1024x768.jpg" alt="Plochá PVC střecha" loading="lazy"><figcaption class="mono">2.7 kWp, Trutnov 2024</figcaption></figure><figure class="marquee__item"><img decoding="async" src="https://www.helion.cz/wp-content/uploads/2025/01/Obrazek-WhatsApp-2023-06-15-v-15.43.00-1024x768.jpg" alt="Plochá PVC střecha" loading="lazy"><figcaption class="mono">10 kWp, Trutnov 2024</figcaption></figure><figure class="marquee__item"><img decoding="async" src="https://www.helion.cz/wp-content/uploads/2025/01/DJI_20231219085852_0003_V-1024x768.jpg" alt="Plochá lepenková střecha" loading="lazy"><figcaption class="mono">300 kWp, Trutnov 2024</figcaption></figure><figure class="marquee__item"><img decoding="async" src="https://www.helion.cz/wp-content/uploads/2025/01/Strecha_panely_3-1024x768.jpg" alt="Plochá PVC střecha" loading="lazy"><figcaption class="mono">10 kWp, Trutnov 2024</figcaption></figure>
   </div></div>
 </section>
 </main>

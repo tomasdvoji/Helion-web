@@ -188,18 +188,24 @@ if (matchMedia('(pointer:fine)').matches) {
   });
 }
 
-// HUD: živé hodiny (Europe/Prague) + souřadnice kurzoru
+
+// hero video: načíst až po zobrazení, plynulý fade-in, pauza mimo viewport
 (() => {
-  const clock = document.getElementById('hud-clock');
-  if (clock) {
-    const tick = () => clock.textContent = new Date().toLocaleTimeString('cs-CZ', { timeZone: 'Europe/Prague', hour12: false });
-    tick(); setInterval(tick, 1000);
-  }
-  const hx = document.getElementById('hud-x'), hy = document.getElementById('hud-y');
-  if (hx && matchMedia('(pointer:fine)').matches) {
-    addEventListener('mousemove', e => {
-      hx.textContent = String(e.clientX).padStart(4, '0');
-      hy.textContent = String(e.clientY).padStart(4, '0');
-    }, { passive: true });
-  }
+  const v = document.getElementById('hero-video');
+  if (!v) return;
+  const conn = navigator.connection || {};
+  if (conn.saveData) return; // šetřič dat: zůstane poster
+  const start = () => {
+    v.preload = 'auto';
+    v.load();
+    v.addEventListener('canplay', () => {
+      v.classList.add('ready');
+      v.play().catch(() => {});
+    }, { once: true });
+  };
+  requestIdleCallback ? requestIdleCallback(start, { timeout: 2500 }) : setTimeout(start, 800);
+  new IntersectionObserver(es => es.forEach(e => {
+    if (!v.classList.contains('ready')) return;
+    e.isIntersecting ? v.play().catch(() => {}) : v.pause();
+  }), { threshold: 0.1 }).observe(v);
 })();
