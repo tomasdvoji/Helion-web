@@ -977,3 +977,17 @@ img { content-visibility: auto; }
 /* plynula navigace mezi strankami */
 @view-transition { navigation: auto; }
 ::view-transition-old(root), ::view-transition-new(root) { animation-duration: 0.25s; }
+
+/* ---------- vycentrovani fotek na objekt ---------- */
+/* karusel: 0 rodinny dum, 3 smart garaz, 4 NZU dum, 5 stridace Victron */
+.stack-carousel .card[data-i="0"] .image img { object-position: 50% 62%; }
+.stack-carousel .card[data-i="3"] .image img { object-position: 50% 42%; }
+.stack-carousel .card[data-i="4"] .image img { object-position: 50% 58%; }
+.stack-carousel .card[data-i="5"] .image img { object-position: 50% 35%; }
+/* hero karty: 2 servis (panely dole), 3 dotace (dum dole), 4 wallbox (vlevo), 5 e-shop (vlevo) */
+.hp-link-card:nth-child(2) { background-position: 50% 72%; }
+.hp-link-card:nth-child(3) { background-position: 50% 62%; }
+.hp-link-card:nth-child(4) { background-position: 38% 50%; }
+.hp-link-card:nth-child(5) { background-position: 32% 55%; }
+/* intro male foto: plocha strecha - panely v dolni casti */
+.img-small img { object-position: 50% 65%; }
