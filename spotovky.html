@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://www.helion.cz">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/main.css">
 </head>
 <body class="">
@@ -31,7 +31,7 @@
 </div>
 <header class="e-header">
   <div class="container e-header__inner">
-    <a class="logo" href="index.html"><img decoding="async" src="https://www.helion.cz/wp-content/uploads/2025/01/logo-new%20(2).png" alt="HELION.CZ"></a>
+    <a class="logo" href="index.html"><img decoding="async" src="media/logo.png" alt="HELION.CZ"></a>
     <nav class="primary-nav" id="primary-nav">
       <ul>
         <li class="has-sub"><a href="produkty.html">Produkty</a>
@@ -142,7 +142,7 @@
       // bars
       list.forEach((i, idx) => {
         const isNow = markNow && i.hour === curH && i.minute === curM;
-        ctx.fillStyle = isNow ? '#ff7029' : (i.kwh < 0 ? '#37b96b' : 'rgba(59,124,255,0.85)');
+        ctx.fillStyle = isNow ? '#f7a600' : (i.kwh < 0 ? '#37b96b' : 'rgba(255,220,0,0.95)');
         const y0 = y(Math.max(0, i.kwh)), y1 = y(Math.min(0, i.kwh));
         ctx.fillRect(padL + idx * bw + 0.5, y0, Math.max(1, bw - 1.5), Math.max(1, y(vmin) - y0 - (y(vmin) - y1)) || 1);
         ctx.fillRect(padL + idx * bw + 0.5, y0, Math.max(1, bw - 1.5), Math.abs(y1 - y0) || 1);
