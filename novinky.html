@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Novinky | Helion.cz</title>
+<meta name="description" content="Novinky, legislativa a zajímavosti ze světa fotovoltaiky.">
+<link rel="icon" href="https://www.helion.cz/wp-content/themes/helion/images/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/main.css">
+</head>
+<body class="">
+
+<div class="progress-bar" id="progress-bar"></div>
+<div class="topbar">
+  <div class="container topbar__inner">
+    <div class="topbar__info">
+      <span class="mono">Po–Pá 8:00–15:00</span>
+      <a class="mono" href="https://www.google.com/maps?q=Za+Kom%C3%ADnem+688,+541+02+Trutnov" target="_blank" rel="noopener">Za Komínem 688, Trutnov</a>
+      <a class="mono" href="mailto:info@helion.cz">info@helion.cz</a>
+    </div>
+    <div class="topbar__right">
+      <span id="spot-price" class="topbar__spot mono" title="Aktuální spotová cena elektřiny"></span>
+      <a class="mono" href="caste-dotazy.html">Časté dotazy</a>
+      <a class="mono" href="manualy.html">Manuály</a>
+    </div>
+  </div>
+</div>
+<header class="e-header">
+  <div class="container e-header__inner">
+    <a class="logo" href="index.html"><img src="https://www.helion.cz/wp-content/uploads/2025/01/logo-new%20(2).png" alt="HELION.CZ"></a>
+    <nav class="primary-nav" id="primary-nav">
+      <ul>
+        <li class="has-sub"><a href="produkty.html">Produkty</a>
+          <ul class="sub">
+            <li><a href="produkty.html#rodinne-domy">Rodinné domy</a></li>
+            <li><a href="produkty.html#bytove-domy">Bytové domy, SVJ</a></li>
+            <li><a href="produkty.html#firmy">Firmy</a></li>
+            <li><a href="produkty.html#smart-home">Chytrá domácnost</a></li>
+            <li><a href="produkty.html#dotace">Dotace</a></li>
+            <li><a href="produkty.html#servis">Servis</a></li>
+          </ul>
+        </li>
+        <li class="has-sub"><a href="https://www.helion.cz/aplikace/" target="_blank" rel="noopener">Aplikace</a>
+          <ul class="sub">
+            <li><a href="https://www.helion.cz/spotovky/" target="_blank" rel="noopener">Spotovky</a></li>
+            <li><a href="https://www.helion.cz/odhad-produkce/" target="_blank" rel="noopener">Odhad solární výroby</a></li>
+            <li><a href="https://www.helion.cz/kalkulacka/" target="_blank" rel="noopener">Kalkulačka</a></li>
+            <li><a href="https://www.helion.cz/podpora/" target="_blank" rel="noopener">Servisní podpora</a></li>
+          </ul>
+        </li>
+        <li><a href="krok-za-krokem.html">Krok za krokem</a></li>
+        <li><a href="reference.html">Reference</a></li>
+        <li class="is-active"><a href="novinky.html">Novinky</a></li>
+        <li><a href="kontakt.html">Kontakt</a></li>
+      </ul>
+    </nav>
+    <div class="e-header__cta">
+      <a class="phone-link" href="tel:+420773165260"><small>Zavolejte nám</small><strong>+420 773 165 260</strong></a>
+      <a class="e-btn magnetic" href="poptavka.html">Poptávka</a>
+      <a class="e-btn e-btn--ghost magnetic" href="https://eshop.helion.cz" target="_blank" rel="noopener">E-shop</a>
+    </div>
+    <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</header>
+<main class="main-content">
+
+<section class="page-hero">
+  <div class="grain"></div>
+  <div class="glow glow--tr"></div>
+  <div class="container">
+    <p class="kicker light">55 článků z našeho blogu</p>
+    <h1>Novinky</h1>
+  </div>
+</section>
+<section class="news-section">
+  <div class="container">
+    <div class="filters">
+      <button class="filter active" data-cat="all">Vše</button>
+      <button class="filter" data-cat="fotovoltaika">Fotovoltaika</button>
+      <button class="filter" data-cat="legislativa">Legislativa</button>
+      <button class="filter" data-cat="zelena-usporam">Zelená úsporám</button>
+      <button class="filter" data-cat="vedeli-jste-ze">Věděli jste, že…</button>
+      <button class="filter" data-cat="kpufpnpm">Novinky</button>
+      <button class="filter" data-cat="technologie">Technologie</button>
+    </div>
+    <div class="news-grid" id="news-grid">
+      <div class="news-wrap" data-cat="fotovoltaika"><a class="news-card" href="clanky/nove-u-nas-chytre-rizeni-fotovoltaiky-se-systemem-loxone.html">
+  <div class="news-card__img"><img src="https://www.helion.cz/wp-content/uploads/custom-images/fs_co_loxone_technology_mobile@2x-1024x1024.jpg" alt="" loading="lazy"></div>
+  <div class="news-card__body">
+    <div class="news-card__meta"><span class="chip">Fotovoltaika</span><span class="mono">16.01.2026</span></div>
+    <h3>Nově u nás: Chytré řízení fotovoltaiky se systémem Loxone</h3>
+    <p>Novinka v Helion.cz Chytré řízení energie není jen o tom, kolik vyrobíte, ale jak efektivně elektřinu využijete . Proto v Helion.cz rozšiřujeme chytrá řešení o Loxone – stabilní, l…</p>
+    <span class="arrow-link">Číst dál</span>
+  </div>
+</a></div>
+      <div class="news-wrap" data-cat="fotovoltaika"><a class="news-card" href="clanky/bezpecna-energie-jak-helion-cz-posouva-fve-na-dalsi-uroven.html">
+  <div class="news-card__img"><img src="https://www.helion.cz/wp-content/uploads/custom-images/772f41c66554b792c6f71124ad6cde3f_depositphotos_64015179_l-2015.jpg" alt="" loading="lazy"></div>
+  <div class="news-card__body">
+    <div class="news-card__meta"><span class="chip">Fotovoltaika</span><span class="mono">22.12.2025</span></div>
+    <h3>Bezpečná energie: jak HELION.CZ posouvá FVE na další úroveň</h3>
+    <p>Fotovoltaická elektrárna dnes není jen o výrobě elektřiny. Je to technologické srdce domu – a jako každé srdce si zaslouží dohled. Proto v HELION.CZ rozšiřujeme naše instalace FVE …</p>
+    <span class="arrow-link">Číst dál</span>
+  </div>
+</a></div>
+      <div class="news-wrap" data-cat="fotovoltaika"><a class="news-card" href="clanky/podpora-oze-na-rok-2026.html">
+  <div class="news-card__img"><img src="https://www.helion.cz/wp-content/uploads/custom-images/logo-eru-cz-1024x444.png" alt="" loading="lazy"></div>
+  <div class="news-card__body">
+    <div class="news-card__meta"><span class="chip">Fotovoltaika</span><span class="mono">06.10.2025</span></div>
+    <h3>PODPORA OZE NA ROK 2026</h3>
+    <p>Energetický regulační úřad (ERÚ) zveřejnil návrh výkupní ceny a zelených bonusů platných pro příští rok. Počítá s navýšením výkupních cen u stávajících OZE o cca 2 % Rok Výkon Výku…</p>
+    <span class="arrow-link">Číst dál</span>
+  </div>
+</a></div>
+      <div class="news-wrap" data-cat="legislativa"><a class="news-card" href="clanky/odpovednost-za-odchylku.html">
+  <div class="news-card__img"><img src="https://www.helion.cz/wp-content/uploads/custom-images/prebytky.jpg" alt="" loading="lazy"></div>
+  <div class="news-card__body">
+    <div class="news-card__meta"><span class="chip">Legislativa</span><span class="mono">27.06.2025</span></div>
+    <h3>Odpovědnost za odchylku</h3>
+    <p>Co to vlastně znamená? Odpovědnost za odchylku je závazek účastníka trhu s elektřinou vyrovnat rozdíl mezi plánovanou a skutečnou výrobou či spotřebou. Slouží k zajištění stability…</p>
+    <span class="arrow-link">Číst dál</span>
+  </div>
+</a></div>
+      <div class="news-wrap" data-cat="fotovoltaika"><a class="news-card" href="clanky/chytra-fotovoltaika-proc-nestaci-jen-mit-panely-na-strese.html">
+  <div class="news-card__img"><img src="https://www.helion.cz/wp-content/uploads/custom-images/HomeAssistantGreen-Boxcontents_768x768_crop_center.webp" alt="" loading="lazy"></div>
+  <div class="news-card__body">
+    <div class="news-card__meta"><span class="chip">Fotovoltaika</span><span class="mono">05.06.2025</span></div>
+    <h3>Chytrá fotovoltaika: Proč nestačí jen mít panely na střeše</h3>
+    <p>Vlastní elektrárna na střeše dnes už není rarita. Stále víc domácností využívá energii ze slunce nejen jako ekologický bonus, ale hlavně jako způsob, jak ušetřit. Ale pozor – samot…</p>
+    <span class="arrow-link">Číst dál</span>
+  </div>
+</a></div>
+      <div class="news-wrap" data-cat="fotovoltaika"><a class="news-card" href="clanky/ucast-na-veletrhu-the-smarter-e-europe-2025-mnichov.html">
+  <div class="news-card__img"><img src="https://www.helion.cz/wp-content/uploads/custom-images/Obrazek-WhatsApp-2025-05-12-v-10.17.43_1872e7b6-768x1024.jpg" alt="" loading="lazy"></div>
+  <div class="news-card__body">
+    <div class="news-card__meta"><span class="chip">Fotovoltaika</span><span class="mono">12.05.2025</span></div>
+    <h3>Účast na veletrhu The Smarter E Europe 2025 – Mnichov</h3>
+    <p>Naše firma měla letos opět tu čest zúčastnit se prestižního světového veletrhu The Smarter E Europe 2025 , který se tradičně konal v Mnichově. Tento veletrh je považován za největš…</p>
+    <span class="arrow-link">Číst dál</span>
+  </div>
+</a></div>
+      <div class="news-wrap" data-cat="fotovoltaika"><a class="news-card" href="clanky/nrb-posledni-sance.html">
+  <div class="news-card__img"><img src="https://www.helion.cz/wp-content/uploads/2024/12/nrb-proces-1024x597.jpg" alt="" loading="lazy"></div>
+  <div class="news-card__body">
+    <div class="news-card__meta"><span class="chip">Fotovoltaika</span><span class="mono">25.02.2025</span></div>
+    <h3>NRB – poslední šance</h3>
+    <p>Podle slov poskytovatele dotace, Národní rozvojové banky, se alokace díky rekordnímu zájmu zřejmě brzy vyčerpá! Za nás dosud nejlepší dotační program pro menší instalace do 50kWp, …</p>
+    <span class="arrow-link">Číst dál</span>
+  </div>
+</a></div>
+      <div class="news-wrap" data-cat="fotovoltaika"><a class="news-card" href="clanky/solar-porazi-uhli-ve-vyrobe-elektriny.html">
+  <div class="news-card__img"><img src="https://www.helion.cz/wp-content/uploads/custom-images/FVE_vic_nez_uhli-1024x664.jpg" alt="" loading="lazy"></div>
+  <div class="news-card__body">
+    <div class="news-card__meta"><span class="chip">Fotovoltaika</span><span class="mono">14.02.2025</span></div>
+    <h3>Solar poráží uhlí ve výrobě elektřiny</h3>
+    <p>V roce 2024 byla výroba z uhlí 269 TWh, což je podíl na celkové výrobě jen 9.8%. Proti tomu soláry dosáhly 304 TWh a s podílem 11.1% poprvé v historii překonaly tento segment. Samo…</p>
+    <span class="arrow-link">Číst dál</span>
+  </div>
+</a></div>
+      <div class="news-wrap" data-cat="fotovoltaika"><a class="news-card" href="clanky/cr-ma-temer-nejnizsi-podil-vyroby-z-fve.html">
+  <div class="news-card__img"><img src="https://www.helion.cz/wp-content/uploads/custom-images/solar_mapa_EU_2024-1024x1024.jpg" alt="" loading="lazy"></div>
+  <div class="news-card__body">
+    <div class="news-card__meta"><span class="chip">Fotovoltaika</span><span class="mono">25.01.2025</span></div>
+    <h3>…ČR má téměř nejnižší podíl výroby z FVE</h3>
+    <p>Věděli jste, že… nebýt Francie, Slovenska a Skandinávie, jsme na poslední příčce v podílu fotovoltaiky na energetickém mixu? « Nová Zelená úsporám pro rok 2025 Solar poráží uhlí ve…</p>
+    <span class="arrow-link">Číst dál</span>
+  </div>
+</a></div>
+      <div class="news-wrap" data-cat="zelena-usporam"><a class="news-card" href="clanky/nova-zelena-usporam-pro-rok-2025.html">
+  <div class="news-card__img"><img src="https://www.helion.cz/wp-content/uploads/2024/12/nzu_dlouhe-1.png" alt="" loading="lazy"></div>
+  <div class="news-card__body">
+    <div class="news-card__meta"><span class="chip">Zelená úsporám</span><span class="mono">20.01.2025</span></div>
+    <h3>Nová Zelená úsporám pro rok 2025</h3>
+    <p>Dnes byly zveřejněny nové podmínky dotací pro rodinné domy. Jaké jsou hlavní změny? • Maximální výše dotace 100 – 140tis. Kč • Možnost čerpat dotaci i předem formou zálohy ( ex ant…</p>
+    <span class="arrow-link">Číst dál</span>
+  </div>
+</a></div>
+      <div class="news-wrap" data-cat="vedeli-jste-ze"><a class="news-card" href="clanky/cina-je-svetovym-lidrem-v-oblasti-solarni-energie.html">
+  <div class="news-card__img"><div class="news-card__ph"></div></div>
+  <div class="news-card__body">
+    <div class="news-card__meta"><span class="chip">Věděli jste, že…</span><span class="mono">16.01.2025</span></div>
+    <h3>Čína je světovým lídrem v oblasti solární energie</h3>
+    <p>Věděli jste, že… V roce 2021 byla Čína lídrem ve výstavbě nových obnovitelných energetických systémů a očekává se, že do roku 2024 bude mít největší množství solárních elektráren n…</p>
+    <span class="arrow-link">Číst dál</span>
+  </div>
+</a></div>
+      <div class="news-wrap" data-cat="vedeli-jste-ze"><a class="news-card" href="clanky/dnesni-panely-jsou-nesrovnatelne-efektivnejsi-nez-drivejsi-modely.html">
+  <div class="news-card__img"><img src="https://www.helion.cz/wp-content/uploads/custom-images/graf_ucinnost-1024x521.png" alt="" loading="lazy"></div>
+  <div class="news-card__body">
+    <div class="news-card__meta"><span class="chip">Věděli jste, že…</span><span class="mono">16.01.2025</span></div>
+    <h3>Dnešní panely jsou nesrovnatelně efektivnější než dřívější modely</h3>
+    <p>Věděli jste, že… Dnes vyráběné solární panely dosahují účinnosti až 25 %. Na začátku 20. století byly solární články efektivní pouze z 1 %, což je obrovský pokrok v technologii. A …</p>
+    <span class="arrow-link">Číst dál</span>
+  </div>
+</a></div>
+      <div class="news-wrap" data-cat="vedeli-jste-ze"><a class="news-card" href="clanky/ekonomika-solarni-energie.html">
+  <div class="news-card__img"><img src="https://www.helion.cz/wp-content/uploads/custom-images/panely_cena.jpg" alt="" loading="lazy"></div>
+  <div class="news-card__body">
+    <div class="news-card__meta"><span class="chip">Věděli jste, že…</span><span class="mono">16.01.2025</span></div>
+    <h3>Den ode dne levnější</h3>
+    <p>Věděli jste, že… v roce 1977 stála cena solárního panelu 76,67 dolarů za wattpeak; dnes je tato cena přibližně 0,16 dolarů za wattpeak, což je neuvěřitelný pokles nákladů. V dřívěj…</p>
+    <span class="arrow-link">Číst dál</span>
+  </div>
+</a></div>
+      <div class="news-wrap" data-cat="vedeli-jste-ze"><a class="news-card" href="clanky/environmentalni-dopad-solarni-energie.html">
+  <div class="news-card__img"><img src="https://www.helion.cz/wp-content/uploads/custom-images/uhlstopa-1024x683.webp" alt="" loading="lazy"></div>
+  <div class="news-card__body">
+    <div class="news-card__meta"><span class="chip">Věděli jste, že…</span><span class="mono">16.01.2025</span></div>
+    <h3>Uhlíková stopa</h3>
+    <p>Věděli jste, že… i když některé části výrobního procesu solárních panelů jsou stále poměrně náročné na CO2, běžný solární panel kompenzuje svou vlastní uhlíkovou stopu do tří let, …</p>
+    <span class="arrow-link">Číst dál</span>
+  </div>
+</a></div>
+      <div class="news-wrap" data-cat="vedeli-jste-ze"><a class="news-card" href="clanky/fotovoltaicke-clanky-byly-vynalezeny-uz-v-roce-1839.html">
+  <div class="news-card__img"><img src="https://www.helion.cz/wp-content/uploads/custom-images/Becquerell-1024x1024.jpg" alt="" loading="lazy"></div>
+  <div class="news-card__body">
+    <div class="news-card__meta"><span class="chip">Věděli jste, že…</span><span class="mono">16.01.2025</span></div>
+    <h3>Fotovoltaické články byly vynalezeny už v roce 1839</h3>
+    <p>Věděli jste, že… Fotovoltaický jev byl poprvé objeven francouzským fyzikem Alexandrem-Edmondem Becquerellem v roce 1839. Ačkoli technologie fotovoltaických panelů byla v 20. stolet…</p>
+    <span class="arrow-link">Číst dál</span>
+  </div>
+</a></div>
+      <div class="news-wrap" data-cat="vedeli-jste-ze"><a class="news-card" href="clanky/globalni-potencial-solarni-energie.html">
+  <div class="news-card__img"><img src="https://www.helion.cz/wp-content/uploads/custom-images/slunce-1024x576.jpg" alt="" loading="lazy"></div>
+  <div class="news-card__body">
+    <div class="news-card__meta"><span class="chip">Věděli jste, že…</span><span class="mono">16.01.2025</span></div>
+    <h3>Potenciál solární energie</h3>
+    <p>Věděli jste, že… Slunce na povrch planety neustále vylévá přibližně 173 000 terawattů solární energie, což je více než 10 000 krát tolik, co naše celková energetická potřeba. « Úči…</p>
+    <span class="arrow-link">Číst dál</span>
+  </div>
+</a></div>
+      <div class="news-wrap" data-cat="vedeli-jste-ze"><a class="news-card" href="clanky/historie-solarni-energie.html">
+  <div class="news-card__img"><img src="https://www.helion.cz/wp-content/uploads/custom-images/OrbisPictus_b_162-1024x759.jpg" alt="" loading="lazy"></div>
+  <div class="news-card__body">
+    <div class="news-card__meta"><span class="chip">Věděli jste, že…</span><span class="mono">16.01.2025</span></div>
+    <h3>Historie solární energie</h3>
+    <p>Věděli jste, že… již v 7. století př. n. l. se staří Řekové a Římané naučili využívat sluneční paprsky k vytápění a zahřívání, později dokonce koncentrovali sluneční světlo pomocí …</p>
+    <span class="arrow-link">Číst dál</span>
+  </div>
+</a></div>
+      <div class="news-wrap" data-cat="vedeli-jste-ze"><a class="news-card" href="clanky/panely-jsou-vetsinou-vyrabeny-ze-silikonu.html">
+  <div class="news-card__img"><img src="https://www.helion.cz/wp-content/uploads/custom-images/kremik.png" alt="" loading="lazy"></div>
+  <div class="news-card__body">
+    <div class="news-card__meta"><span class="chip">Věděli jste, že…</span><span class="mono">16.01.2025</span></div>
+    <h3>Panely jsou většinou vyráběny z křemíku</h3>
+    <p>Věděli jste, že… křemík je ideální materiál pro výrobu solárních panelů, protože je široce dostupný a druhý nejběžnější materiál na Zemi. V současnosti je přibližně 95 % solárních …</p>
+    <span class="arrow-link">Číst dál</span>
+  </div>
+</a></div>
+      <div class="news-wrap" data-cat="vedeli-jste-ze"><a class="news-card" href="clanky/panely-nemusi-byt-instalovany-na-strese.html">
+  <div class="news-card__img"><img src="https://www.helion.cz/wp-content/uploads/custom-images/f_10_0.jpg" alt="" loading="lazy"></div>
+  <div class="news-card__body">
+    <div class="news-card__meta"><span class="chip">Věděli jste, že…</span><span class="mono">16.01.2025</span></div>
+    <h3>Panely nemusí být instalovány na střeše</h3>
+    <p>Věděli jste, že… Mnoho lidí si volí solární panely na zahradě nebo na straně svého domu, místo na střeše. Nejlepší umístění závisí na orientaci domu a na tom, zda na něj nespadá st…</p>
+    <span class="arrow-link">Číst dál</span>
+  </div>
+</a></div>
+      <div class="news-wrap" data-cat="vedeli-jste-ze"><a class="news-card" href="clanky/rimane-vyuzivali-solarni-energii.html">
+  <div class="news-card__img"><img src="https://www.helion.cz/wp-content/uploads/custom-images/caracalla-1024x573.jpg" alt="" loading="lazy"></div>
+  <div class="news-card__body">
+    <div class="news-card__meta"><span class="chip">Věděli jste, že…</span><span class="mono">16.01.2025</span></div>
+    <h3>Římané využívali solární energii</h3>
+    <p>Věděli jste, že… Staří Římané využívali solární energii ve své architektuře, například v lázních Caracalla a Fórum v Ostii, kde byla okna orientována na jih, aby slunce ohřálo vnit…</p>
+    <span class="arrow-link">Číst dál</span>
+  </div>
+</a></div>
+      <div class="news-wrap" data-cat="vedeli-jste-ze"><a class="news-card" href="clanky/skladovani-solarni-energie.html">
+  <div class="news-card__img"><img src="https://www.helion.cz/wp-content/uploads/custom-images/lithium-ion-solar-battery.jpg" alt="" loading="lazy"></div>
+  <div class="news-card__body">
+    <div class="news-card__meta"><span class="chip">Věděli jste, že…</span><span class="mono">16.01.2025</span></div>
+    <h3>Skladování solární energie</h3>
+    <p>Věděli jste, že… nejběžnější typ bateriového úložiště pro solární energii jsou lithiové baterie, které tvoří více než 95 % celkové globální kapacity výroby baterií. Když je baterie…</p>
+    <span class="arrow-link">Číst dál</span>
+  </div>
+</a></div>
+      <div class="news-wrap" data-cat="vedeli-jste-ze"><a class="news-card" href="clanky/solarni-energie-cestuje-na-zemi-8-minut.html">
+  <div class="news-card__img"><img src="https://www.helion.cz/wp-content/uploads/custom-images/slunce_na_zem.webp" alt="" loading="lazy"></div>
+  <div class="news-card__body">
+    <div class="news-card__meta"><span class="chip">Věděli jste, že…</span><span class="mono">16.01.2025</span></div>
+    <h3>Solární energie cestuje na Zemi 8 minut</h3>
+    <p>Věděli jste, že… sluneční světlo potřebuje 8 minut, než dorazí na Zemi. To je kvůli obrovské vzdálenosti mezi Zemí a Sluncem, přičemž světlo se šíří rychlostí 300 000 km/s. « Fotov…</p>
+    <span class="arrow-link">Číst dál</span>
+  </div>
+</a></div>
+      <div class="news-wrap" data-cat="vedeli-jste-ze"><a class="news-card" href="clanky/solarni-energie-je-nejvice-dostupna-na-zemi.html">
+  <div class="news-card__img"><img src="https://www.helion.cz/wp-content/uploads/custom-images/Earth-power-potential-1024x546.webp" alt="" loading="lazy"></div>
+  <div class="news-card__body">
+    <div class="news-card__meta"><span class="chip">Věděli jste, že…</span><span class="mono">16.01.2025</span></div>
+    <h3>Solární energie je nejvíce dostupná na Zemi</h3>
+    <p>Věděli jste, že… Jen jedna hodina sluneční energie, která dopadne na Zemi, by stačila k pokrytí všech našich energetických potřeb po celý rok. « Solární panely fungují v každém poč…</p>
+    <span class="arrow-link">Číst dál</span>
+  </div>
+</a></div>
+      <div class="news-wrap" data-cat="vedeli-jste-ze"><a class="news-card" href="clanky/solarni-energie.html">
+  <div class="news-card__img"><img src="https://www.helion.cz/wp-content/uploads/custom-images/PV-plant.png" alt="" loading="lazy"></div>
+  <div class="news-card__body">
+    <div class="news-card__meta"><span class="chip">Věděli jste, že…</span><span class="mono">16.01.2025</span></div>
+    <h3>Solární energetika</h3>
+    <p>Věděli jste, že… solární energie je nejhojnější energetický zdroj na Zemi a nejrychleji rostoucí forma nové výroby energie. Přesto v současnosti fotovoltaika generuje jen přibližně…</p>
+    <span class="arrow-link">Číst dál</span>
+  </div>
+</a></div>
+      <div class="news-wrap" data-cat="vedeli-jste-ze"><a class="news-card" href="clanky/solarni-energii-muzete-vyuzivat-bez-drahe-technologie.html">
+  <div class="news-card__img"><img src="https://www.helion.cz/wp-content/uploads/custom-images/solarni_trouba.webp" alt="" loading="lazy"></div>
+  <div class="news-card__body">
+    <div class="news-card__meta"><span class="chip">Věděli jste, že…</span><span class="mono">16.01.2025</span></div>
+    <h3>Solární energii můžete využívat i bez drahé technologie</h3>
+    <p>Věděli jste, že… i když jsou solární panely nejběžnějším způsobem, jak využít sluneční energii, existují i jiné metody – například solární vařiče. Tato zařízení využívají zrcadla n…</p>
+    <span class="arrow-link">Číst dál</span>
+  </div>
+</a></div>
+      <div class="news-wrap" data-cat="vedeli-jste-ze"><a class="news-card" href="clanky/solarni-panely-funguji-v-kazdem-pocasi.html">
+  <div class="news-card__img"><img src="https://www.helion.cz/wp-content/uploads/custom-images/solarni_panel_v_desti.jpg" alt="" loading="lazy"></div>
+  <div class="news-card__body">
+    <div class="news-card__meta"><span class="chip">Věděli jste, že…</span><span class="mono">16.01.2025</span></div>
+    <h3>Solární panely fungují v každém počasí</h3>
+    <p>Věděli jste, že… Naproti tomu, co si někteří lidé myslí, solární panely fungují i v oblačném počasí nebo v zimních měsících. I na zamračených dnech mohou vyrábět až 25 % své běžné …</p>
+    <span class="arrow-link">Číst dál</span>
+  </div>
+</a></div>
+      <div class="news-wrap" data-cat="vedeli-jste-ze"><a class="news-card" href="clanky/solarni-panely-lze-recyklovat.html">
+  <div class="news-card__img"><img src="https://www.helion.cz/wp-content/uploads/custom-images/solar-panel-recycling.jpg" alt="" loading="lazy"></div>
+  <div class="news-card__body">
+    <div class="news-card__meta"><span class="chip">Věděli jste, že…</span><span class="mono">16.01.2025</span></div>
+    <h3>Solární panely lze recyklovat</h3>
+    <p>Věděli jste, že… Solární panely mají dlouhou životnost a po skončení své doby použití je možné je recyklovat, což znamená, že mohou být znovu použity k výrobě nových solárních pane…</p>
+    <span class="arrow-link">Číst dál</span>
+  </div>
+</a></div>
+      <div class="news-wrap" data-cat="vedeli-jste-ze"><a class="news-card" href="clanky/solarni-panely-mohou-pohanet-auta-a-letadla.html">
+  <div class="news-card__img"><img src="https://www.helion.cz/wp-content/uploads/custom-images/solarimpulse.png" alt="" loading="lazy"></div>
+  <div class="news-card__body">
+    <div class="news-card__meta"><span class="chip">Věděli jste, že…</span><span class="mono">16.01.2025</span></div>
+    <h3>Solární panely mohou pohánět auta a letadla</h3>
+    <p>Věděli jste, že… Vývoj solární technologie přesahuje pouhé poskytování elektřiny pro domovy. V roce 2013 byl vyroben první solární automobil a v roce 2016 se solární letadlo Solar …</p>
+    <span class="arrow-link">Číst dál</span>
+  </div>
+</a></div>
+      <div class="news-wrap" data-cat="vedeli-jste-ze"><a class="news-card" href="clanky/solarni-panely-vydrzi-25-let-nebo-dele.html">
+  <div class="news-card__img"><img src="https://www.helion.cz/wp-content/uploads/custom-images/preview.webp" alt="" loading="lazy"></div>
+  <div class="news-card__body">
+    <div class="news-card__meta"><span class="chip">Věděli jste, že…</span><span class="mono">16.01.2025</span></div>
+    <h3>Solární panely vydrží 25 let nebo déle</h3>
+    <p>Věděli jste, že… solární panely mají životnost přes 30 let a jejich účinnost zůstává i po této době nad 80 %. Bez pohyblivých částí a minimálními požadavky na údržbu, solární panel…</p>
+    <span class="arrow-link">Číst dál</span>
+  </div>
+</a></div>
+      <div class="news-wrap" data-cat="vedeli-jste-ze"><a class="news-card" href="clanky/solarni-pracovni-mista-a-udrzitelny-rozvoj.html">
+  <div class="news-card__img"><img src="https://www.helion.cz/wp-content/uploads/custom-images/solar-pracovnici-1024x1024.png" alt="" loading="lazy"></div>
+  <div class="news-card__body">
+    <div class="news-card__meta"><span class="chip">Věděli jste, že…</span><span class="mono">16.01.2025</span></div>
+    <h3>Pracovní místa a udržitelný rozvoj</h3>
+    <p>Věděli jste, že… solární průmysl se ukazuje jako velmi účinný při vytváření udržitelných pracovních míst v mnoha zemích, včetně USA, většiny Evropy, Austrálie a východní Asie. V ro…</p>
+    <span class="arrow-link">Číst dál</span>
+  </div>
+</a></div>
+      <div class="news-wrap" data-cat="vedeli-jste-ze"><a class="news-card" href="clanky/solarni-systemy-mohou-take-ohrivat-vodu.html">
+  <div class="news-card__img"><img src="https://www.helion.cz/wp-content/uploads/custom-images/unit-schema-banner-mal.jpg" alt="" loading="lazy"></div>
+  <div class="news-card__body">
+    <div class="news-card__meta"><span class="chip">Věděli jste, že…</span><span class="mono">16.01.2025</span></div>
+    <h3>Solární systémy mohou také ohřívat vodu</h3>
+    <p>Věděli jste, že… Solární termální systémy mohou ohřívat vodu až na 140 °C a pokrýt až 60-70 % domácí spotřeby teplé vody. « Čína je světovým lídrem v oblasti solární energie Panely…</p>
+    <span class="arrow-link">Číst dál</span>
+  </div>
+</a></div>
+      <div class="news-wrap" data-cat="vedeli-jste-ze"><a class="news-card" href="clanky/synchronni-nesychronni.html">
+  <div class="news-card__img"><img src="https://www.helion.cz/wp-content/uploads/2025/01/synchronni_VM.gif" alt="" loading="lazy"></div>
+  <div class="news-card__body">
+    <div class="news-card__meta"><span class="chip">Věděli jste, že…</span><span class="mono">16.01.2025</span></div>
+    <h3>Synchronní / nesychronní</h3>
+    <p>Síťové výrobní zdroje se rozdělují na tzv. synchronní výrobní moduly (SVM) a nesynchronní výrobní moduly (NVM). Za SVM je považován nedělitelný soubor zařízení, který je schopen vy…</p>
+    <span class="arrow-link">Číst dál</span>
+  </div>
+</a></div>
+      <div class="news-wrap" data-cat="vedeli-jste-ze"><a class="news-card" href="clanky/ucinnost-solarnich-panelu.html">
+  <div class="news-card__img"><img src="https://www.helion.cz/wp-content/uploads/custom-images/ucninnost-1024x1024.jpg" alt="" loading="lazy"></div>
+  <div class="news-card__body">
+    <div class="news-card__meta"><span class="chip">Věděli jste, že…</span><span class="mono">16.01.2025</span></div>
+    <h3>Účinnost solárních panelů</h3>
+    <p>Věděli jste, že… účinnost dnešních solárních panelů je přibližně 22-25 %, což vyjadřuje, kolik % energie slunečního světla dokáže solární panel přeměnit na použitelnou elektrickou …</p>
+    <span class="arrow-link">Číst dál</span>
+  </div>
+</a></div>
+      <div class="news-wrap" data-cat="vedeli-jste-ze"><a class="news-card" href="clanky/vyzaduji-velmi-malo-udrzby.html">
+  <div class="news-card__img"><img src="https://www.helion.cz/wp-content/uploads/custom-images/Jak-na-udrzbu-solarnich-panelu-Jak-se-cisti-fotovoltaicke-panely-1024x683.jpg" alt="" loading="lazy"></div>
+  <div class="news-card__body">
+    <div class="news-card__meta"><span class="chip">Věděli jste, že…</span><span class="mono">16.01.2025</span></div>
+    <h3>Vyžadují velmi málo údržby</h3>
+    <p>Věděli jste, že… Solární panely mají velmi nízké náklady na údržbu, žádné opakující se náklady a vyžadují pouze občasné čištění, aby odstranily prach a nečistoty. « Panely nemusí b…</p>
+    <span class="arrow-link">Číst dál</span>
+  </div>
+</a></div>
+      <div class="news-wrap" data-cat="vedeli-jste-ze"><a class="news-card" href="clanky/vyzvy-solarni-energie.html">
+  <div class="news-card__img"><img src="https://www.helion.cz/wp-content/uploads/custom-images/FVEaVTE_Amper-Meteo-1.jpg" alt="" loading="lazy"></div>
+  <div class="news-card__body">
+    <div class="news-card__meta"><span class="chip">Věděli jste, že…</span><span class="mono">16.01.2025</span></div>
+    <h3>Výzvy solární energetiky</h3>
+    <p>Věděli jste, že… solární energie jaksi nefunguje v noci, a tak je nezbytné řešit skladování energie, aby solární energetika mohla nadále růst. Současně je třeba modernizovat elektr…</p>
+    <span class="arrow-link">Číst dál</span>
+  </div>
+</a></div>
+      <div class="news-wrap" data-cat="fotovoltaika"><a class="news-card" href="clanky/blackout-se-pri-zatmeni-nekonal.html">
+  <div class="news-card__img"><img src="https://www.helion.cz/wp-content/uploads/2024/12/zatmeni-male_141x131.jpg" alt="" loading="lazy"></div>
+  <div class="news-card__body">
+    <div class="news-card__meta"><span class="chip">Fotovoltaika</span><span class="mono">17.12.2024</span></div>
+    <h3>Blackout se při zatmění nekonal</h3>
+    <p>Ačkoliv odborníci z ČEPSu i ČEZu připouštěli možnost ohrožení sítě díky skokovému nárůstu výroby elektřiny ze solárních elektráren, až měsíc přestane stínit slunečním paprskům a el…</p>
+    <span class="arrow-link">Číst dál</span>
+  </div>
+</a></div>
+      <div class="news-wrap" data-cat="kpufpnpm"><a class="news-card" href="clanky/co-je-to-za-zkratku.html">
+  <div class="news-card__img"><div class="news-card__ph"></div></div>
+  <div class="news-card__body">
+    <div class="news-card__meta"><span class="chip">Novinky</span><span class="mono">17.12.2024</span></div>
+    <h3>Co je to za zkratku?</h3>
+    <p>Naše kancelář si dala za cíl vnést do fantaskního novinářského světa trochu světla a uvést na pravou míru některé mýty, které, jak mi jistě dáte za pravdu, se častým opakováním stá…</p>
+    <span class="arrow-link">Číst dál</span>
+  </div>
+</a></div>
+      <div class="news-wrap" data-cat="fotovoltaika"><a class="news-card" href="clanky/fotovoltaicky-panel.html">
+  <div class="news-card__img"><img src="https://www.helion.cz/wp-content/uploads/2024/12/fotovoltaicky-panel_500x333.jpg" alt="" loading="lazy"></div>
+  <div class="news-card__body">
+    <div class="news-card__meta"><span class="chip">Fotovoltaika</span><span class="mono">17.12.2024</span></div>
+    <h3>Fotovoltaický panel</h3>
+    <p>Fotovoltaický panel Sluneční energie patří k hlavním obnovitelným zdrojům na Zemi, zároveň představuje i nejvyužívanější energii. Vzniká jadernými přeměnami v nitru Slunce. Využití…</p>
+    <span class="arrow-link">Číst dál</span>
+  </div>
+</a></div>
+      <div class="news-wrap" data-cat="fotovoltaika"><a class="news-card" href="clanky/fotovoltaika-s-bateriemi.html">
+  <div class="news-card__img"><img src="https://www.helion.cz/wp-content/uploads/2024/12/fotovoltaika-s-bateriemi_500x375.jpg" alt="" loading="lazy"></div>
+  <div class="news-card__body">
+    <div class="news-card__meta"><span class="chip">Fotovoltaika</span><span class="mono">17.12.2024</span></div>
+    <h3>Fotovoltaika s bateriemi</h3>
+    <p>Fotovoltaika s bateriemi Fotovoltaika s bateriemi, na kterou se, mimo jiné, naše firma specializuje, využívá systém akumulace. Hovoříme zde o klasické fotovoltaické elektrárně, kte…</p>
+    <span class="arrow-link">Číst dál</span>
+  </div>
+</a></div>
+      <div class="news-wrap" data-cat="fotovoltaika"><a class="news-card" href="clanky/fotovoltaika-trutnov.html">
+  <div class="news-card__img"><img src="https://www.helion.cz/wp-content/uploads/2024/12/fotovoltaika-trutnov-1_500x253.jpg" alt="" loading="lazy"></div>
+  <div class="news-card__body">
+    <div class="news-card__meta"><span class="chip">Fotovoltaika</span><span class="mono">17.12.2024</span></div>
+    <h3>Fotovoltaika Trutnov</h3>
+    <p>Fotovoltaika trutnov Fotovoltaika je obor zabývající se přímou metodou přeměny slunečního záření na elektrickou energii. Využívá fotoelektrického jevu na polovodičových diodách, kt…</p>
+    <span class="arrow-link">Číst dál</span>
+  </div>
+</a></div>
+      <div class="news-wrap" data-cat="fotovoltaika"><a class="news-card" href="clanky/hybridni-elektrarna.html">
+  <div class="news-card__img"><img src="https://www.helion.cz/wp-content/uploads/2024/12/hybridni-elektrarna-2_500x333.jpg" alt="" loading="lazy"></div>
+  <div class="news-card__body">
+    <div class="news-card__meta"><span class="chip">Fotovoltaika</span><span class="mono">17.12.2024</span></div>
+    <h3>Hybridní elektrárna</h3>
+    <p>Hybridní elektrárna Odborníci se nezdráhají tvrdit, že o hybridní elektrárně v nepříliš vzdálené budoucnosti nejen hodně uslyšíme, ale že se bez ní časem neobejde žádná domácnost. …</p>
+    <span class="arrow-link">Číst dál</span>
+  </div>
+</a></div>
+      <div class="news-wrap" data-cat="fotovoltaika"><a class="news-card" href="clanky/kostal-meni-datove-centrum.html">
+  <div class="news-card__img"><div class="news-card__ph"></div></div>
+  <div class="news-card__body">
+    <div class="news-card__meta"><span class="chip">Fotovoltaika</span><span class="mono">17.12.2024</span></div>
+    <h3>Kostal mění datové centrum</h3>
+    <p>PIKO Solar portal, který využívají naši zákazníci s měniči Kostal pro monitorování výkonu elektráren, se přesouvá do nejzelenějšího datové centra v Evropě – do datového přístavu ve…</p>
+    <span class="arrow-link">Číst dál</span>
+  </div>
+</a></div>
+      <div class="news-wrap" data-cat="kpufpnpm"><a class="news-card" href="clanky/mytus-1-rocne-42mld-kc.html">
+  <div class="news-card__img"><div class="news-card__ph"></div></div>
+  <div class="news-card__body">
+    <div class="news-card__meta"><span class="chip">Novinky</span><span class="mono">17.12.2024</span></div>
+    <h3>Mýtus 1 – ročně 42mld.Kč</h3>
+    <p>Podporu obnovitelným zdrojům elektřiny vyplácí organizace zvaná OTE, a.s. a její výši stanovuje regulátor trhu (ERÚ) vždy na jeden rok dopředu. Podpora je stanovená zjednodušeně ta…</p>
+    <span class="arrow-link">Číst dál</span>
+  </div>
+</a></div>
+      <div class="news-wrap" data-cat="fotovoltaika"><a class="news-card" href="clanky/novy-eshop-spusten.html">
+  <div class="news-card__img"><img src="https://www.helion.cz/wp-content/uploads/2024/12/podpis_499x170.jpg" alt="" loading="lazy"></div>
+  <div class="news-card__body">
+    <div class="news-card__meta"><span class="chip">Fotovoltaika</span><span class="mono">17.12.2024</span></div>
+    <h3>Nový eshop spuštěn!</h3>
+    <p>První měsíc doprava zdarma! Registrovat se mohou soukromí i firemní zákazníci. Nakupujte u profesionálů s 20letou tradicí! Solární elektrárna » &lt;div class="</p>
+    <span class="arrow-link">Číst dál</span>
+  </div>
+</a></div>
+      <div class="news-wrap" data-cat="fotovoltaika"><a class="news-card" href="clanky/novy-formular-pro-vykaznictvi.html">
+  <div class="news-card__img"><div class="news-card__ph"></div></div>
+  <div class="news-card__body">
+    <div class="news-card__meta"><span class="chip">Fotovoltaika</span><span class="mono">17.12.2024</span></div>
+    <h3>Nový formulář pro výkaznictví</h3>
+    <p>Opět i na rok 2021 jsme pro Vás připravili malou pomůcku pro snazší tvorbu výkazu OTE a případnou fakturaci přebytků. Naleznete jej v sekci Ke stažení – Legislativa . Doufáme, že V…</p>
+    <span class="arrow-link">Číst dál</span>
+  </div>
+</a></div>
+      <div class="news-wrap" data-cat="legislativa"><a class="news-card" href="clanky/novy-formular-pro-vykazy-na-ote.html">
+  <div class="news-card__img"><div class="news-card__ph"></div></div>
+  <div class="news-card__body">
+    <div class="news-card__meta"><span class="chip">Legislativa</span><span class="mono">17.12.2024</span></div>
+    <h3>Nový formulář pro výkazy na OTE</h3>
+    <p>S ohledem na množící se dotazy na nové požadavky OTE jsme pro Vás v excelu připravili nového pomocníka na rok 2017 – stáhnout si jej můžete zde . Solární elektrárna » &lt;div class="</p>
+    <span class="arrow-link">Číst dál</span>
+  </div>
+</a></div>
+      <div class="news-wrap" data-cat="technologie"><a class="news-card" href="clanky/obnovitelne-zdroje.html">
+  <div class="news-card__img"><img src="https://www.helion.cz/wp-content/uploads/2024/12/obnovitelne-zdroje-1_500x333.jpg" alt="" loading="lazy"></div>
+  <div class="news-card__body">
+    <div class="news-card__meta"><span class="chip">Technologie</span><span class="mono">17.12.2024</span></div>
+    <h3>Obnovitelné zdroje</h3>
+    <p>Obnovitelné zdroje Obnovitelné zdroje dokáží produkovat či vyrábět obnovitelnou energii, která se v lidském měřítku přirozeně obnovuje. Na rozdíl od neobnovitelných zdrojů, které l…</p>
+    <span class="arrow-link">Číst dál</span>
+  </div>
+</a></div>
+      <div class="news-wrap" data-cat="fotovoltaika"><a class="news-card" href="clanky/optimalizace-provozu-fve.html">
+  <div class="news-card__img"><div class="news-card__ph"></div></div>
+  <div class="news-card__body">
+    <div class="news-card__meta"><span class="chip">Fotovoltaika</span><span class="mono">17.12.2024</span></div>
+    <h3>Optimalizace provozu FVE</h3>
+    <p>Nabízíme řešení pro všechny provozovatele FVE, kteří mají nízký podíl vlastní spotřeby z vyrobené energie. Existuje řada způsobů, jak optimalizovat spínání domácích spotřebičů, aby…</p>
+    <span class="arrow-link">Číst dál</span>
+  </div>
+</a></div>
+      <div class="news-wrap" data-cat="fotovoltaika"><a class="news-card" href="clanky/ostrovni-elektrarna.html">
+  <div class="news-card__img"><img src="https://www.helion.cz/wp-content/uploads/2024/12/ostrovni-elektrarna-1_498x520.jpg" alt="" loading="lazy"></div>
+  <div class="news-card__body">
+    <div class="news-card__meta"><span class="chip">Fotovoltaika</span><span class="mono">17.12.2024</span></div>
+    <h3>Ostrovní elektrárna</h3>
+    <p>Ostrovní elektrárna Ostrovní elektrárna je malý zázrak pro všechny, kteří se zajímají o energii získávanou ze slunečního záření a o obnovitelné zdroje všeobecně. Stále totiž stoupá…</p>
+    <span class="arrow-link">Číst dál</span>
+  </div>
+</a></div>
+      <div class="news-wrap" data-cat="fotovoltaika"><a class="news-card" href="clanky/solarni-baterie.html">
+  <div class="news-card__img"><img src="https://www.helion.cz/wp-content/uploads/2024/12/solarni-baterie-1_500x333.jpg" alt="" loading="lazy"></div>
+  <div class="news-card__body">
+    <div class="news-card__meta"><span class="chip">Fotovoltaika</span><span class="mono">17.12.2024</span></div>
+    <h3>Solární baterie</h3>
+    <p>Solární baterie Solární baterie představují specifickou skupinu baterií, která je speciálně upravena pro fungování ve fotovoltaické elektrárně . Energie získávaná ze slunečního zář…</p>
+    <span class="arrow-link">Číst dál</span>
+  </div>
+</a></div>
+      <div class="news-wrap" data-cat="fotovoltaika"><a class="news-card" href="clanky/solarni-elektrarna.html">
+  <div class="news-card__img"><img src="https://www.helion.cz/wp-content/uploads/2024/12/solarni-elektrarna-1_500x334.jpg" alt="" loading="lazy"></div>
+  <div class="news-card__body">
+    <div class="news-card__meta"><span class="chip">Fotovoltaika</span><span class="mono">17.12.2024</span></div>
+    <h3>Solární elektrárna</h3>
+    <p>Solární elektrárna Sluneční neboli solární elektrárna je druh technické zařízení, díky kterému je možné přeměňovat energie získané ze slunečního záření na energii elektrickou. Tato…</p>
+    <span class="arrow-link">Číst dál</span>
+  </div>
+</a></div>
+      <div class="news-wrap" data-cat="fotovoltaika"><a class="news-card" href="clanky/stanoveni-kategorie-vyrobce-ii.html">
+  <div class="news-card__img"><div class="news-card__ph"></div></div>
+  <div class="news-card__body">
+    <div class="news-card__meta"><span class="chip">Fotovoltaika</span><span class="mono">17.12.2024</span></div>
+    <h3>Stanovení kategorie výrobce II</h3>
+    <p>Dostali jste dopis, ve kterém Vás PDS vyzývá k tomu, abyste mu oznámili, do jaké kategorie jako výrobce spadáte? Většina z Vás, kteří máte FVE na rodinném domě či firmě, může zůsta…</p>
+    <span class="arrow-link">Číst dál</span>
+  </div>
+</a></div>
+      <div class="news-wrap" data-cat="fotovoltaika"><a class="news-card" href="clanky/stanoveni-kategorie-vyrobce.html">
+  <div class="news-card__img"><div class="news-card__ph"></div></div>
+  <div class="news-card__body">
+    <div class="news-card__meta"><span class="chip">Fotovoltaika</span><span class="mono">17.12.2024</span></div>
+    <h3>Stanovení kategorie výrobce</h3>
+    <p>Do konce ledna musí dle platné legislativy provozovatel výrobny zaslat svému PDS oznámení, do jaké kategorie spadá. Neplatí to ovšem pro všechny případy. Rozdělení do dvou kategori…</p>
+    <span class="arrow-link">Číst dál</span>
+  </div>
+</a></div>
+      <div class="news-wrap" data-cat="technologie"><a class="news-card" href="clanky/technika-pro-domy-z-21-stoleti.html">
+  <div class="news-card__img"><img src="https://helion.cz/media/3678/biosuntec.mp4" alt="" loading="lazy"></div>
+  <div class="news-card__body">
+    <div class="news-card__meta"><span class="chip">Technologie</span><span class="mono">17.12.2024</span></div>
+    <h3>Technika pro domy z 21. století</h3>
+    <p>Prohlédněte si reportáž hradecké televize o levném a přitom velice efektivním řešení, které je vhodné převážně do nových nízkoenegetických a pasivních domů. Solární elektrárna » &lt;d…</p>
+    <span class="arrow-link">Číst dál</span>
+  </div>
+</a></div>
+      <div class="news-wrap" data-cat="fotovoltaika"><a class="news-card" href="clanky/vysvetlujeme-polopate.html">
+  <div class="news-card__img"><img src="https://www.youtube.com/embed/ro1Kfy6IxNI?theme=light" alt="" loading="lazy"></div>
+  <div class="news-card__body">
+    <div class="news-card__meta"><span class="chip">Fotovoltaika</span><span class="mono">17.12.2024</span></div>
+    <h3>Vysvětlujeme Polopatě!</h3>
+    <p>V této pětiminutové reportáži se od nás dozvíte, jak fungují systémy na ohřev vody a co od nich můžete jako zákazník očekávat! « Technika pro domy z 21. století Synchronní / nesych…</p>
+    <span class="arrow-link">Číst dál</span>
+  </div>
+</a></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="e-footer">
+  <div class="grain"></div>
+  <div class="container">
+    <div class="e-footer__claim">
+      <div>
+        <p class="kicker light">Pojďme do toho</p>
+        <h2>Skutečná nezávislost<br>začíná <span class="grad">nezávaznou poptávkou</span>.</h2>
+      </div>
+      <a class="e-btn e-btn--light magnetic" href="poptavka.html">Nezávazná poptávka</a>
+    </div>
+    <div class="e-footer__cols">
+      <div>
+        <h4>Helion.cz s.r.o.</h4>
+        <p><a href="https://www.google.com/maps?q=Za+Kom%C3%ADnem+688,+541+02+Trutnov" target="_blank" rel="noopener">Za Komínem 688<br>541 02 Trutnov</a></p>
+        <p><a href="tel:+420773165260">+420 773 165 260</a><br><a href="mailto:info@helion.cz">info@helion.cz</a></p>
+        <p class="mono">Po–Pá 8:00–15:00</p>
+      </div>
+      <div>
+        <h4>Navigace</h4>
+        <ul>
+          <li><a href="produkty.html">Produkty</a></li>
+          <li><a href="krok-za-krokem.html">Krok za krokem</a></li>
+          <li><a href="reference.html">Reference</a></li>
+          <li><a href="novinky.html">Novinky</a></li>
+          <li><a href="caste-dotazy.html">Časté dotazy</a></li>
+          <li><a href="kontakt.html">Kontakt</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Aplikace &amp; zdroje</h4>
+        <ul>
+          <li><a href="https://www.helion.cz/spotovky/" target="_blank" rel="noopener">Spotovky</a></li>
+          <li><a href="https://www.helion.cz/odhad-produkce/" target="_blank" rel="noopener">Odhad solární výroby</a></li>
+          <li><a href="https://www.helion.cz/kalkulacka/" target="_blank" rel="noopener">Kalkulačka</a></li>
+          <li><a href="https://eshop.helion.cz" target="_blank" rel="noopener">E-shop</a></li>
+          <li><a href="manualy.html">Manuály ke stažení</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="e-footer__wordmark" aria-hidden="true">HELION</div>
+  <div class="container">
+    <div class="e-footer__bottom">
+      <p>© <span id="year">2026</span> Helion.cz s.r.o. — všechna práva vyhrazena</p>
+      <a href="gdpr.html">Zásady ochrany osobních údajů</a>
+    </div>
+  </div>
+</footer>
+<script src="js/main.js"></script>
+</body>
+</html>
