@@ -126,6 +126,7 @@ h4 { font-size: 21px; line-height: 1.25; font-weight: 700; }
 .e-btn {
   display: inline-flex;
   align-items: center;
+  white-space: nowrap;
   gap: 10px;
   background: var(--blue);
   color: var(--ink);
