@@ -914,3 +914,36 @@ body.scrolled .e-header { box-shadow: 0 10px 40px rgba(0, 21, 43, 0.12); }
 @media (max-width: 520px) {
   .spot__stats { grid-template-columns: 1fr; }
 }
+
+/* ---------- HUD prvky (hodiny, souřadnice, indexy, dotted hover) ---------- */
+.mono, .bento__big, .step__num, .hud { font-variant-numeric: tabular-nums; }
+.hud { display: inline-flex; gap: 6px; align-items: center; color: rgba(255, 255, 255, 0.55); user-select: none; }
+.hud-sep { color: var(--amber); font-size: 8px; }
+
+/* tečkovaný rámeček na hover — news, manuály, aplikace, reference, team */
+.news-card, .man-card, .app-card, .ref-card, .team__card, .bento__tile { position: relative; }
+.news-card::before, .man-card::before, .app-card::before, .ref-card::before, .team__card::before {
+  content: "";
+  position: absolute; inset: 0;
+  border: 2px dotted transparent;
+  border-radius: inherit;
+  pointer-events: none;
+  transition: border-color 0.2s ease;
+  z-index: 2;
+}
+.news-card:hover::before, .man-card:hover::before, .app-card:hover::before,
+.ref-card:hover::before, .team__card:hover::before { border-color: var(--amber); }
+
+/* čtyřmístný index v rohu karty */
+.idx {
+  position: absolute; top: 10px; left: 10px;
+  z-index: 3;
+  font-size: 11px;
+  color: var(--white);
+  background: rgba(0, 21, 43, 0.72);
+  padding: 3px 8px;
+  border-radius: 6px;
+  letter-spacing: 0.08em;
+  backdrop-filter: blur(4px);
+}
+@media (max-width: 992px) { .hud { display: none; } }

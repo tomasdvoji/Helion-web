@@ -187,3 +187,19 @@ if (matchMedia('(pointer:fine)').matches) {
     el.addEventListener('mouseleave', () => { el.style.translate = '0 0'; });
   });
 }
+
+// HUD: živé hodiny (Europe/Prague) + souřadnice kurzoru
+(() => {
+  const clock = document.getElementById('hud-clock');
+  if (clock) {
+    const tick = () => clock.textContent = new Date().toLocaleTimeString('cs-CZ', { timeZone: 'Europe/Prague', hour12: false });
+    tick(); setInterval(tick, 1000);
+  }
+  const hx = document.getElementById('hud-x'), hy = document.getElementById('hud-y');
+  if (hx && matchMedia('(pointer:fine)').matches) {
+    addEventListener('mousemove', e => {
+      hx.textContent = String(e.clientX).padStart(4, '0');
+      hy.textContent = String(e.clientY).padStart(4, '0');
+    }, { passive: true });
+  }
+})();
