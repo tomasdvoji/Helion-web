@@ -365,7 +365,7 @@ body.scrolled .e-header { box-shadow: 0 10px 40px rgba(10, 13, 18, 0.12); }
 
 .hp-intro-block__bottom { display: grid; grid-template-columns: 1.15fr 1fr; gap: clamp(40px, 6vw, 90px); align-items: center; }
 .hp-intro-block__imgs { position: relative; }
-.img-main { overflow: hidden; border-radius: var(--radius); }
+.img-main { overflow: hidden; border-radius: var(--radius); clip-path: inset(0 round var(--radius)); }
 .img-main img { aspect-ratio: 4/3; object-fit: cover; width: 100%; transition: transform 0.7s ease; }
 .img-main:hover img { transform: scale(1.05); }
 .img-small {
@@ -432,7 +432,7 @@ body.scrolled .e-header { box-shadow: 0 10px 40px rgba(10, 13, 18, 0.12); }
 .content__meta .level { background: var(--blue); color: var(--ink); border-color: var(--blue); }
 .stack-carousel .card h3 a:hover { color: var(--orange); }
 .stack-carousel .card p { color: var(--muted); }
-.stack-carousel .card .image { overflow: hidden; }
+.stack-carousel .card .image { overflow: hidden; clip-path: inset(0 round 0 20px 20px 0); }
 .stack-carousel .card .image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s ease; }
 .stack-carousel .card:hover .image img { transform: scale(1.05); }
 .stack-carousel .controls { display: flex; align-items: center; justify-content: center; gap: 26px; margin-top: 64px; }
@@ -467,7 +467,7 @@ body.scrolled .e-header { box-shadow: 0 10px 40px rgba(10, 13, 18, 0.12); }
   transition: var(--tr);
 }
 .news-card:hover { transform: translateY(-8px); box-shadow: var(--shadow); border-color: transparent; }
-.news-card__img { aspect-ratio: 16/9; overflow: hidden; background: var(--paper); }
+.news-card__img { aspect-ratio: 16/9; overflow: hidden; background: var(--paper); clip-path: inset(0 round calc(var(--radius) - 1px) calc(var(--radius) - 1px) 0 0); }
 .news-card__img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
 .news-card:hover .news-card__img img { transform: scale(1.06); }
 .news-card__ph { width: 100%; height: 100%; background: linear-gradient(135deg, var(--blue), var(--cyan)); }
@@ -490,7 +490,7 @@ body.scrolled .e-header { box-shadow: 0 10px 40px rgba(10, 13, 18, 0.12); }
 }
 .marquee__track { display: flex; gap: 18px; width: max-content; animation: marquee 48s linear infinite; }
 .marquee__track:hover { animation-play-state: paused; }
-.marquee__item { position: relative; border-radius: 14px; overflow: hidden; }
+.marquee__item { position: relative; border-radius: 14px; overflow: hidden; clip-path: inset(0 round 14px); }
 .marquee__item img { height: 210px; width: 310px; object-fit: cover; transition: transform 0.5s ease; }
 .marquee__item:hover img { transform: scale(1.06); }
 .marquee__item figcaption {
@@ -580,7 +580,7 @@ body.scrolled .e-header { box-shadow: 0 10px 40px rgba(10, 13, 18, 0.12); }
 .prod-item h2 { margin-bottom: 14px; }
 .prod-item p { margin-bottom: 12px; color: var(--muted); }
 .prod-item .e-btn { margin-top: 10px; }
-.prod-item__img { overflow: hidden; border-radius: var(--radius); }
+.prod-item__img { overflow: hidden; border-radius: var(--radius); clip-path: inset(0 round var(--radius)); }
 .prod-item__img img { width: 100%; object-fit: cover; max-height: 440px; transition: transform 0.6s ease; }
 .prod-item__img:hover img { transform: scale(1.04); }
 
@@ -603,7 +603,8 @@ body.scrolled .e-header { box-shadow: 0 10px 40px rgba(10, 13, 18, 0.12); }
 .step h4 { margin-bottom: 10px; }
 .step p { color: var(--muted); font-size: 15px; }
 
-/* reference grid */
+/* reference grid
+   pozn.: clip-path na obalech fotek = antialiasovane rohy i pri GPU kompozici (zoom on hover); samotne overflow:hidden dela zubate rohy */
 .ref-grid-section { padding: var(--spacing) 0; }
 .ref-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
 .ref-card {
@@ -616,7 +617,7 @@ body.scrolled .e-header { box-shadow: 0 10px 40px rgba(10, 13, 18, 0.12); }
 }
 .ref-card.hidden { display: none; }
 .ref-card:hover { transform: translateY(-6px); box-shadow: var(--shadow); border-color: transparent; }
-.ref-card .imgbox { overflow: hidden; }
+.ref-card .imgbox { overflow: hidden; clip-path: inset(0 round calc(var(--radius) - 1px) calc(var(--radius) - 1px) 0 0); }
 .ref-card img { aspect-ratio: 4/3; object-fit: cover; width: 100%; transition: transform 0.6s ease; }
 .ref-card:hover img { transform: scale(1.08); }
 .ref-card figcaption { padding: 16px 20px; }
@@ -728,7 +729,7 @@ body.scrolled .e-header { box-shadow: 0 10px 40px rgba(10, 13, 18, 0.12); }
 /* novinky + články */
 .news-section { padding: var(--spacing) 0; }
 .article { padding: calc(var(--spacing) * 0.7) 0 var(--spacing); }
-.article__hero-img { border-radius: var(--radius); overflow: hidden; margin-bottom: 28px; }
+.article__hero-img { border-radius: var(--radius); overflow: hidden; margin-bottom: 28px; clip-path: inset(0 round var(--radius)); }
 .article__hero-img img { width: 100%; max-height: 460px; object-fit: cover; }
 .article__body { font-size: 17.5px; line-height: 1.75; }
 .article__body h2, .article__body h3, .article__body h4 { margin: 1.6em 0 0.6em; }
@@ -828,6 +829,7 @@ body.scrolled .e-header { box-shadow: 0 10px 40px rgba(10, 13, 18, 0.12); }
   .prod-item--rev .prod-item__text { order: 0; }
   .img-small { right: 0; }
   .stack-carousel .card { grid-template-columns: 1fr; grid-template-rows: auto 1fr; }
+  .stack-carousel .card .image { clip-path: inset(0 round 0 0 20px 20px); }
   .stack-carousel .card .content { padding: 28px; }
 
   .e-footer__cols { grid-template-columns: 1fr 1fr; }
