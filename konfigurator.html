@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Konfigurátor FVE | Helion.cz</title>
+<meta name="description" content="Navrhněte si fotovoltaiku na míru: zadejte dům a spotřebu, my spočítáme velikost FVE, baterii, cenu, dotaci i návratnost.">
+<link rel="icon" href="https://www.helion.cz/wp-content/themes/helion/images/favicon.png">
+<link rel="preconnect" href="https://www.helion.cz">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/main.css?v=79dda72d">
+</head>
+<body class="">
+
+<div class="progress-bar" id="progress-bar"></div>
+<div class="topbar">
+  <div class="container topbar__inner">
+    <div class="topbar__info">
+      <span>Po–Pá 8:00–15:00</span>
+      <a href="https://www.google.com/maps?q=Za+Kom%C3%ADnem+688,+541+02+Trutnov" target="_blank" rel="noopener">Za Komínem 688, Trutnov</a>
+      <a href="mailto:info@helion.cz">info@helion.cz</a>
+    </div>
+    <div class="topbar__right">
+      <span id="spot-price" class="topbar__spot mono" title="Aktuální spotová cena elektřiny"></span>
+      <a href="caste-dotazy.html">Časté dotazy</a>
+      <a href="manualy.html">Manuály</a>
+    </div>
+  </div>
+</div>
+<header class="e-header">
+  <div class="container e-header__inner">
+    <a class="logo" href="index.html"><img decoding="async" src="media/logo.png" alt="HELION.CZ"></a>
+    <nav class="primary-nav" id="primary-nav">
+      <ul>
+        <li class="has-sub"><a href="produkty.html">Produkty</a>
+          <ul class="sub">
+            <li><a href="produkty.html#rodinne-domy">Rodinné domy</a></li>
+            <li><a href="produkty.html#bytove-domy">Bytové domy, SVJ</a></li>
+            <li><a href="produkty.html#firmy">Firmy</a></li>
+            <li><a href="produkty.html#smart-home">Chytrá domácnost</a></li>
+            <li><a href="produkty.html#dotace">Dotace</a></li>
+            <li><a href="produkty.html#servis">Servis</a></li>
+          </ul>
+        </li>
+        <li class="has-sub is-active"><a href="aplikace.html">Aplikace</a>
+          <ul class="sub">
+            <li><a href="spotovky.html">Spotovky</a></li>
+            <li><a href="konfigurator.html">Konfigurátor FVE</a></li>
+            <li><a href="odhad-produkce.html">Odhad solární výroby</a></li>
+            <li><a href="kalkulacka.html">Kalkulačka</a></li>
+            <li><a href="podpora.html">Servisní podpora</a></li>
+          </ul>
+        </li>
+        <li><a href="krok-za-krokem.html">Krok za krokem</a></li>
+        <li><a href="reference.html">Reference</a></li>
+        <li><a href="novinky.html">Novinky</a></li>
+        <li><a href="kontakt.html">Kontakt</a></li>
+      </ul>
+    </nav>
+    <div class="e-header__cta">
+      <a class="phone-link" href="tel:+420773165260"><small>Zavolejte nám</small><strong>+420 773 165 260</strong></a>
+      <a class="e-btn magnetic" href="poptavka.html">Poptávka</a>
+      <a class="e-btn e-btn--ghost magnetic" href="https://eshop.helion.cz" target="_blank" rel="noopener">E-shop</a>
+    </div>
+    <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</header>
+<main class="main-content">
+
+<section class="page-hero">
+  <div class="grain"></div>
+  <div class="glow glow--tr"></div>
+  <div class="container">
+    <p class="kicker light">Navrhneme vám elektrárnu na míru</p>
+    <h1>Konfigurátor FVE</h1>
+  </div>
+</section>
+
+<section class="calc">
+  <div class="container container--narrow">
+
+    <div class="konf-steps mono" id="konf-steps"></div>
+
+    <form id="konf-form" class="inquiry__form" autocomplete="off">
+
+      <fieldset class="konf-step" data-title="Střecha">
+        <h3>1. Kam budeme instalovat?</h3>
+        <div class="row2">
+          <label>Typ střechy
+            <select id="strecha">
+              <option value="taska">Šikmá – tašková krytina</option>
+              <option value="plech">Šikmá – plech / trapéz / bitumen</option>
+              <option value="falc">Šikmá – falcovaný plech</option>
+              <option value="plocha">Plochá střecha</option>
+              <option value="zem">Na zem (zahrada, pole)</option>
+            </select>
+          </label>
+          <label>Orientace plochy pro panely
+            <select id="orientace">
+              <option value="J">Jih</option>
+              <option value="JV">Jihovýchod</option>
+              <option value="JZ">Jihozápad</option>
+              <option value="V">Východ</option>
+              <option value="Z">Západ</option>
+              <option value="VZ" selected>Východ + západ (obě strany)</option>
+            </select>
+          </label>
+        </div>
+        <div class="row2">
+          <label>Sklon střechy (°)<input type="number" id="sklon" value="35" min="0" max="90"></label>
+          <label>Stínění (stromy, komíny, okolní budovy)
+            <select id="stineni">
+              <option value="0">Žádné</option>
+              <option value="0.05">Mírné</option>
+              <option value="0.15">Výrazné</option>
+            </select>
+          </label>
+        </div>
+        <label>Volná plocha pro panely (m², obě strany dohromady)<input type="number" id="plocha" value="55" min="10" max="500"></label>
+      </fieldset>
+
+      <fieldset class="konf-step" hidden data-title="Dům">
+        <h3>2. Jak bydlíte a topíte?</h3>
+        <div class="row2">
+          <label>Počet osob v domácnosti<input type="number" id="osoby" value="4" min="1" max="12"></label>
+          <label>Distribuční sazba <small class="mono">(najdete na vyúčtování)</small>
+            <select id="sazba"></select>
+          </label>
+        </div>
+        <div class="row2">
+          <label>Čím vytápíte?
+            <select id="topeni">
+              <option value="Tepelné čerpadlo vzduch/voda">Tepelné čerpadlo vzduch/voda</option>
+              <option value="Tepelné čerpadlo s vrty">Tepelné čerpadlo s vrty</option>
+              <option value="Elektrické vytápění">Elektřina (přímotopy, el. kotel)</option>
+              <option value="">Plyn / tuhá paliva / CZT (bez elektřiny)</option>
+            </select>
+          </label>
+          <label>Čím ohříváte vodu?
+            <select id="voda">
+              <option value="Tepelné čerpadlo vzduch/voda">Tepelné čerpadlo / TČ bojler</option>
+              <option value="Elektrické vytápění">Elektrický bojler</option>
+              <option value="">Plyn / jinak (bez elektřiny)</option>
+            </select>
+          </label>
+        </div>
+        <div class="row2">
+          <label id="ztrataBox">Velikost / zateplení domu
+            <select id="ztrata">
+              <option value="4">Menší zateplený dům (do 100 m²)</option>
+              <option value="7.5" selected>Běžný rodinný dům</option>
+              <option value="10">Větší nebo starší dům</option>
+              <option value="14">Velký nezateplený dům</option>
+            </select>
+          </label>
+          <label>Roční spotřeba z vyúčtování (MWh) <small class="mono">(nepovinné – zpřesní výpočet)</small>
+            <input type="number" id="rocni" step="0.1" min="0" placeholder="např. 8.5">
+          </label>
+        </div>
+      </fieldset>
+
+      <fieldset class="konf-step" hidden data-title="Spotřebiče">
+        <h3>3. Co doma běží na elektřinu?</h3>
+        <div class="konf-checks" id="spotrebice"></div>
+      </fieldset>
+
+      <fieldset class="konf-step" hidden data-title="Elektromobil">
+        <h3>4. Jezdíte elektromobilem?</h3>
+        <label class="calc__check"><input type="checkbox" id="ev"> Mám ho, nebo ho do 2 let plánuji (přidáme wallbox)</label>
+        <div class="row2" id="evBox" hidden>
+          <label>Průměrný denní nájezd (km)<input type="number" id="kmDen" value="35" min="0"></label>
+          <label>Spotřeba vozu (kWh/100 km)<input type="number" id="evSpotreba" value="17" min="5"></label>
+        </div>
+      </fieldset>
+
+      <div class="konf-nav">
+        <button type="button" class="e-btn e-btn--ghost" id="zpet" hidden>← Zpět</button>
+        <button type="button" class="e-btn magnetic" id="dal">Pokračovat →</button>
+      </div>
+    </form>
+
+    <div id="vysledek" class="konf-vysledek" hidden>
+      <h2>Návrh pro váš dům</h2>
+      <p id="souhrn" class="lead"></p>
+      <div class="konf-karty" id="karty"></div>
+      <div class="calc__result" id="lead" hidden>
+        <h3>Chci nabídku na sestavu „<span id="lead-varianta"></span>“</h3>
+        <p>Necháte nám kontakt a my se ozveme s přesnou nabídkou. Odesláním se otevře e-mail s celou konfigurací.</p>
+        <div class="inquiry__form" style="padding:0;border:0;background:none">
+        <div class="row2">
+          <label>Jméno a příjmení<input id="lead-jmeno"></label>
+          <label>Telefon<input id="lead-tel" type="tel"></label>
+        </div>
+        <div class="row2">
+          <label>E-mail<input id="lead-email" type="email"></label>
+          <label>Obec / adresa instalace<input id="lead-obec"></label>
+        </div>
+        <button class="e-btn magnetic" id="lead-odeslat">Odeslat poptávku</button>
+        </div>
+      </div>
+      <p class="mono spot__src">Orientační návrh a ceny vč. 12% DPH podle aktuálního ceníku. Přesnou nabídku potvrdíme po technické konzultaci; dotace NZÚ dle aktuálních podmínek programu.</p>
+    </div>
+
+  </div>
+</section>
+
+<style>
+.konf-steps{display:flex;gap:14px;margin-bottom:22px;font-size:13px;flex-wrap:wrap}
+.konf-steps span{opacity:.45}
+.konf-steps span.on{opacity:1;color:var(--orange);font-weight:700}
+.konf-step h3{margin-bottom:18px}
+.konf-checks{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px}
+.konf-checks label{display:flex;gap:10px;align-items:center;border:1px solid var(--line);border-radius:12px;padding:10px 14px;cursor:pointer;font-size:15px}
+.konf-checks label:has(input:checked){border-color:var(--orange);background:rgba(247,166,0,.07)}
+.konf-nav{display:flex;justify-content:space-between;gap:12px;margin-top:26px}
+.konf-nav .e-btn:last-child{margin-left:auto}
+.konf-vysledek{margin-top:10px}
+.konf-karty{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:26px 0}
+.konf-karta{border:1px solid var(--line);border-radius:var(--radius);padding:22px;background:var(--white);display:flex;flex-direction:column;gap:6px}
+.konf-karta.doporucena{border-color:var(--orange);box-shadow:var(--shadow)}
+.konf-karta .stitek{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--orange);font-weight:700}
+.konf-karta h3{font-size:22px;margin:0}
+.konf-karta .popis{color:var(--muted);font-size:13.5px;min-height:40px}
+.konf-karta .cena{font-size:26px;font-weight:800;font-family:var(--display)}
+.konf-karta .cena small{font-size:13px;color:var(--muted);font-weight:400}
+.konf-karta ul{margin:8px 0;padding:0;font-size:13.5px;color:var(--muted)}
+.konf-karta li{display:flex;justify-content:space-between;gap:8px;padding:3px 0;border-bottom:1px dashed var(--line)}
+.konf-karta li b{color:var(--ink)}
+.konf-karta details{font-size:12.5px;color:var(--muted);margin:6px 0}
+.konf-karta details li{border:0;padding:1px 0}
+.konf-karta .e-btn{margin-top:auto;text-align:center}
+@media(max-width:900px){.konf-karty{grid-template-columns:1fr}}
+</style>
+
+<script src="js/konfigurator-data.js"></script>
+<script src="js/konfigurator.js"></script>
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const kroky = [...document.querySelectorAll('.konf-step')];
+  let krok = 0, vysledky = null, vybrana = null;
+
+  // sazby + spotřebiče
+  $('sazba').innerHTML = KONFIG.sazby.map(s => `<option ${s === 'D25d' ? 'selected' : ''}>${s}</option>`).join('');
+  const vychozi = new Set(['lednice', 'pc', 'tv', 'pracka', 'svetla', 'sporak', 'trouba']);
+  $('spotrebice').innerHTML = KONFIG.SPOTREBICE.map(([k, n]) =>
+    `<label><input type="checkbox" name="sp" value="${k}" ${vychozi.has(k) ? 'checked' : ''}> ${n}</label>`).join('');
+
+  const ukaz = () => {
+    kroky.forEach((f, i) => f.hidden = i !== krok);
+    $('zpet').style.display = krok === 0 ? 'none' : ''; // hidden atribut přebíjí display na .e-btn
+    $('dal').textContent = krok === kroky.length - 1 ? 'Spočítat návrh ✓' : 'Pokračovat →';
+    $('konf-steps').innerHTML = kroky.map((f, i) =>
+      `<span class="${i === krok ? 'on' : ''}">${i + 1}. ${f.dataset.title}</span>`).join(' <span>·</span> ');
+  };
+  $('zpet').onclick = () => { krok = Math.max(0, krok - 1); ukaz(); };
+  $('dal').onclick = () => { if (krok < kroky.length - 1) { krok++; ukaz(); } else spocitat(); };
+  $('ev').onchange = () => $('evBox').hidden = !$('ev').checked;
+  ukaz();
+
+  const AZIMUTY = { J: [[0, 1]], JV: [[-45, 1]], JZ: [[45, 1]], V: [[-90, 1]], Z: [[90, 1]], VZ: [[-90, .5], [90, .5]] };
+  const f = n => Math.round(n).toLocaleString('cs-CZ');
+
+  function vstupy() {
+    const stineni = +$('stineni').value, sklon = +$('sklon').value || 35;
+    return {
+      strecha: $('strecha').value,
+      plochy: AZIMUTY[$('orientace').value].map(([az, podil]) => ({ azimut: az, sklon: $('strecha').value === 'plocha' ? 10 : sklon, stineni, podil })),
+      plocha: +$('plocha').value || 40,
+      panel: FVE_DATA.panely[0].nazev,
+      baterie: FVE_DATA.baterie.find(b => b.nazev.includes('Pylontech Force H3')).nazev,
+      osoby: +$('osoby').value || 4,
+      sazba: $('sazba').value,
+      zdrojTopeni: $('topeni').value || 'Nespecifikováno',
+      vytapeniElektrinou: !!$('topeni').value,
+      ztrata: +$('ztrata').value,
+      zdrojVody: $('voda').value || null,
+      rocniSpotreba: (+$('rocni').value || 0) * 1000,
+      ev: $('ev').checked, kmDen: +$('kmDen').value || 35, evSpotreba: +$('evSpotreba').value || 17,
+      spotrebice: new Set([...document.querySelectorAll('input[name=sp]:checked')].map(i => i.value)),
+    };
+  }
+
+  function spocitat() {
+    const inp = vstupy();
+    vysledky = { inp, ...KONFIG.spocitej(inp) };
+    $('souhrn').innerHTML = `Odhadovaná roční spotřeba vaší domácnosti: <b>${f(vysledky.spotrebaRok / 1000 * 10) / 10} MWh</b>. ` +
+      `Na střechu se vejde až <b>${vysledky.maxPanelu} panelů</b>. Vyberte si variantu:`;
+    $('karty').innerHTML = vysledky.varianty.map((v, i) => `
+      <div class="konf-karta ${i === 1 ? 'doporucena' : ''}">
+        ${i === 1 ? '<span class="stitek">Doporučujeme</span>' : ''}
+        <h3>${v.nazev}</h3>
+        <p class="popis">${v.popis}</p>
+        <div class="cena">${f(v.poDotaci)} Kč <small>po dotaci</small></div>
+        <ul>
+          <li>FVE <b>${v.cena.kwp.toFixed(1)} kWp</b> (${v.ks}× panel 450 Wp)</li>
+          <li>Baterie <b>${v.cena.kwhBat ? v.cena.kwhBat + ' kWh' : '—'}</b></li>
+          <li>Roční výroba <b>${f(v.vyroba)} kWh</b></li>
+          <li>Pokrytí spotřeby <b>${v.pokryti} %</b></li>
+          <li>Úspora 1. rok <b>${f(v.usporaRok1)} Kč</b></li>
+          <li>Návratnost <b>${v.navratnost ? v.navratnost + ' let' : '—'}</b></li>
+          <li>Cena s DPH <b>${f(v.cena.sDph)} Kč</b></li>
+          <li>Dotace NZÚ <b>−${f(v.dot)} Kč</b></li>
+        </ul>
+        <details><summary>Co je v ceně (${v.cena.rozpis.length} položek)</summary><ul>
+          ${v.cena.rozpis.map(r => `<li><span>${r.ks}× ${r.nazev.split(',')[0]}</span></li>`).join('')}
+        </ul></details>
+        <button class="e-btn ${i === 1 ? '' : 'e-btn--ghost'}" data-v="${i}">Chci tuto sestavu</button>
+      </div>`).join('');
+    $('karty').querySelectorAll('button').forEach(b => b.onclick = () => {
+      vybrana = vysledky.varianty[+b.dataset.v];
+      $('lead-varianta').textContent = vybrana.nazev;
+      $('lead').hidden = false;
+      $('lead').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+    $('konf-form').hidden = true;
+    $('konf-steps').hidden = true;
+    $('vysledek').hidden = false;
+    $('vysledek').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  $('lead-odeslat').onclick = () => {
+    if (!vybrana) return;
+    const i = vysledky.inp, v = vybrana;
+    const radky = [
+      `Jméno: ${$('lead-jmeno').value}`, `Telefon: ${$('lead-tel').value}`, `E-mail: ${$('lead-email').value}`, `Obec: ${$('lead-obec').value}`, '',
+      `=== KONFIGURÁTOR – varianta ${v.nazev} ===`,
+      `FVE ${v.cena.kwp.toFixed(1)} kWp (${v.ks}x panel), baterie ${v.cena.kwhBat} kWh`,
+      `Měnič: ${v.cena.menic}`,
+      `Chytré řízení: ${v.sHA ? 'ano' : 'ne'}, wallbox: ${v.sWallbox ? 'ano' : 'ne'}`,
+      `Cena s DPH: ${f(v.cena.sDph)} Kč, dotace: ${f(v.dot)} Kč, po dotaci: ${f(v.poDotaci)} Kč`,
+      `Výroba: ${f(v.vyroba)} kWh/rok, pokrytí spotřeby ${v.pokryti} %, úspora 1. rok ${f(v.usporaRok1)} Kč, návratnost ${v.navratnost} let`, '',
+      `=== VSTUPY ===`,
+      `Střecha: ${i.strecha}, orientace ${$('orientace').value}, sklon ${$('sklon').value}°, stínění ${$('stineni').selectedOptions[0].text}, plocha ${i.plocha} m²`,
+      `Osoby: ${i.osoby}, sazba ${i.sazba}, vytápění: ${$('topeni').selectedOptions[0].text}, voda: ${$('voda').selectedOptions[0].text}`,
+      `Roční spotřeba (zadaná): ${i.rocniSpotreba ? i.rocniSpotreba / 1000 + ' MWh' : 'nezadána'}, model: ${f(vysledky.spotrebaRok)} kWh`,
+      `EV: ${i.ev ? 'ano, ' + i.kmDen + ' km/den' : 'ne'}`,
+      `Spotřebiče: ${[...i.spotrebice].join(', ')}`,
+    ];
+    location.href = 'mailto:info@helion.cz?subject=' + encodeURIComponent(`Konfigurátor FVE – ${v.cena.kwp.toFixed(1)} kWp / ${v.cena.kwhBat} kWh – ${$('lead-jmeno').value}`) +
+      '&body=' + encodeURIComponent(radky.join('\n'));
+  };
+})();
+</script>
+</main>
+
+<footer class="e-footer">
+  <div class="grain"></div>
+  <div class="container">
+    <div class="e-footer__claim">
+      <div>
+        <p class="kicker light">Pojďme do toho</p>
+        <h2>Skutečná nezávislost<br>začíná <span class="grad">nezávaznou poptávkou</span>.</h2>
+      </div>
+      <a class="e-btn e-btn--light magnetic" href="poptavka.html">Nezávazná poptávka</a>
+    </div>
+    <div class="e-footer__cols">
+      <div>
+        <h4>Helion.cz s.r.o.</h4>
+        <p><a href="https://www.google.com/maps?q=Za+Kom%C3%ADnem+688,+541+02+Trutnov" target="_blank" rel="noopener">Za Komínem 688<br>541 02 Trutnov</a></p>
+        <p><a href="tel:+420773165260">+420 773 165 260</a><br><a href="mailto:info@helion.cz">info@helion.cz</a></p>
+        <p>Po–Pá 8:00–15:00</p>
+      </div>
+      <div>
+        <h4>Navigace</h4>
+        <ul>
+          <li><a href="produkty.html">Produkty</a></li>
+          <li><a href="krok-za-krokem.html">Krok za krokem</a></li>
+          <li><a href="reference.html">Reference</a></li>
+          <li><a href="novinky.html">Novinky</a></li>
+          <li><a href="caste-dotazy.html">Časté dotazy</a></li>
+          <li><a href="kontakt.html">Kontakt</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Aplikace &amp; zdroje</h4>
+        <ul>
+          <li><a href="spotovky.html">Spotovky</a></li>
+          <li><a href="odhad-produkce.html">Odhad solární výroby</a></li>
+          <li><a href="kalkulacka.html">Kalkulačka</a></li>
+          <li><a href="https://eshop.helion.cz" target="_blank" rel="noopener">E-shop</a></li>
+          <li><a href="manualy.html">Manuály ke stažení</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="e-footer__wordmark" aria-hidden="true">HELION</div>
+  <div class="container">
+    <div class="e-footer__bottom">
+      <p>© <span id="year">2026</span> Helion.cz s.r.o. — všechna práva vyhrazena</p>
+      <a href="gdpr.html">Zásady ochrany osobních údajů</a>
+    </div>
+  </div>
+</footer>
+<script src="js/main.js?v=8ad9a1ee"></script>
+</body>
+</html>
