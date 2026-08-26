@@ -73,131 +73,144 @@
   <div class="grain"></div>
   <div class="glow glow--tr"></div>
   <div class="container">
-    <p class="kicker light">Navrhneme vám elektrárnu na míru</p>
+    <p class="kicker light">Aplikace · návrh na míru</p>
     <h1>Konfigurátor FVE</h1>
+    <p class="page-hero__sub">Odpovězte na pár otázek o svém domě a my navrhneme velikost elektrárny i baterie
+    a spočítáme cenu, dotaci a návratnost.</p>
   </div>
 </section>
 
 <section class="calc">
   <div class="container container--narrow">
 
-    <div class="konf-steps mono" id="konf-steps"></div>
+    <div class="konf-progress" id="konf-steps"></div>
 
-    <form id="konf-form" class="inquiry__form" autocomplete="off">
+    <div class="konf-panel">
+      <form id="konf-form" autocomplete="off">
 
-      <fieldset class="konf-step" data-title="Střecha">
-        <h3>1. Kam budeme instalovat?</h3>
-        <div class="row2">
-          <label>Typ střechy
-            <select id="strecha">
-              <option value="taska">Šikmá – tašková krytina</option>
-              <option value="plech">Šikmá – plech / trapéz / bitumen</option>
-              <option value="falc">Šikmá – falcovaný plech</option>
-              <option value="plocha">Plochá střecha</option>
-              <option value="zem">Na zem (zahrada, pole)</option>
-            </select>
-          </label>
-          <label>Orientace plochy pro panely
-            <select id="orientace">
-              <option value="J">Jih</option>
-              <option value="JV">Jihovýchod</option>
-              <option value="JZ">Jihozápad</option>
-              <option value="V">Východ</option>
-              <option value="Z">Západ</option>
-              <option value="VZ" selected>Východ + západ (obě strany)</option>
-            </select>
-          </label>
+        <fieldset class="konf-step" data-title="Střecha">
+          <p class="kicker"><span class="num">Krok 1 / 4</span> Kam budeme instalovat</p>
+          <h2 class="konf-h">Vaše <span class="grad">střecha</span></h2>
+
+          <p class="konf-label">Typ střechy</p>
+          <div class="konf-tiles" data-name="strecha">
+            <button type="button" class="konf-tile on" data-v="taska"><span class="ico">🏠</span><strong>Tašková</strong><small>šikmá střecha</small></button>
+            <button type="button" class="konf-tile" data-v="plech"><span class="ico">🏭</span><strong>Plech / trapéz</strong><small>i bitumen</small></button>
+            <button type="button" class="konf-tile" data-v="falc"><span class="ico">🏡</span><strong>Falcovaný plech</strong><small>drážková krytina</small></button>
+            <button type="button" class="konf-tile" data-v="plocha"><span class="ico">🏢</span><strong>Plochá</strong><small>zátěžová konstrukce</small></button>
+            <button type="button" class="konf-tile" data-v="zem"><span class="ico">🌱</span><strong>Na zem</strong><small>zahrada, pole</small></button>
+          </div>
+
+          <p class="konf-label">Orientace plochy pro panely</p>
+          <div class="konf-tiles" data-name="orientace">
+            <button type="button" class="konf-tile" data-v="J"><span class="konf-dir">J</span><strong>Jih</strong></button>
+            <button type="button" class="konf-tile" data-v="JV"><span class="konf-dir">JV</span><strong>Jihovýchod</strong></button>
+            <button type="button" class="konf-tile" data-v="JZ"><span class="konf-dir">JZ</span><strong>Jihozápad</strong></button>
+            <button type="button" class="konf-tile" data-v="V"><span class="konf-dir">V</span><strong>Východ</strong></button>
+            <button type="button" class="konf-tile" data-v="Z"><span class="konf-dir">Z</span><strong>Západ</strong></button>
+            <button type="button" class="konf-tile on" data-v="VZ"><span class="konf-dir">V+Z</span><strong>Východ + západ</strong><small>obě strany hřebene</small></button>
+          </div>
+
+          <div class="row2">
+            <label class="konf-input">Sklon střechy (°)<input type="number" id="sklon" value="35" min="0" max="90"></label>
+            <label class="konf-input">Volná plocha pro panely (m²)<input type="number" id="plocha" value="55" min="10" max="500"></label>
+          </div>
+
+          <p class="konf-label">Stínění (stromy, komíny, okolní budovy)</p>
+          <div class="konf-tiles konf-tiles--3" data-name="stineni">
+            <button type="button" class="konf-tile on" data-v="0"><strong>Žádné</strong></button>
+            <button type="button" class="konf-tile" data-v="0.05"><strong>Mírné</strong></button>
+            <button type="button" class="konf-tile" data-v="0.15"><strong>Výrazné</strong></button>
+          </div>
+        </fieldset>
+
+        <fieldset class="konf-step" hidden data-title="Dům">
+          <p class="kicker"><span class="num">Krok 2 / 4</span> Jak bydlíte a topíte</p>
+          <h2 class="konf-h">Váš <span class="grad">dům</span></h2>
+
+          <div class="row2">
+            <label class="konf-input">Počet osob v domácnosti<input type="number" id="osoby" value="4" min="1" max="12"></label>
+            <label class="konf-input">Distribuční sazba <span class="konf-hint">(najdete na vyúčtování)</span>
+              <select id="sazba"></select>
+            </label>
+          </div>
+
+          <p class="konf-label">Čím vytápíte?</p>
+          <div class="konf-tiles" data-name="topeni">
+            <button type="button" class="konf-tile on" data-v="Tepelné čerpadlo vzduch/voda"><span class="ico">♨️</span><strong>Tepelné čerpadlo</strong><small>vzduch / voda</small></button>
+            <button type="button" class="konf-tile" data-v="Tepelné čerpadlo s vrty"><span class="ico">🕳️</span><strong>TČ s vrty</strong></button>
+            <button type="button" class="konf-tile" data-v="Elektrické vytápění"><span class="ico">⚡</span><strong>Elektřina</strong><small>přímotopy, el. kotel</small></button>
+            <button type="button" class="konf-tile" data-v=""><span class="ico">🔥</span><strong>Plyn / dřevo</strong><small>bez elektřiny</small></button>
+          </div>
+
+          <p class="konf-label">Čím ohříváte vodu?</p>
+          <div class="konf-tiles konf-tiles--3" data-name="voda">
+            <button type="button" class="konf-tile on" data-v="Tepelné čerpadlo vzduch/voda"><span class="ico">♨️</span><strong>Tepelné čerpadlo</strong></button>
+            <button type="button" class="konf-tile" data-v="Elektrické vytápění"><span class="ico">⚡</span><strong>Elektrický bojler</strong></button>
+            <button type="button" class="konf-tile" data-v=""><span class="ico">🔥</span><strong>Plyn / jinak</strong></button>
+          </div>
+
+          <div class="row2">
+            <label class="konf-input">Velikost / zateplení domu
+              <select id="ztrata">
+                <option value="4">Menší zateplený dům (do 100 m²)</option>
+                <option value="7.5" selected>Běžný rodinný dům</option>
+                <option value="10">Větší nebo starší dům</option>
+                <option value="14">Velký nezateplený dům</option>
+              </select>
+            </label>
+            <label class="konf-input">Roční spotřeba z vyúčtování (MWh) <span class="konf-hint">(nepovinné)</span>
+              <input type="number" id="rocni" step="0.1" min="0" placeholder="např. 8.5">
+            </label>
+          </div>
+        </fieldset>
+
+        <fieldset class="konf-step" hidden data-title="Spotřebiče">
+          <p class="kicker"><span class="num">Krok 3 / 4</span> Co doma žere elektřinu</p>
+          <h2 class="konf-h">Vaše <span class="grad">spotřebiče</span></h2>
+          <p class="konf-sub">Vyberte vše, co doma používáte – zpřesní to odhad spotřeby.</p>
+          <div class="konf-tiles konf-tiles--multi" id="spotrebice"></div>
+        </fieldset>
+
+        <fieldset class="konf-step" hidden data-title="Elektromobil">
+          <p class="kicker"><span class="num">Krok 4 / 4</span> Doprava</p>
+          <h2 class="konf-h">Jezdíte <span class="grad">elektromobilem</span>?</h2>
+          <div class="konf-tiles konf-tiles--3" data-name="ev">
+            <button type="button" class="konf-tile on" data-v="ne"><span class="ico">⛽</span><strong>Ne</strong><small>a zatím neplánuji</small></button>
+            <button type="button" class="konf-tile" data-v="ano"><span class="ico">🔌</span><strong>Ano / plánuji</strong><small>přidáme wallbox</small></button>
+          </div>
+          <div class="row2" id="evBox" hidden>
+            <label class="konf-input">Průměrný denní nájezd (km)<input type="number" id="kmDen" value="35" min="0"></label>
+            <label class="konf-input">Spotřeba vozu (kWh/100 km)<input type="number" id="evSpotreba" value="17" min="5"></label>
+          </div>
+        </fieldset>
+
+        <div class="konf-nav">
+          <button type="button" class="e-btn e-btn--ghost arrow-link--back" id="zpet">← Zpět</button>
+          <button type="button" class="e-btn magnetic" id="dal">Pokračovat</button>
         </div>
-        <div class="row2">
-          <label>Sklon střechy (°)<input type="number" id="sklon" value="35" min="0" max="90"></label>
-          <label>Stínění (stromy, komíny, okolní budovy)
-            <select id="stineni">
-              <option value="0">Žádné</option>
-              <option value="0.05">Mírné</option>
-              <option value="0.15">Výrazné</option>
-            </select>
-          </label>
-        </div>
-        <label>Volná plocha pro panely (m², obě strany dohromady)<input type="number" id="plocha" value="55" min="10" max="500"></label>
-      </fieldset>
+      </form>
+    </div>
 
-      <fieldset class="konf-step" hidden data-title="Dům">
-        <h3>2. Jak bydlíte a topíte?</h3>
-        <div class="row2">
-          <label>Počet osob v domácnosti<input type="number" id="osoby" value="4" min="1" max="12"></label>
-          <label>Distribuční sazba <small class="mono">(najdete na vyúčtování)</small>
-            <select id="sazba"></select>
-          </label>
-        </div>
-        <div class="row2">
-          <label>Čím vytápíte?
-            <select id="topeni">
-              <option value="Tepelné čerpadlo vzduch/voda">Tepelné čerpadlo vzduch/voda</option>
-              <option value="Tepelné čerpadlo s vrty">Tepelné čerpadlo s vrty</option>
-              <option value="Elektrické vytápění">Elektřina (přímotopy, el. kotel)</option>
-              <option value="">Plyn / tuhá paliva / CZT (bez elektřiny)</option>
-            </select>
-          </label>
-          <label>Čím ohříváte vodu?
-            <select id="voda">
-              <option value="Tepelné čerpadlo vzduch/voda">Tepelné čerpadlo / TČ bojler</option>
-              <option value="Elektrické vytápění">Elektrický bojler</option>
-              <option value="">Plyn / jinak (bez elektřiny)</option>
-            </select>
-          </label>
-        </div>
-        <div class="row2">
-          <label id="ztrataBox">Velikost / zateplení domu
-            <select id="ztrata">
-              <option value="4">Menší zateplený dům (do 100 m²)</option>
-              <option value="7.5" selected>Běžný rodinný dům</option>
-              <option value="10">Větší nebo starší dům</option>
-              <option value="14">Velký nezateplený dům</option>
-            </select>
-          </label>
-          <label>Roční spotřeba z vyúčtování (MWh) <small class="mono">(nepovinné – zpřesní výpočet)</small>
-            <input type="number" id="rocni" step="0.1" min="0" placeholder="např. 8.5">
-          </label>
-        </div>
-      </fieldset>
-
-      <fieldset class="konf-step" hidden data-title="Spotřebiče">
-        <h3>3. Co doma běží na elektřinu?</h3>
-        <div class="konf-checks" id="spotrebice"></div>
-      </fieldset>
-
-      <fieldset class="konf-step" hidden data-title="Elektromobil">
-        <h3>4. Jezdíte elektromobilem?</h3>
-        <label class="calc__check"><input type="checkbox" id="ev"> Mám ho, nebo ho do 2 let plánuji (přidáme wallbox)</label>
-        <div class="row2" id="evBox" hidden>
-          <label>Průměrný denní nájezd (km)<input type="number" id="kmDen" value="35" min="0"></label>
-          <label>Spotřeba vozu (kWh/100 km)<input type="number" id="evSpotreba" value="17" min="5"></label>
-        </div>
-      </fieldset>
-
-      <div class="konf-nav">
-        <button type="button" class="e-btn e-btn--ghost" id="zpet" hidden>← Zpět</button>
-        <button type="button" class="e-btn magnetic" id="dal">Pokračovat →</button>
-      </div>
-    </form>
-
-    <div id="vysledek" class="konf-vysledek" hidden>
-      <h2>Návrh pro váš dům</h2>
-      <p id="souhrn" class="lead"></p>
+    <div id="vysledek" hidden>
+      <p class="kicker"><span class="num">Výsledek</span> Návrh pro váš dům</p>
+      <h2 class="konf-h">Vyberte si <span class="grad">sestavu</span></h2>
+      <div class="konf-bento" id="souhrn"></div>
       <div class="konf-karty" id="karty"></div>
-      <div class="calc__result" id="lead" hidden>
-        <h3>Chci nabídku na sestavu „<span id="lead-varianta"></span>“</h3>
-        <p>Necháte nám kontakt a my se ozveme s přesnou nabídkou. Odesláním se otevře e-mail s celou konfigurací.</p>
+      <div class="konf-panel" id="lead" hidden>
+        <p class="kicker"><span class="num">Poslední krok</span> Nezávazná poptávka</p>
+        <h3 class="konf-lead-h">Chci nabídku na sestavu „<span id="lead-varianta"></span>“</h3>
+        <p class="konf-sub">Necháte nám kontakt a ozveme se s přesnou nabídkou. Odesláním se otevře e-mail s celou konfigurací.</p>
         <div class="inquiry__form" style="padding:0;border:0;background:none">
-        <div class="row2">
-          <label>Jméno a příjmení<input id="lead-jmeno"></label>
-          <label>Telefon<input id="lead-tel" type="tel"></label>
-        </div>
-        <div class="row2">
-          <label>E-mail<input id="lead-email" type="email"></label>
-          <label>Obec / adresa instalace<input id="lead-obec"></label>
-        </div>
-        <button class="e-btn magnetic" id="lead-odeslat">Odeslat poptávku</button>
+          <div class="row2">
+            <label>Jméno a příjmení<input id="lead-jmeno"></label>
+            <label>Telefon<input id="lead-tel" type="tel"></label>
+          </div>
+          <div class="row2">
+            <label>E-mail<input id="lead-email" type="email"></label>
+            <label>Obec / adresa instalace<input id="lead-obec"></label>
+          </div>
+          <button class="e-btn magnetic" id="lead-odeslat">Odeslat poptávku</button>
         </div>
       </div>
       <p class="mono spot__src">Orientační návrh a ceny vč. 12% DPH podle aktuálního ceníku. Přesnou nabídku potvrdíme po technické konzultaci; dotace NZÚ dle aktuálních podmínek programu.</p>
@@ -207,31 +220,110 @@
 </section>
 
 <style>
-.konf-steps{display:flex;gap:14px;margin-bottom:22px;font-size:13px;flex-wrap:wrap}
-.konf-steps span{opacity:.45}
-.konf-steps span.on{opacity:1;color:var(--orange);font-weight:700}
-.konf-step h3{margin-bottom:18px}
-.konf-checks{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px}
-.konf-checks label{display:flex;gap:10px;align-items:center;border:1px solid var(--line);border-radius:12px;padding:10px 14px;cursor:pointer;font-size:15px}
-.konf-checks label:has(input:checked){border-color:var(--orange);background:rgba(247,166,0,.07)}
-.konf-nav{display:flex;justify-content:space-between;gap:12px;margin-top:26px}
+/* ---------- konfigurátor ---------- */
+#konf-form fieldset{border:0;padding:0;margin:0;min-width:0}
+.konf-dir{display:inline-flex;align-items:center;justify-content:center;min-width:36px;height:36px;padding:0 8px;border:1.5px solid var(--navy);border-radius:50px;font:700 13px var(--mono);letter-spacing:.05em;margin-bottom:8px}
+.konf-tile.on .konf-dir{border-color:var(--ink)}
+.page-hero__sub{color:rgba(255,255,255,.75);max-width:60ch;margin-top:14px}
+.konf-progress{display:flex;gap:10px;margin-bottom:32px;flex-wrap:wrap}
+.konf-progress span{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:13px;font-weight:700;color:var(--muted);
+  border:1px solid var(--line);border-radius:30px;padding:7px 16px;background:var(--white);
+  transition:var(--tr);
+}
+.konf-progress span.on{background:var(--navy);border-color:var(--navy);color:var(--white)}
+.konf-progress span.done{border-color:var(--cyan);color:var(--orange)}
+.konf-progress b{font-family:var(--mono);font-weight:700}
+
+.konf-panel{
+  background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);
+  padding:clamp(34px,5vw,60px);position:relative;overflow:hidden;
+}
+.konf-h{margin:10px 0 8px}
+.konf-sub{color:var(--muted);margin-bottom:18px;max-width:60ch}
+.konf-label{font-weight:700;font-size:14.5px;margin:38px 0 14px}
+.konf-hint{font-weight:400;color:var(--muted);font-size:13px}
+
+.konf-tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(165px,1fr));gap:14px}
+.konf-tiles--3{grid-template-columns:repeat(3,1fr)}
+.konf-tiles--multi{grid-template-columns:repeat(auto-fill,minmax(170px,1fr))}
+.konf-tile{
+  display:flex;flex-direction:column;align-items:flex-start;gap:2px;
+  background:var(--white);border:1px solid var(--line);border-radius:var(--radius-sm);
+  padding:20px 18px 18px;cursor:pointer;text-align:left;
+  font-family:var(--body);transition:var(--tr);
+}
+.konf-tile .ico{font-size:22px;margin-bottom:6px}
+.konf-tile strong{font-size:15px;font-weight:700;color:var(--ink);line-height:1.25}
+.konf-tile small{color:var(--muted);font-size:12.5px}
+.konf-tile:hover{transform:translateY(-3px);border-color:var(--navy);box-shadow:var(--shadow)}
+.konf-tile.on{background:var(--blue);border-color:var(--blue)}
+.konf-tile.on small{color:rgba(29,29,27,.6)}
+
+.konf-input{display:flex;flex-direction:column;gap:8px;font-weight:700;font-size:14.5px}
+.konf-input input,.konf-input select{
+  font:400 16.5px var(--body);padding:15px 18px;border:1px solid var(--line);
+  border-radius:var(--radius-sm);background:var(--white);transition:var(--tr);width:100%;
+}
+.konf-input input:focus,.konf-input select:focus{outline:none;border-color:var(--navy);box-shadow:0 0 0 4px rgba(255,237,0,.35)}
+#konf-form .row2{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:38px}
+
+.konf-nav{display:flex;justify-content:space-between;gap:12px;margin-top:44px;padding-top:30px;border-top:1px solid var(--line)}
 .konf-nav .e-btn:last-child{margin-left:auto}
-.konf-vysledek{margin-top:10px}
-.konf-karty{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:26px 0}
-.konf-karta{border:1px solid var(--line);border-radius:var(--radius);padding:22px;background:var(--white);display:flex;flex-direction:column;gap:6px}
-.konf-karta.doporucena{border-color:var(--orange);box-shadow:var(--shadow)}
-.konf-karta .stitek{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--orange);font-weight:700}
-.konf-karta h3{font-size:22px;margin:0}
-.konf-karta .popis{color:var(--muted);font-size:13.5px;min-height:40px}
-.konf-karta .cena{font-size:26px;font-weight:800;font-family:var(--display)}
-.konf-karta .cena small{font-size:13px;color:var(--muted);font-weight:400}
-.konf-karta ul{margin:8px 0;padding:0;font-size:13.5px;color:var(--muted)}
-.konf-karta li{display:flex;justify-content:space-between;gap:8px;padding:3px 0;border-bottom:1px dashed var(--line)}
-.konf-karta li b{color:var(--ink)}
-.konf-karta details{font-size:12.5px;color:var(--muted);margin:6px 0}
-.konf-karta details li{border:0;padding:1px 0}
-.konf-karta .e-btn{margin-top:auto;text-align:center}
-@media(max-width:900px){.konf-karty{grid-template-columns:1fr}}
+
+/* výsledky */
+.konf-bento{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:22px 0 26px}
+.konf-bento .btile{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:22px}
+.konf-bento .big{font-family:var(--display);font-size:clamp(26px,2.6vw,38px);font-weight:700;line-height:1;letter-spacing:-.02em;color:var(--navy);white-space:nowrap}
+.konf-bento .label{margin-top:8px;color:var(--muted);font-size:14px}
+
+.konf-karty{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:6px 0 26px}
+.konf-karta{
+  position:relative;display:flex;flex-direction:column;gap:10px;
+  background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);
+  padding:30px 26px;transition:var(--tr);overflow:hidden;
+}
+.konf-karta:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
+.konf-karta .num-badge{position:absolute;top:20px;right:22px}
+.konf-karta h3{font-size:22px;margin:0;padding-right:60px}
+.konf-karta .popis{color:var(--muted);font-size:13.5px;min-height:42px;margin:0}
+.konf-karta .cena{font-family:var(--display);font-size:clamp(28px,2.4vw,34px);font-weight:800;letter-spacing:-.02em;line-height:1;color:var(--navy)}
+.konf-karta .cena small{display:block;font-family:var(--body);font-size:12.5px;color:var(--muted);font-weight:600;letter-spacing:0;margin-top:8px;line-height:1.5;white-space:normal}
+.konf-karta ul{margin:6px 0 0;padding:0;font-size:14px;list-style:none}
+.konf-karta li{display:flex;justify-content:space-between;gap:10px;padding:7px 0;border-bottom:1px solid var(--line)}
+.konf-karta li:last-child{border-bottom:0}
+.konf-karta li span{color:var(--muted)}
+.konf-karta li b{color:var(--ink);white-space:nowrap;font-variant-numeric:tabular-nums}
+.konf-karta details{font-size:12.5px;color:var(--muted);margin:4px 0 8px}
+.konf-karta details summary{cursor:pointer;font-weight:700}
+.konf-karta details li{border:0;padding:2px 0;display:block}
+.konf-karta .e-btn{margin-top:auto;justify-content:center}
+
+.konf-karta--top{background:var(--navy);border-color:var(--navy)}
+.konf-karta--top h3,.konf-karta--top .cena{color:var(--white)}
+.konf-karta--top .cena small{color:rgba(255,255,255,.65)}
+.konf-karta--top .popis,.konf-karta--top li span{color:rgba(255,255,255,.65)}
+.konf-karta--top li{border-color:rgba(255,255,255,.14)}
+.konf-karta--top li b{color:var(--white)}
+.konf-karta--top details{color:rgba(255,255,255,.6)}
+.konf-karta--top .chip{background:var(--blue);border-color:var(--blue);color:var(--ink)}
+.konf-karta--top .num-badge{display:none}
+.konf-lead-h{margin:4px 0 6px}
+
+@media(max-width:900px){
+  .konf-karty,.konf-bento{grid-template-columns:1fr}
+  .konf-tiles--3{grid-template-columns:repeat(auto-fill,minmax(140px,1fr))}
+  #konf-form .row2{grid-template-columns:1fr}
+}
+@media(max-width:560px){
+  .konf-tiles,.konf-tiles--multi{grid-template-columns:repeat(2,1fr)}
+  .konf-tile{padding:14px 13px 13px}
+  .konf-tile .ico{font-size:19px;margin-bottom:4px}
+  .konf-tile strong{font-size:13.5px}
+  .konf-tile small{font-size:11.5px}
+}
+.konf-panel .kicker .num{white-space:nowrap}
 </style>
 
 <script src="js/konfigurator-data.js"></script>
@@ -242,83 +334,104 @@
   const kroky = [...document.querySelectorAll('.konf-step')];
   let krok = 0, vysledky = null, vybrana = null;
 
+  // stav dlaždicových voleb (výchozí = tlačítka s třídou .on)
+  const S = {};
+  document.querySelectorAll('.konf-tiles[data-name]').forEach(g => {
+    const name = g.dataset.name;
+    S[name] = g.querySelector('.konf-tile.on')?.dataset.v ?? null;
+    g.addEventListener('click', e => {
+      const btn = e.target.closest('.konf-tile'); if (!btn) return;
+      g.querySelectorAll('.konf-tile').forEach(b => b.classList.remove('on'));
+      btn.classList.add('on');
+      S[name] = btn.dataset.v;
+      if (name === 'ev') $('evBox').hidden = S.ev !== 'ano';
+    });
+  });
+
   // sazby + spotřebiče
   $('sazba').innerHTML = KONFIG.sazby.map(s => `<option ${s === 'D25d' ? 'selected' : ''}>${s}</option>`).join('');
+  const IKONY = { lednice: '🧊', mrazak: '❄️', pc: '💻', tv: '📺', pracka: '🌀', susicka: '👕', svetla: '💡', sporak: '🍳', trouba: '🥧', bazen: '🏊', virivka: '🛁', rekuperace: '💨', dilna: '🛠️' };
   const vychozi = new Set(['lednice', 'pc', 'tv', 'pracka', 'svetla', 'sporak', 'trouba']);
   $('spotrebice').innerHTML = KONFIG.SPOTREBICE.map(([k, n]) =>
-    `<label><input type="checkbox" name="sp" value="${k}" ${vychozi.has(k) ? 'checked' : ''}> ${n}</label>`).join('');
+    `<button type="button" class="konf-tile ${vychozi.has(k) ? 'on' : ''}" data-sp="${k}"><span class="ico">${IKONY[k] || '🔌'}</span><strong>${n}</strong></button>`).join('');
+  $('spotrebice').addEventListener('click', e => {
+    const btn = e.target.closest('.konf-tile'); if (btn) btn.classList.toggle('on');
+  });
 
   const ukaz = () => {
     kroky.forEach((f, i) => f.hidden = i !== krok);
-    $('zpet').style.display = krok === 0 ? 'none' : ''; // hidden atribut přebíjí display na .e-btn
-    $('dal').textContent = krok === kroky.length - 1 ? 'Spočítat návrh ✓' : 'Pokračovat →';
+    $('zpet').style.display = krok === 0 ? 'none' : '';
+    $('dal').textContent = krok === kroky.length - 1 ? 'Spočítat návrh' : 'Pokračovat';
     $('konf-steps').innerHTML = kroky.map((f, i) =>
-      `<span class="${i === krok ? 'on' : ''}">${i + 1}. ${f.dataset.title}</span>`).join(' <span>·</span> ');
+      `<span class="${i === krok ? 'on' : i < krok ? 'done' : ''}"><b>${i < krok ? '✓' : '0' + (i + 1)}</b> ${f.dataset.title}</span>`).join('');
+    document.querySelector('.konf-panel').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   };
   $('zpet').onclick = () => { krok = Math.max(0, krok - 1); ukaz(); };
   $('dal').onclick = () => { if (krok < kroky.length - 1) { krok++; ukaz(); } else spocitat(); };
-  $('ev').onchange = () => $('evBox').hidden = !$('ev').checked;
   ukaz();
 
   const AZIMUTY = { J: [[0, 1]], JV: [[-45, 1]], JZ: [[45, 1]], V: [[-90, 1]], Z: [[90, 1]], VZ: [[-90, .5], [90, .5]] };
+  const ORIENTACE_POPIS = { J: 'jih', JV: 'jihovýchod', JZ: 'jihozápad', V: 'východ', Z: 'západ', VZ: 'východ + západ' };
   const f = n => Math.round(n).toLocaleString('cs-CZ');
 
   function vstupy() {
-    const stineni = +$('stineni').value, sklon = +$('sklon').value || 35;
+    const stineni = +S.stineni, sklon = +$('sklon').value || 35;
     return {
-      strecha: $('strecha').value,
-      plochy: AZIMUTY[$('orientace').value].map(([az, podil]) => ({ azimut: az, sklon: $('strecha').value === 'plocha' ? 10 : sklon, stineni, podil })),
+      strecha: S.strecha,
+      plochy: AZIMUTY[S.orientace].map(([az, podil]) => ({ azimut: az, sklon: S.strecha === 'plocha' ? 10 : sklon, stineni, podil })),
       plocha: +$('plocha').value || 40,
       panel: FVE_DATA.panely[0].nazev,
       baterie: FVE_DATA.baterie.find(b => b.nazev.includes('Pylontech Force H3')).nazev,
       osoby: +$('osoby').value || 4,
       sazba: $('sazba').value,
-      zdrojTopeni: $('topeni').value || 'Nespecifikováno',
-      vytapeniElektrinou: !!$('topeni').value,
+      zdrojTopeni: S.topeni || 'Nespecifikováno',
+      vytapeniElektrinou: !!S.topeni,
       ztrata: +$('ztrata').value,
-      zdrojVody: $('voda').value || null,
+      zdrojVody: S.voda || null,
       rocniSpotreba: (+$('rocni').value || 0) * 1000,
-      ev: $('ev').checked, kmDen: +$('kmDen').value || 35, evSpotreba: +$('evSpotreba').value || 17,
-      spotrebice: new Set([...document.querySelectorAll('input[name=sp]:checked')].map(i => i.value)),
+      ev: S.ev === 'ano', kmDen: +$('kmDen').value || 35, evSpotreba: +$('evSpotreba').value || 17,
+      spotrebice: new Set([...document.querySelectorAll('#spotrebice .konf-tile.on')].map(b => b.dataset.sp)),
     };
   }
 
   function spocitat() {
     const inp = vstupy();
     vysledky = { inp, ...KONFIG.spocitej(inp) };
-    $('souhrn').innerHTML = `Odhadovaná roční spotřeba vaší domácnosti: <b>${f(vysledky.spotrebaRok / 1000 * 10) / 10} MWh</b>. ` +
-      `Na střechu se vejde až <b>${vysledky.maxPanelu} panelů</b>. Vyberte si variantu:`;
+    $('souhrn').innerHTML = `
+      <div class="btile"><div class="big">${(vysledky.spotrebaRok / 1000).toFixed(1).replace('.', ',')} <span style="font-size:.55em">MWh</span></div><div class="label">odhad roční spotřeby domácnosti</div></div>
+      <div class="btile"><div class="big">${vysledky.maxPanelu} <span style="font-size:.55em">panelů</span></div><div class="label">se vejde na vaši střechu (${ORIENTACE_POPIS[S.orientace]})</div></div>
+      <div class="btile"><div class="big">3 <span style="font-size:.55em">varianty</span></div><div class="label">od nejúspornější po maximální soběstačnost</div></div>`;
     $('karty').innerHTML = vysledky.varianty.map((v, i) => `
-      <div class="konf-karta ${i === 1 ? 'doporucena' : ''}">
-        ${i === 1 ? '<span class="stitek">Doporučujeme</span>' : ''}
+      <div class="konf-karta ${i === 1 ? 'konf-karta--top' : ''}">
+        <span class="num-badge mono">0${i + 1}</span>
+        ${i === 1 ? '<span class="chip">Doporučujeme</span>' : `<span class="chip">${i === 0 ? 'nejnižší cena' : 'maximum'}</span>`}
         <h3>${v.nazev}</h3>
-        <p class="popis">${v.popis}</p>
-        <div class="cena">${f(v.poDotaci)} Kč <small>po dotaci</small></div>
+        <p class="popis">${v.sWallbox ? v.popis : v.popis.replace(' i wallbox', '').replace(', chytré řízení i wallbox', ' a chytré řízení')}</p>
+        <div class="cena">${f(v.poDotaci)} Kč<small>po dotaci NZÚ · s DPH ${f(v.cena.sDph)} Kč − dotace ${f(v.dot)} Kč</small></div>
         <ul>
-          <li>FVE <b>${v.cena.kwp.toFixed(1)} kWp</b> (${v.ks}× panel 450 Wp)</li>
-          <li>Baterie <b>${v.cena.kwhBat ? v.cena.kwhBat + ' kWh' : '—'}</b></li>
-          <li>Roční výroba <b>${f(v.vyroba)} kWh</b></li>
-          <li>Pokrytí spotřeby <b>${v.pokryti} %</b></li>
-          <li>Úspora 1. rok <b>${f(v.usporaRok1)} Kč</b></li>
-          <li>Návratnost <b>${v.navratnost ? v.navratnost + ' let' : '—'}</b></li>
-          <li>Cena s DPH <b>${f(v.cena.sDph)} Kč</b></li>
-          <li>Dotace NZÚ <b>−${f(v.dot)} Kč</b></li>
+          <li><span>Výkon FVE</span><b>${v.cena.kwp.toFixed(1).replace('.', ',')} kWp</b></li>
+          <li><span>Počet panelů</span><b>${v.ks}× 450 Wp</b></li>
+          <li><span>Baterie</span><b>${v.cena.kwhBat ? v.cena.kwhBat.toString().replace('.', ',') + ' kWh' : '—'}</b></li>
+          <li><span>Roční výroba</span><b>${f(v.vyroba)} kWh</b></li>
+          <li><span>Pokrytí spotřeby</span><b>${v.pokryti} %</b></li>
+          <li><span>Úspora 1. rok</span><b>${f(v.usporaRok1)} Kč</b></li>
+          <li><span>Návratnost</span><b>${v.navratnost ? v.navratnost.toString().replace('.', ',') + ' let' : '—'}</b></li>
         </ul>
         <details><summary>Co je v ceně (${v.cena.rozpis.length} položek)</summary><ul>
-          ${v.cena.rozpis.map(r => `<li><span>${r.ks}× ${r.nazev.split(',')[0]}</span></li>`).join('')}
+          ${v.cena.rozpis.map(r => `<li>${r.ks}× ${r.nazev.split(',')[0]}</li>`).join('')}
         </ul></details>
-        <button class="e-btn ${i === 1 ? '' : 'e-btn--ghost'}" data-v="${i}">Chci tuto sestavu</button>
+        <button class="e-btn ${i === 1 ? '' : 'e-btn--ghost'} magnetic" data-v="${i}">Chci tuto sestavu</button>
       </div>`).join('');
-    $('karty').querySelectorAll('button').forEach(b => b.onclick = () => {
+    $('karty').querySelectorAll('button[data-v]').forEach(b => b.onclick = () => {
       vybrana = vysledky.varianty[+b.dataset.v];
       $('lead-varianta').textContent = vybrana.nazev;
       $('lead').hidden = false;
       $('lead').scrollIntoView({ behavior: 'smooth', block: 'center' });
     });
-    $('konf-form').hidden = true;
+    $('konf-form').parentElement.hidden = true;
     $('konf-steps').hidden = true;
     $('vysledek').hidden = false;
-    $('vysledek').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    window.scrollTo({ top: document.querySelector('.calc').offsetTop - 90, behavior: 'smooth' });
   }
 
   $('lead-odeslat').onclick = () => {
@@ -333,8 +446,8 @@
       `Cena s DPH: ${f(v.cena.sDph)} Kč, dotace: ${f(v.dot)} Kč, po dotaci: ${f(v.poDotaci)} Kč`,
       `Výroba: ${f(v.vyroba)} kWh/rok, pokrytí spotřeby ${v.pokryti} %, úspora 1. rok ${f(v.usporaRok1)} Kč, návratnost ${v.navratnost} let`, '',
       `=== VSTUPY ===`,
-      `Střecha: ${i.strecha}, orientace ${$('orientace').value}, sklon ${$('sklon').value}°, stínění ${$('stineni').selectedOptions[0].text}, plocha ${i.plocha} m²`,
-      `Osoby: ${i.osoby}, sazba ${i.sazba}, vytápění: ${$('topeni').selectedOptions[0].text}, voda: ${$('voda').selectedOptions[0].text}`,
+      `Střecha: ${S.strecha}, orientace ${ORIENTACE_POPIS[S.orientace]}, sklon ${$('sklon').value}°, stínění ${S.stineni}, plocha ${i.plocha} m²`,
+      `Osoby: ${i.osoby}, sazba ${i.sazba}, vytápění: ${S.topeni || 'bez elektřiny'}, voda: ${S.voda || 'bez elektřiny'}`,
       `Roční spotřeba (zadaná): ${i.rocniSpotreba ? i.rocniSpotreba / 1000 + ' MWh' : 'nezadána'}, model: ${f(vysledky.spotrebaRok)} kWh`,
       `EV: ${i.ev ? 'ano, ' + i.kmDen + ' km/den' : 'ne'}`,
       `Spotřebiče: ${[...i.spotrebice].join(', ')}`,
@@ -345,6 +458,7 @@
 })();
 </script>
 </main>
+
 
 <footer class="e-footer">
   <div class="grain"></div>
