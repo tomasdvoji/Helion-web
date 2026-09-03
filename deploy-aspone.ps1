@@ -53,10 +53,10 @@ if ($akce -eq "x") { exit 0 }
 
 if ($akce -eq "s") {
     # smazat na serveru presne to, co jsme nahrali (soubory, pak slozky odspodu) - v davkach kvuli delce prikazove radky
-    $rels = $files | ForEach-Object { $_.FullName.Substring($repo.Length + 1) -replace '\', '/' }
-    $dirs = $rels | ForEach-Object { $d = Split-Path $_ -Parent; while ($d) { ($d -replace '\', '/'); $d = Split-Path $d -Parent } } |
+    $rels = $files | ForEach-Object { $_.FullName.Substring($repo.Length + 1).Replace('\', '/') }
+    $dirs = $rels | ForEach-Object { $d = Split-Path $_ -Parent; while ($d) { $d.Replace('\', '/'); $d = Split-Path $d -Parent } } |
         Sort-Object -Unique | Sort-Object { ($_ -split '/').Count } -Descending
-    $cmds = @($rels | ForEach-Object { "DELE $RemoteDir$_" }) + @($dirs | ForEach-Object { "RMD $RemoteDir$_" })
+    $cmds = @($rels | ForEach-Object { "*DELE $RemoteDir$_" }) + @($dirs | ForEach-Object { "*RMD $RemoteDir$_" })
     Write-Host "Mazu $($rels.Count) souboru a $($dirs.Count) slozek na serveru..."
     for ($i = 0; $i -lt $cmds.Count; $i += 120) {
         $q = @(); foreach ($c in $cmds[$i..([Math]::Min($i + 119, $cmds.Count - 1))]) { $q += @("-Q", $c) }
