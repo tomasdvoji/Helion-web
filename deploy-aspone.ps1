@@ -48,7 +48,7 @@ if ($RemoteDir) { $cil = Get-FtpList $RemoteDir; $vCili = @($topLevel | Where-Ob
 Write-Host ""
 if ($uzNahrane.Count -gt 3) { Write-Host "V rootu FTP je nahrany web ($($uzNahrane.Count) polozek) - 'p' ho jen presune do '$RemoteDir'." }
 if ($vCili.Count -gt 3) { Write-Host "Ve webove slozce '$RemoteDir' uz web je ($($vCili.Count) polozek). Kdyz web hlasi 401 Unauthorized, zvol 's': smaze ho na serveru a nahraje znovu (opravi prava)." }
-$akce = Read-Host "p = presunout z rootu, n = nahrat vse znovu, s = smazat ve webove slozce a nahrat znovu, x = konec"
+$akce = Read-Host "p = presunout z rootu, n = nahrat vse znovu, z = nahrat jen zmenene, s = smazat ve webove slozce a nahrat znovu, x = konec"
 if ($akce -eq "x") { exit 0 }
 
 if ($akce -eq "s") {
@@ -73,6 +73,13 @@ if ($akce -eq "p") {
     if ($LASTEXITCODE -ne 0) { Write-Host "Presun se nepovedl cely - spust skript znovu a zvol 'n' (nahrat znovu)."; exit 1 }
     Write-Host "Presunuto: $($uzNahrane -join ', ')"
 } else {
+    if ($akce -eq "z") {
+        $hod = Read-Host "Nahrat soubory zmenene za poslednich kolik hodin? [24]"
+        if (-not $hod) { $hod = 24 }
+        $files = @($files | Where-Object { $_.LastWriteTime -gt (Get-Date).AddHours(-[double]$hod) })
+        Write-Host "Zmenenych souboru: $($files.Count)"
+        if ($files.Count -eq 0) { exit 0 }
+    }
     $cfg = Join-Path $repo "_upload.cfg"
     $lines = foreach ($f in $files) {
         $rel = $f.FullName.Substring($repo.Length + 1) -replace '\\', '/'
