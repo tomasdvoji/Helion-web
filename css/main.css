@@ -993,3 +993,15 @@ img { content-visibility: auto; }
 .hp-link-card:nth-child(5) { background-position: 32% 55%; }
 /* intro male foto: plocha strecha - panely v dolni casti */
 .img-small img { object-position: 50% 65%; }
+
+/* servisní ceník */
+.servis-cenik { margin: 20px 0 44px; }
+.servis-cenik .bento__big { font-size: clamp(30px, 3vw, 44px); }
+.servis-box { background: var(--paper); border: 1px solid var(--line); border-left: 4px solid var(--blue); border-radius: var(--radius-sm); padding: 18px 20px; }
+.servis-box__title { font-weight: 700; margin-bottom: 8px; }
+.servis-box__list { list-style: none; display: flex; flex-wrap: wrap; gap: 8px 22px; margin: 0 0 8px; font-size: 15px; color: var(--muted); }
+.servis-box__list strong { color: var(--ink); }
+.servis-box__note { font-size: 13.5px; color: var(--muted); margin-bottom: 12px; }
+.servis-box .calc__check { font-weight: 700; }
+.servis-inline { background: var(--paper); border-left: 4px solid var(--blue); padding: 12px 16px; border-radius: 0 var(--radius-sm) var(--radius-sm) 0; }
+.servis-cenik .bento__tile--dark .bento__big { color: var(--blue); }

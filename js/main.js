@@ -133,11 +133,28 @@ if (lb) {
 // inquiry form -> mailto (statický web bez backendu)
 const form = document.getElementById('inquiry-form');
 if (form) {
+  // servis: ukázat servisní ceník + povinný souhlas; ?typ=servis předvyplní typ poptávky
+  const typeSel = form.querySelector('select[name="type"]');
+  const servisBox = document.getElementById('servis-box');
+  const isServis = () => /servis/i.test(typeSel.value);
+  if (new URLSearchParams(location.search).get('typ') === 'servis') {
+    [...typeSel.options].some(o => /servis/i.test(o.text) && (typeSel.value = o.value, true));
+  }
+  const syncServis = () => { if (servisBox) servisBox.hidden = !isServis(); };
+  typeSel.addEventListener('change', syncServis);
+  syncServis();
   form.addEventListener('submit', e => {
     e.preventDefault();
     const d = new FormData(form);
+    if (isServis() && servisBox && !servisBox.querySelector('input[type="checkbox"]').checked) {
+      alert('Pro objednání servisu prosím potvrďte souhlas se servisním ceníkem.');
+      servisBox.querySelector('input[type="checkbox"]').focus();
+      return;
+    }
     const body = ['Jméno: ' + d.get('name'), 'Telefon: ' + d.get('phone'), 'E-mail: ' + d.get('email'),
-      'Místo: ' + (d.get('place') || '-'), 'Poptávka: ' + d.get('type'), '', d.get('msg') || ''].join('\n');
+      'Místo: ' + (d.get('place') || '-'), 'Poptávka: ' + d.get('type'),
+      ...(isServis() ? ['Souhlas se servisním ceníkem (800 Kč paušál, 700 Kč/hod, 20 Kč/km, bez DPH): ANO'] : []),
+      '', d.get('msg') || ''].join('\n');
     location.href = 'mailto:info@helion.cz?subject=' + encodeURIComponent('Poptávka z webu – ' + d.get('type'))
       + '&body=' + encodeURIComponent(body);
   });
