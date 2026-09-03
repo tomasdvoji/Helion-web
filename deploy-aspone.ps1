@@ -43,12 +43,27 @@ $files = Get-ChildItem -Path $repo -Recurse -File | Where-Object { $_.FullName -
 $topLevel = $files | ForEach-Object { ($_.FullName.Substring($repo.Length + 1) -split '\\')[0] } | Sort-Object -Unique
 
 $uzNahrane = @($topLevel | Where-Object { $root -contains $_ })
-$akce = "n"
-if ($RemoteDir -and $uzNahrane.Count -gt 3) {
-    Write-Host "`nV rootu FTP uz je nahrany web ($($uzNahrane.Count) polozek) - muzu ho jen PRESUNOUT do '$RemoteDir' (rychle, bez nahravani)."
-    $akce = Read-Host "p = presunout na serveru, n = nahrat vse znovu, x = konec"
-}
+$vCili = @()
+if ($RemoteDir) { $cil = Get-FtpList $RemoteDir; $vCili = @($topLevel | Where-Object { $cil -contains $_ }) }
+Write-Host ""
+if ($uzNahrane.Count -gt 3) { Write-Host "V rootu FTP je nahrany web ($($uzNahrane.Count) polozek) - 'p' ho jen presune do '$RemoteDir'." }
+if ($vCili.Count -gt 3) { Write-Host "Ve webove slozce '$RemoteDir' uz web je ($($vCili.Count) polozek). Kdyz web hlasi 401 Unauthorized, zvol 's': smaze ho na serveru a nahraje znovu (opravi prava)." }
+$akce = Read-Host "p = presunout z rootu, n = nahrat vse znovu, s = smazat ve webove slozce a nahrat znovu, x = konec"
 if ($akce -eq "x") { exit 0 }
+
+if ($akce -eq "s") {
+    # smazat na serveru presne to, co jsme nahrali (soubory, pak slozky odspodu) - v davkach kvuli delce prikazove radky
+    $rels = $files | ForEach-Object { $_.FullName.Substring($repo.Length + 1) -replace '\', '/' }
+    $dirs = $rels | ForEach-Object { $d = Split-Path $_ -Parent; while ($d) { ($d -replace '\', '/'); $d = Split-Path $d -Parent } } |
+        Sort-Object -Unique | Sort-Object { ($_ -split '/').Count } -Descending
+    $cmds = @($rels | ForEach-Object { "DELE $RemoteDir$_" }) + @($dirs | ForEach-Object { "RMD $RemoteDir$_" })
+    Write-Host "Mazu $($rels.Count) souboru a $($dirs.Count) slozek na serveru..."
+    for ($i = 0; $i -lt $cmds.Count; $i += 120) {
+        $q = @(); foreach ($c in $cmds[$i..([Math]::Min($i + 119, $cmds.Count - 1))]) { $q += @("-Q", $c) }
+        & curl.exe -sS --connect-timeout 20 -u "${User}:$pw" --list-only @q "ftp://$Server/$RemoteDir" 2>$null | Out-Null
+    }
+    $akce = "n"
+}
 
 if ($akce -eq "p") {
     # presun na serveru pres FTP prikazy RNFR/RNTO (jedna session)
