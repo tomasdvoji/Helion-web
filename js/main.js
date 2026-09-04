@@ -136,11 +136,16 @@ if (form) {
   // servis: ukázat servisní ceník + povinný souhlas; ?typ=servis předvyplní typ poptávky
   const typeSel = form.querySelector('select[name="type"]');
   const servisBox = document.getElementById('servis-box');
-  const isServis = () => /servis/i.test(typeSel.value);
-  if (new URLSearchParams(location.search).get('typ') === 'servis') {
-    [...typeSel.options].some(o => /servis/i.test(o.text) && (typeSel.value = o.value, true));
-  }
-  const syncServis = () => { if (servisBox) servisBox.hidden = !isServis(); };
+  const kontrolaBox = document.getElementById('kontrola-box');
+  const isServis = () => /^servis/i.test(typeSel.value);
+  const isKontrola = () => /prohlídka/i.test(typeSel.value);
+  // ?typ=fve|servis|kontrola předvyplní typ poptávky (rozcestník)
+  const typRe = { fve: /rodinný/i, servis: /^servis/i, kontrola: /prohlídka/i }[new URLSearchParams(location.search).get('typ')];
+  if (typRe) [...typeSel.options].some(o => typRe.test(o.text) && (typeSel.value = o.value, true));
+  const syncServis = () => {
+    if (servisBox) servisBox.hidden = !isServis();
+    if (kontrolaBox) kontrolaBox.hidden = !isKontrola();
+  };
   typeSel.addEventListener('change', syncServis);
   syncServis();
   form.addEventListener('submit', e => {

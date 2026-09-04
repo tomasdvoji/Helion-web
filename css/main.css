@@ -908,6 +908,16 @@ body.scrolled .e-header { box-shadow: 0 10px 40px rgba(10, 13, 18, 0.12); }
 .support__cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 40px; }
 .support__cards h3 { margin-bottom: 12px; }
 .support__cards p { color: var(--muted); }
+.servis-cesty .kicker { margin-bottom: 10px; }
+.servis-cesty h3 { font-size: 24px; }
+.servis-cesty .e-btn { margin-top: 18px; }
+.prod-item--wide { grid-template-columns: 1fr; }
+.rozcestnik { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 8px 0 40px; }
+.rozcestnik .bento__tile { text-decoration: none; color: inherit; display: block; }
+.rozcestnik .num { display: inline-block; margin-bottom: 10px; color: var(--muted); }
+.rozcestnik h3 { margin-bottom: 8px; font-size: 22px; }
+.rozcestnik p { color: var(--muted); font-size: 15px; }
+@media (max-width: 760px) { .rozcestnik { grid-template-columns: 1fr; } }
 .support__table-wrap { overflow-x: auto; margin: 26px 0 10px; border-radius: var(--radius); border: 1px solid var(--line); }
 .support__table { border-collapse: collapse; width: 100%; font-size: 15px; background: var(--white); }
 .support__table th {
