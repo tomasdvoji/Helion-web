@@ -931,6 +931,14 @@ body.scrolled .e-header { box-shadow: 0 10px 40px rgba(10, 13, 18, 0.12); }
 .support__table td.no { color: var(--muted); }
 .support__table .price-row td { background: var(--paper); font-size: 16px; }
 .support__table tr:hover td { background: #fdf8e7; }
+/* Dvousloupcová varianta. Pravidlo výš dává druhému a dalším sloupcům
+   pevných 120 px a text na střed, protože je psané pro tabulku balíčků,
+   kde jsou v nich jen značky ✓ a –. U tabulky s popisem se do 120 px
+   nevejde věta a láme se do úzkého proužku. */
+.support__table--2col th:not(:first-child),
+.support__table--2col td:not(:first-child) { width: auto; text-align: left; }
+.support__table--2col th:first-child,
+.support__table--2col td:first-child { width: 34%; }
 
 @media (max-width: 900px) {
   .apps__grid, .support__cards { grid-template-columns: 1fr; }
