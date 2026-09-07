@@ -1,0 +1,41 @@
+# HELION.CZ — robots.txt
+# Cíl: pustit dovnitř vyhledávače i roboty AI asistentů.
+# Blokování AI robotů je tichý zabiják viditelnosti — firma pak není
+# v odpovědích ChatGPT ani Perplexity a nikdo neví proč.
+# Pozor i na WAF/Cloudflare: často vrací 403 nezávisle na tomto souboru.
+
+User-agent: *
+Allow: /
+
+# --- roboty AI asistentů (vyhledávání a citace) ---
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+Sitemap: https://www.helion.cz/sitemap.xml
