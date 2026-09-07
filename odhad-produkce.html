@@ -89,7 +89,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/main.css?v=servis03">
+<link rel="stylesheet" href="css/main.css?v=servis04">
 </head>
 <body class="">
 
@@ -159,79 +159,151 @@
 <section class="calc">
   <div class="container container--narrow">
     <form id="est-form" class="inquiry__form">
-      <div class="row2">
-        <label>Instalovaný výkon (kWp)<input type="number" id="est-kwp" step="0.1" min="0.1" value="10" required></label>
-        <label>Sklon panelů
-          <select id="est-angle">
-            <option value="0">0° – naplocho</option>
-            <option value="15">15°</option>
-            <option value="35" selected>30–40° (optimální)</option>
-            <option value="55">50–60°</option>
-            <option value="90">90° – fasáda</option>
-          </select>
+        <div class="row2">
+          <label>Instalovaný výkon (kWp)<input type="number" id="est-kwp" step="0.1" min="0.1" max="1000" value="10" required></label>
+          <label>Oblast
+            <select id="est-misto"></select>
+          </label>
+        </div>
+
+        <label class="odh-pole">
+          <span class="odh-hlavicka">Sklon panelů
+            <output id="est-angle-out" class="odh-hodnota">35°</output>
+          </span>
+          <input type="range" id="est-angle" min="0" max="90" step="1" value="35">
+          <span class="odh-popis" id="est-angle-popis">běžná šikmá střecha</span>
         </label>
-      </div>
-      <div class="row2">
-        <label>Orientace
-          <select id="est-aspect">
-            <option value="0" selected>Jih</option>
-            <option value="45">JV / JZ</option>
-            <option value="90">Východ / Západ</option>
-            <option value="135">SV / SZ</option>
-          </select>
+
+        <label class="odh-pole">
+          <span class="odh-hlavicka">Orientace
+            <output id="est-aspect-out" class="odh-hodnota">0°</output>
+          </span>
+          <input type="range" id="est-aspect" min="-180" max="180" step="1" value="0">
+          <span class="odh-stupnice"><span>východ<br>−90°</span><span>jih<br>0°</span><span>západ<br>+90°</span></span>
+          <span class="odh-popis" id="est-aspect-popis">přímo na jih</span>
         </label>
-        <label>Oblast
-          <select id="est-region">
-            <option value="1.05">Jižní Morava</option>
-            <option value="1.0" selected>Střední Čechy / průměr ČR</option>
-            <option value="0.95">Severní Čechy / hory</option>
-          </select>
-        </label>
-      </div>
-      <button class="e-btn magnetic" type="submit">Spočítat výrobu</button>
-    </form>
+
+        <p class="odh-napoveda">Orientace se počítá jako odchylka od jihu: <strong>0° je jih</strong>,
+          záporné hodnoty na východ (−90° = východ), kladné na západ (+90° = západ).
+          Krajní hodnoty ±180° jsou sever. Obě hodnoty jdou zadat i z klávesnice
+          šipkami po jednom stupni.</p>
+
+        <button class="e-btn magnetic" type="submit">Spočítat výrobu</button>
+      </form>
     <div id="est-result" class="calc__result" hidden>
-      <h3>🔆 Roční produkce: <span id="est-year"></span> kWh</h3>
-      <canvas id="est-chart" height="300"></canvas>
-    </div>
-    <p class="mono spot__src">Orientační model (základ 1 020 kWh/kWp/rok pro optimální jižní sklon v ČR, ztráty 15 %). Přesný výpočet z reálných dat ozáření vám připravíme v nabídce.</p>
+        <h3>Roční produkce: <span id="est-year"></span> kWh</h3>
+        <p class="odh-shrnuti" id="est-shrnuti"></p>
+        <canvas id="est-chart" height="300"></canvas>
+      </div>
+    <p class="mono spot__src">Model počítá z měsíčních dat o slunečním záření pro osm míst v ČR (PVGIS, Společné výzkumné středisko Evropské komise, průměr let 2020–2023) a ověřuje se proti němu — průměrná odchylka 0,3 %, největší 1,4 %. Počítá se se ztrátami 14 %, což je běžná hodnota pro dobře provedenou instalaci. Skutečná výroba závisí na zastínění, znečištění panelů a počasí v daném roce; přesný výpočet pro vaši střechu vám připravíme v nabídce.</p>
   </div>
 </section>
 <script>
 (() => {
-  const MONTHS = ['Led', 'Úno', 'Bře', 'Dub', 'Kvě', 'Čvn', 'Čvc', 'Srp', 'Zář', 'Říj', 'Lis', 'Pro'];
-  const DIST = [0.030, 0.050, 0.085, 0.110, 0.125, 0.125, 0.125, 0.115, 0.090, 0.065, 0.045, 0.035];
-  const TILT = {0: 0.88, 15: 0.96, 35: 1.0, 55: 0.96, 90: 0.72};
-  const ASPECT = {0: 1.0, 45: 0.95, 90: 0.82, 135: 0.62};
-  document.getElementById('est-form').addEventListener('submit', e => {
-    e.preventDefault();
-    const kwp = +document.getElementById('est-kwp').value;
-    const t = TILT[+document.getElementById('est-angle').value];
-    const a = ASPECT[+document.getElementById('est-aspect').value];
-    const reg = +document.getElementById('est-region').value;
-    const year = kwp * 1020 * t * a * reg;
-    document.getElementById('est-year').textContent = Math.round(year).toLocaleString('cs-CZ');
-    const res = document.getElementById('est-result');
-    res.hidden = false;
-    const canvas = document.getElementById('est-chart');
+  const O = window.HELION_ODHAD;
+  const MESICE = ['Led','Úno','Bře','Dub','Kvě','Čvn','Čvc','Srp','Zář','Říj','Lis','Pro'];
+  const $ = id => document.getElementById(id);
+
+  /* Nabídka míst se plní z dat, aby se seznam nemusel udržovat na dvou místech. */
+  const misto = $('est-misto');
+  Object.keys(O.mista).forEach(k => {
+    const o = document.createElement('option');
+    o.value = k; o.textContent = O.mista[k].nazev;
+    if (k === 'trutnov') o.selected = true;
+    misto.appendChild(o);
+  });
+
+  function popisSklonu(v) {
+    if (v === 0) return 'naplocho, například plochá střecha';
+    if (v < 12) return 'mírný spád, blízko naplocho';
+    if (v < 25) return 'nižší šikmá střecha';
+    if (v < 45) return 'běžná šikmá střecha';
+    if (v < 65) return 'strmá střecha';
+    if (v < 85) return 'velmi strmá plocha';
+    return 'svislá stěna nebo fasáda';
+  }
+
+  /* Světové strany po 22,5°, ať sedí i na mezipolohy jako jihojihovýchod. */
+  const STRANY = ['sever','severoseverovýchod','severovýchod','východoseverovýchod',
+    'východ','východojihovýchod','jihovýchod','jihojihovýchod','jih',
+    'jihojihozápad','jihozápad','západojihozápad','západ','západoseverozápad',
+    'severozápad','severoseverozápad','sever'];
+
+  function popisOrientace(v) {
+    if (v === 0) return 'přímo na jih';
+    const i = Math.round((v + 180) / 22.5);
+    return STRANY[i] + (Math.abs(v) === 180 ? '' : ', ' + Math.abs(v) + '° od jihu na ' + (v < 0 ? 'východ' : 'západ'));
+  }
+
+  function synchronizuj() {
+    const sklon = +$('est-angle').value;
+    const az = +$('est-aspect').value;
+    $('est-angle-out').textContent = sklon + '°';
+    $('est-angle-popis').textContent = popisSklonu(sklon);
+    $('est-aspect-out').textContent = (az > 0 ? '+' : '') + az + '°';
+    $('est-aspect-popis').textContent = popisOrientace(az);
+  }
+  $('est-angle').addEventListener('input', synchronizuj);
+  $('est-aspect').addEventListener('input', synchronizuj);
+  synchronizuj();
+
+  function graf(mesice) {
+    const canvas = $('est-chart');
     const dpr = devicePixelRatio || 1;
     const W = canvas.clientWidth || canvas.parentElement.clientWidth, H = 300;
     canvas.width = W * dpr; canvas.height = H * dpr; canvas.style.height = H + 'px';
-    const ctx = canvas.getContext('2d'); ctx.scale(dpr, dpr);
-    const vals = DIST.map(d => year * d);
-    const vmax = Math.max(...vals) * 1.15;
-    const padB = 40, padT = 10;
-    const bw = W / 12;
-    ctx.font = '12px Open Sans, sans-serif'; ctx.textAlign = 'center';
-    vals.forEach((v, i) => {
+    const ctx = canvas.getContext('2d');
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, W, H);
+    const vmax = Math.max(...mesice) * 1.18 || 1;
+    const padB = 40, padT = 10, bw = W / 12;
+    ctx.font = '12px Open Sans, sans-serif';
+    ctx.textAlign = 'center';
+    mesice.forEach((v, i) => {
       const h = (H - padT - padB) * v / vmax;
       ctx.fillStyle = '#f7a600';
       ctx.fillRect(i * bw + 8, H - padB - h, bw - 16, h);
       ctx.fillStyle = '#5b6572';
-      ctx.fillText(MONTHS[i], i * bw + bw / 2, H - 22);
+      ctx.fillText(MESICE[i], i * bw + bw / 2, H - 22);
       ctx.fillText(Math.round(v), i * bw + bw / 2, H - padB - h - 8);
     });
-    res.scrollIntoView({behavior: 'smooth', block: 'center'});
+  }
+
+  $('est-form').addEventListener('submit', e => {
+    e.preventDefault();
+    const kwp = +$('est-kwp').value;
+    const sklon = +$('est-angle').value;
+    const az = +$('est-aspect').value;
+    const klic = misto.value;
+
+    const r = O.spocitej(kwp, sklon, az, klic);
+    $('est-year').textContent = Math.round(r.rok).toLocaleString('cs-CZ');
+
+    /* Srovnání s ideálem řekne víc než holé číslo — člověk hned ví,
+       jestli má smysl něco měnit, nebo je jeho střecha v pořádku. */
+    const opt = O.optimum(klic);
+    const podil = r.nakwp / opt.rok * 100;
+    let text = 'To je ' + Math.round(r.nakwp).toLocaleString('cs-CZ') + ' kWh na každý kWp. ';
+    if (podil >= 97) {
+      text += 'Vaše střecha je prakticky ideální — lepší sklon a orientace by přidaly jen jednotky procent.';
+    } else {
+      text += 'Nejlepší možné umístění v této oblasti (' + opt.sklon + '° a '
+        + (opt.azimut > 0 ? '+' : '') + opt.azimut + '°) by dalo '
+        + Math.round(opt.rok).toLocaleString('cs-CZ') + ' kWh na kWp, takže využíváte '
+        + Math.round(podil) + ' % z toho, co jde na tomto místě získat.';
+    }
+    $('est-shrnuti').textContent = text;
+
+    const res = $('est-result');
+    res.hidden = false;
+    graf(r.mesice);
+    res.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  });
+
+  addEventListener('resize', () => {
+    if (!$('est-result').hidden) {
+      graf(O.spocitej(+$('est-kwp').value, +$('est-angle').value, +$('est-aspect').value, misto.value).mesice);
+    }
   });
 })();
 </script>
@@ -286,6 +358,7 @@
     </div>
   </div>
 </footer>
+<script src="/odhad-produkce.js"></script>
 <script src="js/main.js?v=servis02"></script>
 </body>
 </html>
