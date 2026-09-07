@@ -15,14 +15,24 @@
  *   3. odchytává událost generate_lead z attribution.js a rozešle ji
  *      do GA4, do Meta a (až bude účet) do Google Ads.
  *
- * POZOR na ID: G-6CPT4HZRMY musí patřit do property, kterou čte HME
- * (GA4_PROPERTY_ID). Když je to samostatná property, dashboard zůstane
- * prázdný a nic to nenahlásí. Ověřit v GA4: Správce → Datové proudy.
+ * OVĚŘENO 7. 9. 2026 A OPRAVENO. V docs/ga4.md bylo pro nový web uvedeno
+ * G-6CPT4HZRMY. To ID ale do property 362903270, kterou čte HME, NEPATŘÍ —
+ * ta má jediný datový stream a ten má ID G-4QF6H07Y1C.
+ *
+ * Web by tedy měřil do místa, kam se nástroj nedívá, a dashboard by zůstal
+ * prázdný, aniž by cokoli hlásilo chybu. Přesně ta tichá porucha, před
+ * kterou varoval §8 předávacího dokumentu.
+ *
+ * Potvrdila to i data: provoz v property 362903270 spadl 4. 9., kdy se
+ * doména přepnula na nový web, a od té doby do ní neteče nic.
+ *
+ * Kdyby se ID někdy měnilo, ověřte ho v GA4: Správce → Datové proudy →
+ * rozkliknout stream. Číslo u výpisu je ID streamu, ne měřicí ID.
  */
 (function () {
   'use strict';
 
-  var GA4_ID   = 'G-6CPT4HZRMY';
+  var GA4_ID   = 'G-4QF6H07Y1C';   // stream v property 362903270
   var META_ID  = '9235028319898505';
   var ADS_ID   = '';   // 'AW-XXXXXXXXX' — doplnit, až vznikne nový účet (§14)
   var ADS_LBL  = '';   // 'AW-XXXXXXXXX/AbCdEfGh' — konverzní akce Odeslání poptávky
