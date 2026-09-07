@@ -7,8 +7,26 @@
 User-agent: *
 Allow: /
 
+# --- roboti Google Ads ---
+# POZOR: AdsBot-Google se pravidlem "User-agent: *" ZÁMĚRNĚ neřídí.
+# Google to má zdokumentované — reklamní robota musíte pojmenovat.
+# Když ho nepustíte, Google Ads označí vstupní stránku za neprocházitelnou,
+# srazí skóre kvality a zdraží proklik. Projeví se to až po spuštění kampaní.
+User-agent: AdsBot-Google
+Allow: /
+
+User-agent: AdsBot-Google-Mobile
+Allow: /
+
+User-agent: AdsBot-Google-Mobile-Apps
+Allow: /
+
 # --- roboty AI asistentů (vyhledávání a citace) ---
 User-agent: OAI-SearchBot
+Allow: /
+
+# reklamní robot OpenAI — až se ČR přepne z "Coming Soon" (§13)
+User-agent: OAI-AdsBot
 Allow: /
 
 User-agent: ChatGPT-User
