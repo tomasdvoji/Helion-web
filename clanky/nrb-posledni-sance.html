@@ -3,6 +3,84 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- ==== HELION: měřicí vrstva — pořadí je závazné, nepřehazovat ====
+     1) souhlas musí nastavit Consent Mode dřív, než se načte cokoli měřicího
+     2) atribuce musí zachytit gclid dřív, než člověk stihne odejít
+     3) teprve pak GA4 a Meta. Podrobně v web/README.md. -->
+<script src="/consent.js"></script>
+<script src="/attribution.js"></script>
+<script src="/mereni.js"></script>
+<link rel="canonical" href="https://www.helion.cz/clanky/nrb-posledni-sance.html">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": ["LocalBusiness", "Electrician"],
+      "@id": "https://www.helion.cz/#organizace",
+      "name": "HELION.CZ",
+      "legalName": "HELION.CZ s.r.o.",
+      "url": "https://www.helion.cz/",
+      "description": "Montáž a servis fotovoltaických elektráren pro rodinné domy, bytové domy, SVJ a firmy. Působíme na Trutnovsku od roku 2003.",
+      "foundingDate": "2003-03-14",
+      "taxID": "25986562",
+      "vatID": "CZ25986562",
+      "identifier": [
+        { "@type": "PropertyValue", "propertyID": "ICO", "value": "25986562" }
+      ],
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Za Komínem 688",
+        "addressLocality": "Trutnov",
+        "addressRegion": "Královéhradecký kraj",
+        "postalCode": "541 02",
+        "addressCountry": "CZ"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 50.5814651,
+        "longitude": 15.8963138
+      },
+      "telephone": "+420773165260",
+      "email": "info@helion.cz",
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "opens": "08:00",
+          "closes": "15:00"
+        }
+      ],
+      "areaServed": [
+        { "@type": "AdministrativeArea", "name": "Královéhradecký kraj" },
+        { "@type": "AdministrativeArea", "name": "Pardubický kraj" }
+      ],
+      "knowsAbout": [
+        "fotovoltaická elektrárna",
+        "servis fotovoltaiky",
+        "bateriové úložiště",
+        "opravy střídačů",
+        "termovizní kontrola panelů",
+        "Nová zelená úsporám"
+      ],
+      "sameAs": [
+        "https://www.facebook.com/helion.cz",
+        "https://www.firmy.cz/detail/410929-helion-cz-trutnov-horni-stare-mesto.html"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.helion.cz/#web",
+      "url": "https://www.helion.cz/",
+      "name": "HELION.CZ",
+      "inLanguage": "cs-CZ",
+      "publisher": { "@id": "https://www.helion.cz/#organizace" }
+    }
+  ]
+}
+</script>
+<!-- ==== konec měřicí vrstvy ==== -->
+
 <title>NRB – poslední šance | Helion.cz</title>
 <meta name="description" content="Podle slov poskytovatele dotace, Národní rozvojové banky, se alokace díky rekordnímu zájmu zřejmě brzy vyčerpá! Za nás dosud nejlepší dotační program pro menší instalace do 50kWp, …">
 <link rel="icon" href="../media/wp/themes/helion/images/favicon.png">
@@ -173,6 +251,7 @@
     <div class="e-footer__bottom">
       <p>© <span id="year">2026</span> Helion.cz s.r.o. — všechna práva vyhrazena</p>
       <a href="../gdpr.html">Zásady ochrany osobních údajů</a>
+      <a href="#" onclick="helionConsent.open();return false">Nastavení cookies</a>
     </div>
   </div>
 </footer>
