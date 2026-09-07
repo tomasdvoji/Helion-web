@@ -10,6 +10,7 @@
 <script src="/consent.js"></script>
 <script src="/attribution.js"></script>
 <script src="/mereni.js"></script>
+<script src="/form.js"></script>
 <link rel="canonical" href="https://www.helion.cz/konfigurator.html">
 <script type="application/ld+json">
 {
@@ -530,8 +531,40 @@
       `EV: ${i.ev ? 'ano, ' + i.kmDen + ' km/den' : 'ne'}`,
       `Spotřebiče: ${[...i.spotrebice].join(', ')}`,
     ];
-    location.href = 'mailto:info@helion.cz?subject=' + encodeURIComponent(`Konfigurátor FVE – ${v.cena.kwp.toFixed(1)} kWp / ${v.cena.kwhBat} kWh – ${$('lead-jmeno').value}`) +
-      '&body=' + encodeURIComponent(radky.join('\n'));
+    /* ==== HELION: odesilani pres endpoint ====
+       Bývalo tu location.href = 'mailto:…'. Nejhodnotnější poptávka na webu
+       tím končila v poštovním klientovi: na mobilu a ve webmailu se často
+       neodeslala a nikdo se to nedozvěděl, nevznikla konverze a nedorazil
+       gclid. Spočítaná konfigurace jde teď jako text zprávy. */
+    var tlacitko = $('lead-odeslat');
+    var puvodni = tlacitko.textContent;
+    tlacitko.disabled = true;
+    tlacitko.textContent = 'Odesílám…';
+    
+    var data = {
+      email: $('lead-email').value,
+      name: $('lead-jmeno').value,
+      phone: $('lead-tel').value,
+      place: $('lead-obec').value,
+      type: 'Konfigurátor FVE – ' + v.nazev,
+      message: radky.join('\n'),
+      form_id: 'konfigurator'
+    };
+    /* cena po dotaci a výkon z vybrané karty — hodnota konverze */
+    if (window.helionKonfData) {
+      var k = window.helionKonfData();
+      Object.keys(k).forEach(function (n) { data[n] = k[n]; });
+    }
+    
+    window.helionOdeslat(data).then(function () {
+      $('lead').innerHTML = '<h3 class="konf-lead-h">Děkujeme, poptávku máme.</h3>'
+        + '<p>Ozveme se vám nejpozději následující pracovní den.</p>';
+    }).catch(function (e) {
+      tlacitko.disabled = false;
+      tlacitko.textContent = puvodni;
+      alert(window.helionChybovaHlaska ? window.helionChybovaHlaska(e)
+        : 'Poptávku se nepodařilo odeslat. Zavolejte prosím na 773 165 260.');
+    });
   };
 })();
 </script>

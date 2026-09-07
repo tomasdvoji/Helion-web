@@ -125,17 +125,21 @@
     var forms = document.querySelectorAll('form#inquiry-form, form[data-track="lead"]');
     Array.prototype.forEach.call(forms, function (form) {
       fillForm(form);
-      form.addEventListener('submit', function () {
-        fillForm(form);
-        window.dataLayer = window.dataLayer || [];
-        window.dataLayer.push(Object.assign({
-          event: 'generate_lead',
-          form_id: form.id || 'inquiry',
-          lead_type: (form.elements['type'] && form.elements['type'].value) || 'nespecifikovano'
-        }, flat()));
-      });
+      /* Před odesláním doplnit znovu — mezi načtením stránky a odesláním
+         mohl člověk projít další stránky a last-touch se změnil. */
+      form.addEventListener('submit', function () { fillForm(form); });
     });
   }
+
+  /* KONVERZI TENHLE SOUBOR NEHLÁSÍ — dělá to form.js, až když server
+     potvrdí uložení.
+
+     Dřív se generate_lead pushovalo rovnou odsud při odeslání formuláře.
+     Dávalo to smysl v době, kdy web žádný backend neměl a poptávka končila
+     v mailto: — jinak by se nezměřilo nic. Od chvíle, kdy se poptávka
+     odesílá na endpoint, by to ale znamenalo dvě konverze na jednu poptávku
+     a hlášení úspěchu i tehdy, když se odeslání nepovedlo. Reklama by se
+     učila na číslech, která neodpovídají skutečnosti. */
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
