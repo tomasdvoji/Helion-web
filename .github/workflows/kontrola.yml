@@ -1,0 +1,44 @@
+name: Kontrola webu
+
+# Web je statický a stránky se přidávají ručně. Vada v jedné stránce se
+# nijak neprojeví — nespadne build, nic nezčervená, jen se ta stránka hůř
+# indexuje. Tahle kontrola je proto jediná zpětná vazba, která existuje.
+#
+# Stalo se to už jednou: všech 55 článků mělo neuzavřený <div> a nikdo
+# si toho nevšiml, dokud to nenašel audit.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  kontrola:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # sitemap bere lastmod z data commitu, takže potřebuje historii
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: SEO a struktura
+        run: python tools/seo-kontrola.py .
+
+      - name: Sitemap odpovídá skutečným stránkám
+        run: |
+          python tools/sitemap.py .
+          if ! git diff --quiet -- sitemap.xml; then
+            echo "::error::sitemap.xml neodpovídá stránkám v repozitáři."
+            echo "Spusťte 'python tools/sitemap.py .' a výsledek commitněte."
+            git --no-pager diff -- sitemap.xml
+            exit 1
+          fi
+          echo "sitemap.xml je aktuální"
