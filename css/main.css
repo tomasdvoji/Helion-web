@@ -1039,3 +1039,23 @@ img { content-visibility: auto; }
 .odh-stupnice > span:last-child { text-align: right; }
 .odh-napoveda { font-size: 14px; color: var(--muted); margin: 14px 0 20px; }
 .odh-shrnuti { margin: 6px 0 18px; }
+
+/* Poptávkový formulář — rozbalovací podrobnosti k nabídce */
+.pop-detaily { margin: 22px 0 6px; border: 1px solid var(--line); border-radius: var(--radius);
+  background: var(--paper); }
+.pop-detaily > summary { padding: 16px 18px; cursor: pointer; list-style: none; }
+.pop-detaily > summary::-webkit-details-marker { display: none; }
+.pop-detaily > summary::after { content: "+"; float: right; font: 700 22px/1 var(--display);
+  color: var(--muted); margin-top: -2px; }
+.pop-detaily[open] > summary::after { content: "2"; }
+.pop-detaily > summary strong { display: block; }
+.pop-detaily > summary span { display: block; font-size: 14px; color: var(--muted); margin-top: 3px; }
+.pop-detaily > *:not(summary) { padding: 0 18px; }
+.pop-detaily > *:last-child { padding-bottom: 20px; }
+.pop-skupina { font-size: 15px; margin: 20px 0 8px; }
+.pop-mrizka { display: grid; gap: 14px 18px; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); }
+.pop-napoveda { display: block; font-size: 13px; color: var(--muted); margin-top: 4px; font-weight: 400; }
+.pop-volby { display: flex; flex-wrap: wrap; gap: 6px 16px; margin-top: 6px; }
+.pop-volba { display: flex; align-items: center; gap: 7px; font-weight: 400; }
+.pop-volba input { width: 17px; height: 17px; flex: none; accent-color: #f7a600; }
+@media (max-width: 560px) { .pop-mrizka { grid-template-columns: 1fr; } }

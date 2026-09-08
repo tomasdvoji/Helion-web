@@ -179,9 +179,15 @@
           return;
         }
 
+        /* Zaškrtávátka se stejným jménem (příslušenství, čím topíte) posílá
+           FormData jako víc záznamů. Prosté přiřazení by nechalo jen poslední.
+           Spojují se čárkou — přesně v tom tvaru, v jakém to čeká import
+           do Accessu: "Baterie, Nabíječka pro elektromobil". */
         var data = {};
-        var fd = new FormData(form);
-        fd.forEach(function (v, k) { data[k] = v; });
+        new FormData(form).forEach(function (v, k) {
+          if (v === '') return;                       // nevyplněné neposílat
+          data[k] = (k in data) ? data[k] + ', ' + v : v;
+        });
         data.form_id = 'poptavka';
 
         var puvodni = btn ? btn.textContent : '';

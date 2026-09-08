@@ -89,7 +89,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/main.css?v=servis05">
+<link rel="stylesheet" href="css/main.css?v=servis06">
 </head>
 <body class="">
 
@@ -165,16 +165,21 @@
       <a class="bento__tile" href="poptavka.html?typ=kontrola#inquiry-form"><span class="mono num">3</span><h3>Kontrolní prohlídka FVE</h3><p>Elektrárna od jiného dodavatele – balíček Základ, Standard, Premium.</p></a>
     </div>
     <p class="lead">Vyplňte formulář a my se vám co nejdříve ozveme. Odesláním se otevře e-mail s předvyplněnou zprávou.</p>
+    <!-- HELION: rozsirena poptavka -->
     <form id="inquiry-form" class="inquiry__form">
-      <div class="row2">
-        <label>Jméno a příjmení<input name="name" required></label>
-        <label>Telefon<input name="phone" type="tel" required></label>
-      </div>
-      <div class="row2">
-        <label>E-mail<input name="email" type="email" required></label>
-        <label>Obec / adresa instalace<input name="place"></label>
-      </div>
-      <label>Co poptáváte?
+        <label>Jméno a příjmení
+          <input type="text" name="name" autocomplete="name" required>
+        </label>
+        <label>Telefon
+          <input type="tel" name="phone" autocomplete="tel" required>
+        </label>
+        <label>E-mail
+          <input type="email" name="email" autocomplete="email" required>
+        </label>
+        <label>Obec
+          <input type="text" name="place" autocomplete="address-level2">
+        </label>
+        <label>Co poptáváte?
         <select name="type">
           <option>Fotovoltaika – rodinný dům</option>
           <option>Fotovoltaika – bytový dům / SVJ</option>
@@ -186,7 +191,7 @@
           <option>Jiné</option>
         </select>
       </label>
-      <div id="servis-box" class="servis-box" hidden>
+<div id="servis-box" class="servis-box" hidden>
         <p class="servis-box__title">Servisní ceník</p>
         <ul class="servis-box__list">
           <li><strong>800 Kč</strong> servisní paušál za výjezd</li>
@@ -211,7 +216,137 @@
           <a href="podpora.html#servisni-cenik">Úplné srovnání balíčků →</a><br>
           Elektrárny nad 20 kWp naceňujeme individuálně, napište výkon do zprávy.</p>
       </div>
-      <label>Zpráva<textarea name="msg" rows="5"></textarea></label>
+        <label>Zpráva
+          <textarea name="msg" rows="4"></textarea>
+        </label>
+
+      <details class="pop-detaily">
+        <summary>
+          <strong>Podrobnosti k nabídce</strong>
+          <span>Vyplňte, co víte — nabídku pak připravíme rovnou, bez volání zpátky.
+            Nic z toho není povinné.</span>
+        </summary>
+        <h3 class="pop-skupina">Kde se bude stavět</h3>
+        <div class="pop-mrizka">
+          <label>Ulice a číslo popisné
+            <input type="text" name="street" autocomplete="street-address">
+          </label>
+          <label>PSČ
+            <input type="text" name="psc" pattern="\d{3} ?\d{2}" autocomplete="postal-code">
+          </label>
+        </div>
+        <h3 class="pop-skupina">Střecha</h3>
+        <div class="pop-mrizka">
+          <label>Typ střešní krytiny
+            <select name="roof_type">
+              <option value="">— vyberte —</option>
+              <option value="Plochá">Plochá</option>
+              <option value="Tašky pálené">Tašky pálené</option>
+              <option value="Tašky betonové">Tašky betonové</option>
+              <option value="Plech falcovaný">Plech falcovaný</option>
+              <option value="Plech trapézový">Plech trapézový</option>
+              <option value="Vlnitá krytina">Vlnitá krytina</option>
+              <option value="Šindel">Šindel</option>
+              <option value="Břidlice">Břidlice</option>
+              <option value="Jiná">Jiná</option>
+            </select>
+          </label>
+          <label>Sklon střechy (°)
+            <input type="number" name="roof_tilt" min="0" max="90">
+            <span class="pop-napoveda">0 = plochá, běžná šikmá 30–45</span>
+          </label>
+          <label>Kam je střecha otočená
+            <select name="roof_orientation">
+              <option value="">— vyberte —</option>
+              <option value="Jih">Jih</option>
+              <option value="Jihovýchod">Jihovýchod</option>
+              <option value="Jihozápad">Jihozápad</option>
+              <option value="Východ">Východ</option>
+              <option value="Západ">Západ</option>
+              <option value="Severovýchod">Severovýchod</option>
+              <option value="Severozápad">Severozápad</option>
+              <option value="Sever">Sever</option>
+              <option value="Nevím">Nevím</option>
+            </select>
+          </label>
+          <label>Využitelná plocha (m²)
+            <input type="number" name="roof_area" min="0" max="100000">
+          </label>
+          <label>Výška okapu nad zemí (m)
+            <input type="number" name="roof_edge" min="0" max="100" step="0.5">
+          </label>
+          <label>Máte statickou dokumentaci?
+            <select name="static_docs">
+              <option value="">— vyberte —</option>
+              <option value="Ano">Ano</option>
+              <option value="Ne">Ne</option>
+              <option value="Nevím">Nevím</option>
+            </select>
+          </label>
+        </div>
+        <h3 class="pop-skupina">Spotřeba domácnosti</h3>
+        <div class="pop-mrizka">
+          <label>Počet osob v domácnosti
+            <input type="number" name="people" min="1" max="30">
+          </label>
+          <label>Roční spotřeba elektřiny (MWh)
+            <input type="number" name="consumption" min="0" max="1000" step="0.1">
+            <span class="pop-napoveda">Najdete na vyúčtování. Běžný dům 3–5, s tepelným čerpadlem 8–12.</span>
+          </label>
+          <label>Tepelná ztráta objektu (kW)
+            <input type="number" name="heat_loss" min="0" max="1000" step="0.1">
+            <span class="pop-napoveda">Bývá v průkazu energetické náročnosti. Nevíte-li, nechte prázdné.</span>
+          </label>
+          <label>Čím dnes topíte a ohříváte vodu
+            <span class="pop-volby">
+              <label class="pop-volba"><input type="checkbox" name="current_use" value="Tepelné čerpadlo"> Tepelné čerpadlo</label>
+              <label class="pop-volba"><input type="checkbox" name="current_use" value="Elektrokotel"> Elektrokotel</label>
+              <label class="pop-volba"><input type="checkbox" name="current_use" value="Přímotopy"> Přímotopy</label>
+              <label class="pop-volba"><input type="checkbox" name="current_use" value="Bojler elektrický"> Bojler elektrický</label>
+              <label class="pop-volba"><input type="checkbox" name="current_use" value="Plyn"> Plyn</label>
+              <label class="pop-volba"><input type="checkbox" name="current_use" value="Tuhá paliva"> Tuhá paliva</label>
+              <label class="pop-volba"><input type="checkbox" name="current_use" value="Solární ohřev"> Solární ohřev</label>
+              <label class="pop-volba"><input type="checkbox" name="current_use" value="Klimatizace"> Klimatizace</label>
+            </span>
+          </label>
+        </div>
+        <h3 class="pop-skupina">Co má elektrárna umět</h3>
+        <div class="pop-mrizka">
+          <label>Volitelné příslušenství
+            <span class="pop-volby">
+              <label class="pop-volba"><input type="checkbox" name="accessories" value="Baterie"> Baterie</label>
+              <label class="pop-volba"><input type="checkbox" name="accessories" value="Nabíječka pro elektromobil"> Nabíječka pro elektromobil</label>
+              <label class="pop-volba"><input type="checkbox" name="accessories" value="Chytré řízení"> Chytré řízení</label>
+              <label class="pop-volba"><input type="checkbox" name="accessories" value="Ohřev vody z přebytků"> Ohřev vody z přebytků</label>
+              <label class="pop-volba"><input type="checkbox" name="accessories" value="Zálohování při výpadku"> Zálohování při výpadku</label>
+              <label class="pop-volba"><input type="checkbox" name="accessories" value="Sdílení elektřiny"> Sdílení elektřiny</label>
+            </span>
+          </label>
+          <label>Kam umístit měnič a baterie
+            <select name="inverter_place">
+              <option value="">— vyberte —</option>
+              <option value="Technická místnost">Technická místnost</option>
+              <option value="Garáž">Garáž</option>
+              <option value="Sklep">Sklep</option>
+              <option value="Půda">Půda</option>
+              <option value="Kotelna">Kotelna</option>
+              <option value="Venkovní stěna">Venkovní stěna</option>
+              <option value="Nevím, poraďte">Nevím, poraďte</option>
+            </select>
+          </label>
+          <label>Kdy chcete instalovat
+            <select name="timeline">
+              <option value="">— vyberte —</option>
+              <option value="Co nejdřív">Co nejdřív</option>
+              <option value="Do 3 měsíců">Do 3 měsíců</option>
+              <option value="Do půl roku">Do půl roku</option>
+              <option value="Do roka">Do roka</option>
+              <option value="Zatím jen zjišťuji">Zatím jen zjišťuji</option>
+            </select>
+          </label>
+        </div>
+      </details>
+
       <button class="e-btn magnetic" type="submit">Odeslat poptávku</button>
     </form>
   </div>
