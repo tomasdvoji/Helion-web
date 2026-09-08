@@ -179,7 +179,7 @@
             <output id="est-aspect-out" class="odh-hodnota">0°</output>
           </span>
           <input type="range" id="est-aspect" min="-180" max="180" step="1" value="0">
-          <span class="odh-stupnice"><span>východ<br>−90°</span><span>jih<br>0°</span><span>západ<br>+90°</span></span>
+          <span class="odh-stupnice"><span>západ<br>+90°</span><span>jih<br>0°</span><span>východ<br>−90°</span></span>
           <span class="odh-popis" id="est-aspect-popis">přímo na jih</span>
         </label>
 
@@ -198,9 +198,17 @@
     <p class="mono spot__src">Model počítá z měsíčních dat o slunečním záření pro osm míst v ČR (PVGIS, Společné výzkumné středisko Evropské komise, průměr let 2020–2023) a ověřuje se proti němu — průměrná odchylka 0,3 %, největší 1,4 %. Počítá se se ztrátami 14 %, což je běžná hodnota pro dobře provedenou instalaci. Skutečná výroba závisí na zastínění, znečištění panelů a počasí v daném roce; přesný výpočet pro vaši střechu vám připravíme v nabídce.</p>
   </div>
 </section>
+<script src="/odhad-produkce.js"></script>
 <script>
 (() => {
   const O = window.HELION_ODHAD;
+  if (!O) {                       // soubor s modelem se nenačetl
+    const f = document.getElementById('est-form');
+    if (f) f.insertAdjacentHTML('beforeend',
+      '<p class="hf-msg err">Výpočet se nepodařilo načíst. Zkuste stránku obnovit, '
+      + 'nebo nám napište na <a href="mailto:info@helion.cz">info@helion.cz</a>.</p>');
+    return;
+  }
   const MESICE = ['Led','Úno','Bře','Dub','Kvě','Čvn','Čvc','Srp','Zář','Říj','Lis','Pro'];
   const $ = id => document.getElementById(id);
 
@@ -235,9 +243,14 @@
     return STRANY[i] + (Math.abs(v) === 180 ? '' : ', ' + Math.abs(v) + '° od jihu na ' + (v < 0 ? 'východ' : 'západ'));
   }
 
+  /* Posuvník má opačné znaménko než azimut. Člověk se dívá na svou střechu,
+     tedy stojí čelem k severu, a východ má po pravé ruce — vpravo tedy musí
+     být východ. Hodnoty přitom zůstávají v konvenci PVGIS: 0 jih, -90 východ. */
+  const azimut = () => -(+$('est-aspect').value);
+
   function synchronizuj() {
     const sklon = +$('est-angle').value;
-    const az = +$('est-aspect').value;
+    const az = azimut();
     $('est-angle-out').textContent = sklon + '°';
     $('est-angle-popis').textContent = popisSklonu(sklon);
     $('est-aspect-out').textContent = (az > 0 ? '+' : '') + az + '°';
@@ -273,7 +286,7 @@
     e.preventDefault();
     const kwp = +$('est-kwp').value;
     const sklon = +$('est-angle').value;
-    const az = +$('est-aspect').value;
+    const az = azimut();
     const klic = misto.value;
 
     const r = O.spocitej(kwp, sklon, az, klic);
@@ -302,7 +315,7 @@
 
   addEventListener('resize', () => {
     if (!$('est-result').hidden) {
-      graf(O.spocitej(+$('est-kwp').value, +$('est-angle').value, +$('est-aspect').value, misto.value).mesice);
+      graf(O.spocitej(+$('est-kwp').value, +$('est-angle').value, azimut(), misto.value).mesice);
     }
   });
 })();
@@ -358,7 +371,6 @@
     </div>
   </div>
 </footer>
-<script src="/odhad-produkce.js"></script>
 <script src="js/main.js?v=servis02"></script>
 </body>
 </html>
