@@ -1092,3 +1092,7 @@ img { content-visibility: auto; }
 .support__table--lhuty .lhuta { width: 1%; white-space: nowrap; color: var(--orange); font-weight: 700; }
 @media (max-width: 700px) { .support__table--lhuty td:first-child { width: auto; } }
 
+/* ---------- časté dotazy ---------- */
+.faq-skupina { margin: 42px 0 14px; font-size: clamp(21px, 2.2vw, 26px); }
+.faq-skupina:first-of-type { margin-top: 26px; }
+.faq .lead { margin-bottom: 6px; }

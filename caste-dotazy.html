@@ -83,13 +83,13 @@
 <!-- ==== konec měřicí vrstvy ==== -->
 
 <title>Časté dotazy | Helion.cz</title>
-<meta name="description" content="Odpovědi na časté dotazy ohledně fotovoltaiky a solárních systémů.">
+<meta name="description" content="Časté dotazy k fotovoltaice: velikost elektrárny, orientace střechy, stínění, baterie a záloha, přebytky, servis a rozšíření starších FVE.">
 <link rel="icon" href="media/wp/themes/helion/images/favicon.png">
 <link rel="preconnect" href="https://www.helion.cz">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/main.css?v=kzk02">
+<link rel="stylesheet" href="css/main.css?v=faq01">
 </head>
 <body class="">
 
@@ -156,30 +156,183 @@
     <h1>Časté dotazy</h1>
   </div>
 </section>
+<!-- HELION: dotazy k fotovoltaice -->
 <section class="faq">
   <div class="container container--narrow">
-    <div class="accordion">
-      <div class="accordion__item open">
-        <button class="accordion__btn">Co je to roční topný faktor (SPF) ?<span class="accordion__icon">+</span></button>
-        <div class="accordion__content"><p>Roční topný faktor - SPF (seasonal performance factor) - je bezrozměrné číslo, které udává, kolik energie tepelné získáte z 1kWh energie elektrické při použití tepelného čerpadla za rok. Tento koeficient je závislý na způsobu provozování, kvalitě regulace tepelného čerpadla a především vnějších vlivech (venkovní teplota, poloha, požadovaná výstupní teplota, teplotní spád apod.).</p></div>
+    <p class="lead">Nejčastější dotazy k fotovoltaice — od návrhu přes baterie
+      a provoz až po servis a modernizaci starších elektráren.</p>
+      <h2 class="faq-skupina">Výběr a návrh</h2>
+      <div class="accordion">
+        <div class="accordion__item open">
+          <button class="accordion__btn">Jak velkou fotovoltaiku potřebuji?<span class="accordion__icon">+</span></button>
+          <div class="accordion__content"><p>Velikost FVE se má řídit hlavně vaší spotřebou, jejím průběhem a plánovanými spotřebiči. Cílem není co největší elektrárna, ale systém, jehož výrobu dokážete rozumně využít.</p></div>
+        </div>
+        <div class="accordion__item">
+          <button class="accordion__btn">Kolik elektřiny vyrobí 1 kWp fotovoltaiky?<span class="accordion__icon">+</span></button>
+          <div class="accordion__content"><p>V českých podmínkách orientačně kolem 1 MWh za rok. Skutečná výroba závisí na lokalitě, orientaci, sklonu střechy, stínění a použité technologii.</p></div>
+        </div>
+        <div class="accordion__item">
+          <button class="accordion__btn">Musí být panely orientované na jih?<span class="accordion__icon">+</span></button>
+          <div class="accordion__content"><p>Nemusí. Jih obvykle nabízí vysokou roční výrobu, ale velmi dobře funguje i orientace východ–západ, která rozloží výrobu do větší části dne.</p></div>
+        </div>
+        <div class="accordion__item">
+          <button class="accordion__btn">Vadí fotovoltaice stín?<span class="accordion__icon">+</span></button>
+          <div class="accordion__content"><p>Ano. Komín, strom, vikýř nebo jiná překážka mohou výrobu znatelně snížit. Proto je důležitý správný návrh stringů a v odůvodněných případech použití optimizérů.</p></div>
+        </div>
+        <div class="accordion__item">
+          <button class="accordion__btn">Potřebuji optimizér na každý panel?<span class="accordion__icon">+</span></button>
+          <div class="accordion__content"><p>Ne vždy. Optimizéry dávají smysl hlavně při částečném stínění, složitější orientaci střechy nebo tam, kde je požadováno sledování jednotlivých panelů.</p></div>
+        </div>
+        <div class="accordion__item">
+          <button class="accordion__btn">Lze fotovoltaiku instalovat na plochou střechu?<span class="accordion__icon">+</span></button>
+          <div class="accordion__content"><p>Ano. Panely se instalují na vhodnou nosnou konstrukci s ohledem na zatížení střechy, vítr, rozložení panelů a vzájemné stínění.</p></div>
+        </div>
+        <div class="accordion__item">
+          <button class="accordion__btn">Je moje střecha pro fotovoltaiku vhodná?<span class="accordion__icon">+</span></button>
+          <div class="accordion__content"><p>Ve většině případů ano, ale vždy je potřeba posoudit stav a typ krytiny, nosnost, orientaci, stínění a dostupnou plochu.</p></div>
+        </div>
+        <div class="accordion__item">
+          <button class="accordion__btn">Může být fotovoltaika na domě s hromosvodem?<span class="accordion__icon">+</span></button>
+          <div class="accordion__content"><p>Ano, ale FVE musí být správně navržena ve vztahu k systému ochrany před bleskem. Někdy je nutná úprava nebo doplnění stávajícího hromosvodu.</p></div>
+        </div>
+        <div class="accordion__item">
+          <button class="accordion__btn">Vyrábí fotovoltaika i když je zataženo?<span class="accordion__icon">+</span></button>
+          <div class="accordion__content"><p>Ano. Panely využívají i rozptýlené světlo, pouze je jejich výkon nižší než za jasného slunečného dne.</p></div>
+        </div>
       </div>
-      <div class="accordion__item">
-        <button class="accordion__btn">Co je to topný faktor (COP) ?<span class="accordion__icon">+</span></button>
-        <div class="accordion__content"><p>Je to bezrozměrné číslo udávající poměr mezi enegií získanou a energií vloženou. Zkratka "COP" vychází z anglického výrazu "coefficient of performance" (koeficient výkonu) a nejčastěji se používá pro srovnání energetické účinnosti tepelných čerpadel. Narozdíl od ročního topného faktoru je důležité znát, při jakých konkrétních podmínkách byl vypočítán. U vzduchových tepelných čerpadel se zpravidla jako etalon uvažuje s teplotou okolního vzduchu 2°C a teplotě výstupní vody 35°C, u systému země/voda pak 0°C a 35°C. Pozor na zázračné COP u levných tepelných čerpadel - bývá udáváno při naprosto odlišných podmínkách (např. pro ohřev bazénové vody v létě). Trvejte na doložení výkonové křivky, jinak se Vám Vaše investice může značně prodražit.</p></div>
+      <h2 class="faq-skupina">Baterie a záloha</h2>
+      <div class="accordion">
+        <div class="accordion__item">
+          <button class="accordion__btn">Je baterie k fotovoltaice nutná?<span class="accordion__icon">+</span></button>
+          <div class="accordion__content"><p>Není. Baterie ale umožňuje uložit přebytky z výroby na večer a noc a tím zvýšit využití vlastní elektřiny.</p></div>
+        </div>
+        <div class="accordion__item">
+          <button class="accordion__btn">Jak velkou baterii potřebuji?<span class="accordion__icon">+</span></button>
+          <div class="accordion__content"><p>Záleží hlavně na spotřebě domu, velikosti FVE a na tom, kolik energie potřebujete přesunout z dne do večera a noci. Největší baterie nemusí být nejlepší řešení.</p></div>
+        </div>
+        <div class="accordion__item">
+          <button class="accordion__btn">Lze baterii později rozšířit?<span class="accordion__icon">+</span></button>
+          <div class="accordion__content"><p>Často ano, ale záleží na konkrétním výrobci, typu baterie, střídači, stáří stávajících modulů a povolené konfiguraci systému.</p></div>
+        </div>
+        <div class="accordion__item">
+          <button class="accordion__btn">Co se stane, když je baterie plná?<span class="accordion__icon">+</span></button>
+          <div class="accordion__content"><p>Vyrobená energie se nejprve spotřebuje v domě. Přebytek může být dodán do sítě, využit jiným řízeným spotřebičem nebo může střídač výrobu omezit podle nastavení systému.</p></div>
+        </div>
+        <div class="accordion__item">
+          <button class="accordion__btn">Jak dlouho baterie vydrží?<span class="accordion__icon">+</span></button>
+          <div class="accordion__content"><p>Životnost závisí na technologii, počtu cyklů, teplotě a způsobu používání. Kapacita baterie se během let postupně snižuje.</p></div>
+        </div>
+        <div class="accordion__item">
+          <button class="accordion__btn">Bude baterie fungovat při výpadku elektřiny?<span class="accordion__icon">+</span></button>
+          <div class="accordion__content"><p>Pouze pokud je systém vybaven záložním výstupem a správně zapojenou zálohou. Samotná baterie automaticky neznamená, že dům při výpadku zůstane pod napětím.</p></div>
+        </div>
+        <div class="accordion__item">
+          <button class="accordion__btn">Lze při výpadku zálohovat celý dům?<span class="accordion__icon">+</span></button>
+          <div class="accordion__content"><p>Ano, u vhodně navrženého systému. Záleží na výkonu střídače, baterie, způsobu zapojení a příkonu spotřebičů, které mají během výpadku fungovat.</p></div>
+        </div>
       </div>
-      <div class="accordion__item">
-        <button class="accordion__btn">Je trubicový kolektor lepší než plochý?<span class="accordion__icon">+</span></button>
-        <div class="accordion__content"><p>Je trubicov&#253; kolektor lepš&#237; než ploch&#253;? Jsou "trubice" lepší než "klasický" plochý kolektor? Na tuto otázku nelze odpovědět jednoznačně, protože na trhu je řada trubicových kolektorů s účinností až o 30% nižší než mají kvalitní ploché kolektory. Použitý materiál, povrchová úprava absorberu, izolace a především technologické zpracování jsou základními předpoklady pro dobrou účinnost a v neposlední řadě i dlouhou životnost . Ploché nevakuované kolektory mají horší "start" v zimním období, kdy musí paprsky nejprve ohřát a udržovat teplotu vnitřního prostoru mezi absorberem a sklem, trubice zase v zimě bývají více zasněžené, protože sníh z meziprostoru trubic nesjíždí. Pomocí plochých lze v létě v noci vychlazovat přebytečnou energii, trubice se systémem heat-pipe lze zase odstavit úplně. Výhodou trubicových kolektorů je vyšší účinnost na místech méně exponovaných, na stěnách, plochých střechách apod., v ideálních podmínkách zase lépe vyrábějí kolektory ploché (menší odrazivost světla při kolmém dopadu) a zaberou méně místa na střeše (větší podíl účinné plochy z celkové plochy kolektoru). Poraďte se s odborníky, jaký typ je pro Vás nejvhodnější, nenechávejte to na letáku z obchoďáku... Výsledky zkoušek jednotlivých kolektorů naleznete např. zde .</p></div>
+      <h2 class="faq-skupina">Provoz fotovoltaiky</h2>
+      <div class="accordion">
+        <div class="accordion__item">
+          <button class="accordion__btn">Funguje fotovoltaika při výpadku distribuční sítě?<span class="accordion__icon">+</span></button>
+          <div class="accordion__content"><p>Běžná síťová FVE se při výpadku z bezpečnostních důvodů odpojí. Pro provoz během výpadku je potřeba systém s funkcí zálohy.</p></div>
+        </div>
+        <div class="accordion__item">
+          <button class="accordion__btn">Lze fotovoltaiku provozovat bez přetoků do sítě?<span class="accordion__icon">+</span></button>
+          <div class="accordion__content"><p>Ano. Vhodný střídač a měření umí přetoky výrazně omezit nebo řídit výrobu tak, aby se energie spotřebovala přímo v objektu.</p></div>
+        </div>
+        <div class="accordion__item">
+          <button class="accordion__btn">Co je nejlepší dělat s přebytky z fotovoltaiky?<span class="accordion__icon">+</span></button>
+          <div class="accordion__content"><p>Nejvýhodnější bývá využít je přímo – například pro nabíjení baterie, ohřev vody, klimatizaci, tepelné čerpadlo nebo elektromobil. Zbytek lze podle podmínek dodávat do sítě.</p></div>
+        </div>
+        <div class="accordion__item">
+          <button class="accordion__btn">Lze fotovoltaiku řídit podle spotových cen elektřiny?<span class="accordion__icon">+</span></button>
+          <div class="accordion__content"><p>Ano. Chytré řízení může podle ceny elektřiny, výroby, spotřeby nebo předpovědi počasí měnit nabíjení baterie a spínání spotřebičů.</p></div>
+        </div>
+        <div class="accordion__item">
+          <button class="accordion__btn">Můžu z fotovoltaiky nabíjet elektromobil?<span class="accordion__icon">+</span></button>
+          <div class="accordion__content"><p>Ano. Vhodný wallbox může nabíjecí výkon řídit podle aktuálních přebytků a omezit tak odběr elektřiny ze sítě.</p></div>
+        </div>
+        <div class="accordion__item">
+          <button class="accordion__btn">Lze přebytky využít pro ohřev vody?<span class="accordion__icon">+</span></button>
+          <div class="accordion__content"><p>Ano. Ohřev vody je jeden z nejjednodušších způsobů, jak zvýšit vlastní spotřebu vyrobené elektřiny.</p></div>
+        </div>
+        <div class="accordion__item">
+          <button class="accordion__btn">Má fotovoltaika smysl k tepelnému čerpadlu?<span class="accordion__icon">+</span></button>
+          <div class="accordion__content"><p>Ano. Tepelné čerpadlo zvyšuje spotřebu elektřiny v domě a část této spotřeby může pokrýt FVE. Největší výroba fotovoltaiky je ale v létě, zatímco největší spotřeba na vytápění bývá v zimě.</p></div>
+        </div>
+        <div class="accordion__item">
+          <button class="accordion__btn">Proč aplikace střídače ukazuje jiné hodnoty než elektroměr?<span class="accordion__icon">+</span></button>
+          <div class="accordion__content"><p>Monitoring střídače není fakturační elektroměr. Rozdíl může vzniknout přesností měření, intervalem aktualizace nebo odlišným místem, kde se energie měří.</p></div>
+        </div>
+        <div class="accordion__item">
+          <button class="accordion__btn">Proč fotovoltaika v zimě vyrábí málo?<span class="accordion__icon">+</span></button>
+          <div class="accordion__content"><p>Hlavním důvodem jsou kratší dny, nízká poloha slunce, častější oblačnost a případně sníh. Samotný chlad panelům nevadí.</p></div>
+        </div>
+        <div class="accordion__item">
+          <button class="accordion__btn">Mám v zimě odstraňovat sníh z panelů?<span class="accordion__icon">+</span></button>
+          <div class="accordion__content"><p>Běžně ne. Mechanické odstraňování sněhu může poškodit sklo nebo povrch panelu a kvůli několika hodinám či dnům výroby se většinou nevyplatí.</p></div>
+        </div>
+        <div class="accordion__item">
+          <button class="accordion__btn">Musí se solární panely čistit?<span class="accordion__icon">+</span></button>
+          <div class="accordion__content"><p>Ve většině běžných instalací si panely vystačí s deštěm. Kontrola a případné čištění má smysl při výrazném znečištění, malém sklonu nebo dlouhodobém poklesu výkonu.</p></div>
+        </div>
+        <div class="accordion__item">
+          <button class="accordion__btn">Je fotovoltaika bezúdržbová?<span class="accordion__icon">+</span></button>
+          <div class="accordion__content"><p>Panely mají minimum pohyblivých částí, ale celá FVE bezúdržbová není. Pravidelná kontrola pomáhá odhalit uvolněné spoje, poškození kabeláže, vadné ochrany nebo problémy se střídačem a baterií.</p></div>
+        </div>
+        <div class="accordion__item">
+          <button class="accordion__btn">Jak poznám, že fotovoltaika nefunguje správně?<span class="accordion__icon">+</span></button>
+          <div class="accordion__content"><p>Typickým signálem je chybové hlášení, náhlý pokles výroby, nefunkční baterie nebo nezvyklé hodnoty v monitoringu. Pokud si nejste jistí, je vhodná diagnostika systému.</p></div>
+        </div>
       </div>
-      <div class="accordion__item">
-        <button class="accordion__btn">Jaký je rozdíl mezi fotovoltaickým a termickým ohřevem vody?<span class="accordion__icon">+</span></button>
-        <div class="accordion__content"><p>Jak&#253; je rozd&#237;l mezi fotovoltaick&#253;m a termick&#253;m ohřevem vody? Jaký je rozdíl mezi fotovoltaickým a termickým ohřevem vody? Rozdíly se po stránce cenové již téměř smazaly, ale je důležité si uvědomit všechny souvislosti. Fotovoltaický systém ohřívá vodu pomocí odporového tělesa elektricky, K tomu stačí ze střechy přivést dva vodiče, instalovat rozvaděč a připojit je k tělesu. Pro výkon cca 2kW je nutné na střechu osadit asi 13m2 účinné plochy. Proti tomu systém termický zabere nahoře jen asi 5m2, ale ze střechy je třeba svést dvě trubky s izolací o průřezu cca 7cm a kabel od čidla. Systém se musí pravidelně udržovat, musí se měnit solární kapalina, ale je méně náchylný k případným poruchám. Solární termika vyrábí méně v zimních měsících, ale lze ji revezním chodem čerpadla snadno odmrazit. Fotovoltaiku lze snadno v letním období vypnout. Oba systémy mají své klady i zápory. Společným znakem je ale nezávislost na síti a ohřev vody zdarma. Budete-li se rozhodovat, poraďte se s námi.</p></div>
+      <h2 class="faq-skupina">Servis, rozšíření a modernizace</h2>
+      <div class="accordion">
+        <div class="accordion__item">
+          <button class="accordion__btn">Servisujete i fotovoltaiku, kterou jste neinstalovali?<span class="accordion__icon">+</span></button>
+          <div class="accordion__content"><p>Ano. U cizích instalací nejprve provedeme kontrolu systému a podle zjištěného stavu navrhneme další postup opravy nebo modernizace.</p></div>
+        </div>
+        <div class="accordion__item">
+          <button class="accordion__btn">Lze starší fotovoltaiku rozšířit?<span class="accordion__icon">+</span></button>
+          <div class="accordion__content"><p>Ve většině případů ano. Je ale potřeba ověřit možnosti střídače, zapojení panelů, baterii, jištění, distribuční podmínky a kompatibilitu nových komponentů.</p></div>
+        </div>
+        <div class="accordion__item">
+          <button class="accordion__btn">Můžu ke stávající FVE přidat další panely?<span class="accordion__icon">+</span></button>
+          <div class="accordion__content"><p>Často ano, ale nové panely nelze připojit libovolně. Musí odpovídat elektrickým parametrům střídače a správnému návrhu jednotlivých stringů.</p></div>
+        </div>
+        <div class="accordion__item">
+          <button class="accordion__btn">Lze ke starší fotovoltaice doplnit baterii?<span class="accordion__icon">+</span></button>
+          <div class="accordion__content"><p>Ano, pokud to umožňuje stávající střídač, případně lze systém upravit nebo použít jiné technické řešení. Vždy je potřeba posoudit konkrétní instalaci.</p></div>
+        </div>
+        <div class="accordion__item">
+          <button class="accordion__btn">Lze vyměnit starý střídač za nový?<span class="accordion__icon">+</span></button>
+          <div class="accordion__content"><p>Ano. Při výměně je nutné ověřit parametry panelů, baterie, ochrany, komunikaci i podmínky připojení k distribuční síti.</p></div>
+        </div>
+        <div class="accordion__item">
+          <button class="accordion__btn">Má smysl modernizovat starší FVE?<span class="accordion__icon">+</span></button>
+          <div class="accordion__content"><p>Často ano. Modernizací lze doplnit baterii, monitoring, zálohu, řízení přebytků, wallbox nebo nahradit nevyhovující střídač bez nutnosti stavět celou elektrárnu znovu.</p></div>
+        </div>
+        <div class="accordion__item">
+          <button class="accordion__btn">Jak často má být fotovoltaika kontrolována?<span class="accordion__icon">+</span></button>
+          <div class="accordion__content"><p>Záleží na typu instalace, prostředí a požadavcích dokumentace. Vedle revizí doporučujeme pravidelnou technickou kontrolu střídače, baterie, rozvaděčů, ochran, kabeláže a panelů.</p></div>
+        </div>
+        <div class="accordion__item">
+          <button class="accordion__btn">Je fotovoltaika bezpečná?<span class="accordion__icon">+</span></button>
+          <div class="accordion__content"><p>Správně navržená a odborně provedená FVE je bezpečný elektrický systém. Důležité jsou kvalitní komponenty, správné jištění, přepěťové ochrany, konektory, kabeláž a pravidelná kontrola.</p></div>
+        </div>
+        <div class="accordion__item">
+          <button class="accordion__btn">Co mám dělat, když střídač hlásí chybu?<span class="accordion__icon">+</span></button>
+          <div class="accordion__content"><p>Poznamenejte si chybový kód, případně pořiďte snímek obrazovky z aplikace. Zařízení bez znalosti příčiny opakovaně nevypínejte a nezapínejte – nejdříve ověřte doporučený postup nebo kontaktujte servis.</p></div>
+        </div>
+        <div class="accordion__item">
+          <button class="accordion__btn">Co potřebuji připravit před servisním výjezdem?<span class="accordion__icon">+</span></button>
+          <div class="accordion__content"><p>Pomůže značka a typ střídače a baterie, fotografie zařízení, popis závady, chybový kód a pokud možno přístup do monitorovací aplikace. Diagnostika je pak rychlejší.</p></div>
+        </div>
+        <div class="accordion__item">
+          <button class="accordion__btn">Dostanu po instalaci dokumentaci?<span class="accordion__icon">+</span></button>
+          <div class="accordion__content"><p>Ano. Rozsah dokumentace závisí na typu instalace, ale součástí správně předané FVE jsou potřebné technické podklady, revize a dokumenty související s uvedením systému do provozu.</p></div>
+        </div>
       </div>
-      <div class="accordion__item">
-        <button class="accordion__btn">Mám solární elektrárnu, ale spotřebovávám málo vyrobené energie<span class="accordion__icon">+</span></button>
-        <div class="accordion__content"><p>M&#225;m sol&#225;rn&#237; elektr&#225;rnu, ale spotřebov&#225;v&#225;m m&#225;lo vyroben&#233; energie Mám na střeše solární elektrárnu, ale většinu posílám do sítě a sám téměř nic nespotřebuji. Dá se to nějak řešit? V první řadě je nutné si uvědomit, jaká je vaše celková roční spotřeba a jaké spotřebiče používáte. Důležité je i Vaše chování - nejvíce elektřiny vyrobíte v době oběda, je tedy vhodné v tuto dobu provozovat i domácí pomocníky (pračka, myčka, sušička) - dnešní modely mají v sobě možnost nastavení odloženého startu, takže je před odchodem naprogramujte na vhodnou dobu. Pokud topíte a ohříváte vodu jinak než elektricky, zvažte, zda tento způsob nezměnit. Investice do změny v řádu několika tisíc se zpravidla vyplatí, protože ušetříte na účtech za elektřinu. Teplou vodu můžete předehřívat v solárním bojleru, speciální průtokový elektrokotel či přímotop může z přebytků výroby snadno přitápět Váš dům. Poraďte se s odborníky, více informací naleznete např. zde .</p></div>
-      </div>
-    </div>
     <div class="center"><p>Nenašli jste odpověď?</p><a class="e-btn magnetic" href="kontakt.html">Kontaktujte nás</a></div>
   </div>
 </section>
