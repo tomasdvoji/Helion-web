@@ -34,8 +34,12 @@
 
   var GA4_ID   = 'G-4QF6H07Y1C';   // stream v property 362903270
   var META_ID  = '9235028319898505';
-  var ADS_ID   = '';   // 'AW-XXXXXXXXX' — doplnit, až vznikne nový účet (§14)
-  var ADS_LBL  = '';   // 'AW-XXXXXXXXX/AbCdEfGh' — konverzní akce Odeslání poptávky
+  /* Konverzní akce "Poptávka z webu" v účtu 399-311-0681, založena 8. 9. 2026.
+     Kategorie "Odeslání formuláře pro zájemce", bez peněžní hodnoty — skutečná
+     hodnota přijde později přes offline konverze z Accessu, až je zakázka
+     podepsaná. Hlásí se AŽ po potvrzeném uložení poptávky, ne při kliknutí. */
+  var ADS_ID   = 'AW-973730074';
+  var ADS_LBL  = 'AW-973730074/A7N9CLusi_EcEJrip9AD';
 
   window.dataLayer = window.dataLayer || [];
   function gtag() { window.dataLayer.push(arguments); }
