@@ -310,6 +310,26 @@
               <label class="pop-volba"><input type="checkbox" name="current_use" value="Klimatizace"> Klimatizace</label>
             </span>
           </label>
+          <label class="pop-siroke">Které z těchto spotřebičů máte
+            <span class="pop-volby">
+              <label class="pop-volba"><input type="checkbox" name="appliances" value="Mrazák (samostatný)"> Mrazák (samostatný)</label>
+              <label class="pop-volba"><input type="checkbox" name="appliances" value="Sušička"> Sušička</label>
+              <label class="pop-volba"><input type="checkbox" name="appliances" value="Ohřev bazénu"> Ohřev bazénu</label>
+              <label class="pop-volba"><input type="checkbox" name="appliances" value="Bazénová filtrace"> Bazénová filtrace</label>
+              <label class="pop-volba"><input type="checkbox" name="appliances" value="Vířivka"> Vířivka</label>
+              <label class="pop-volba"><input type="checkbox" name="appliances" value="Rekuperace"> Rekuperace</label>
+              <label class="pop-volba"><input type="checkbox" name="appliances" value="Chytrá domácnost"> Chytrá domácnost</label>
+              <label class="pop-volba"><input type="checkbox" name="appliances" value="Zahrada nebo dílna"> Zahrada nebo dílna</label>
+            </span>
+          </label>
+          <label>Počet elektromobilů
+            <input type="number" name="ev_count" min="0" max="10">
+            <span class="pop-napoveda">Nemáte-li elektromobil, nechte prázdné.</span>
+          </label>
+          <label>Denní nájezd elektromobilem (km)
+            <input type="number" name="ev_km" min="0" max="2000">
+            <span class="pop-napoveda">Průměr v ČR je 30–40 km.</span>
+          </label>
         </div>
         <h3 class="pop-skupina">Co má elektrárna umět</h3>
         <div class="pop-mrizka">
@@ -344,6 +364,22 @@
               <option value="Do roka">Do roka</option>
               <option value="Zatím jen zjišťuji">Zatím jen zjišťuji</option>
             </select>
+          </label>
+        </div>
+        <h3 class="pop-skupina">Ještě jedna věc</h3>
+        <div class="pop-mrizka">
+          <label>Slyšeli jste o nás i mimo internet?
+            <select name="heard_from">
+              <option value="">— vyberte —</option>
+              <option value="Plakát nebo billboard">Plakát nebo billboard</option>
+              <option value="Rádio">Rádio</option>
+              <option value="Akce nebo veletrh">Akce nebo veletrh</option>
+              <option value="Doporučení od známého">Doporučení od známého</option>
+              <option value="Naše auto nebo polep">Naše auto nebo polep</option>
+              <option value="Viděl jsem vaši realizaci">Viděl jsem vaši realizaci</option>
+              <option value="Jinde">Jinde</option>
+            </select>
+            <span class="pop-napoveda">Nepovinné. Pomůže nám poznat, jestli má plakát nebo rádio smysl.</span>
           </label>
         </div>
       </details>
