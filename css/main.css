@@ -1070,3 +1070,24 @@ img { content-visibility: auto; }
 .inquiry__form .pop-volba input[type="checkbox"] { width: 18px; height: 18px;
   flex: 0 0 auto; padding: 0; margin: 0; accent-color: #f7a600; }
 @media (max-width: 560px) { .pop-mrizka { grid-template-columns: 1fr; } }
+
+/* ---------- krok za krokem ---------- */
+.kzk-nadpis { margin: 48px 0 10px; font-size: clamp(24px, 2.6vw, 32px); }
+.kzk-text { max-width: 70ch; line-height: 1.9; }
+.kzk-pozn { font-size: 14px; color: var(--muted); margin-top: 12px; max-width: 70ch; }
+.kzk-seznam { list-style: none; display: grid; gap: 10px 24px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); margin: 14px 0 0; }
+.kzk-seznam li { padding-left: 18px; position: relative; color: var(--muted); line-height: 1.7; }
+.kzk-seznam li::before { content: ""; position: absolute; left: 0; top: 11px;
+  width: 7px; height: 7px; border-radius: 50%; background: var(--orange); }
+.kzk-seznam strong { color: var(--ink); }
+.kzk-utp { margin: 30px 0 6px; }
+.kzk-utp p { margin: 0; line-height: 1.8; }
+/* Tabulka lhůt má ve všech sloupcích text, ne značky ✓ a –. Pravidlo
+   v .support__table dává sloupcům 2+ pevných 120 px a text na střed;
+   věta by se v nich zalomila do úzkého proužku. */
+.support__table--lhuty th:not(:first-child),
+.support__table--lhuty td:not(:first-child) { width: auto; text-align: left; }
+.support__table--lhuty td:first-child { width: 26%; font-weight: 600; color: var(--ink); }
+.support__table--lhuty .lhuta { width: 1%; white-space: nowrap; color: var(--orange); font-weight: 700; }
+@media (max-width: 700px) { .support__table--lhuty td:first-child { width: auto; } }
