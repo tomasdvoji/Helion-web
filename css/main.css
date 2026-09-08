@@ -1032,5 +1032,10 @@ img { content-visibility: auto; }
 .odh-popis { display: block; font-size: 14px; color: var(--muted); min-height: 20px; }
 .odh-stupnice { display: flex; justify-content: space-between; font-size: 12px; color: var(--muted);
   font-family: var(--mono, monospace); line-height: 1.3; margin-bottom: 4px; }
+/* Krajní popisky se zarovnávají k okrajům, prostřední na střed — jinak
+   nesedí s polohou jezdce a člověk podle nich najede vedle. */
+.odh-stupnice > span { flex: 1; text-align: center; }
+.odh-stupnice > span:first-child { text-align: left; }
+.odh-stupnice > span:last-child { text-align: right; }
 .odh-napoveda { font-size: 14px; color: var(--muted); margin: 14px 0 20px; }
 .odh-shrnuti { margin: 6px 0 18px; }

@@ -89,7 +89,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/main.css?v=servis04">
+<link rel="stylesheet" href="css/main.css?v=servis05">
 </head>
 <body class="">
 
@@ -179,7 +179,7 @@
             <output id="est-aspect-out" class="odh-hodnota">0°</output>
           </span>
           <input type="range" id="est-aspect" min="-180" max="180" step="1" value="0">
-          <span class="odh-stupnice"><span>západ<br>+90°</span><span>jih<br>0°</span><span>východ<br>−90°</span></span>
+          <span class="odh-stupnice"><span>sever<br>+180°</span><span>západ<br>+90°</span><span>jih<br>0°</span><span>východ<br>−90°</span><span>sever<br>−180°</span></span>
           <span class="odh-popis" id="est-aspect-popis">přímo na jih</span>
         </label>
 
@@ -195,7 +195,7 @@
         <p class="odh-shrnuti" id="est-shrnuti"></p>
         <canvas id="est-chart" height="300"></canvas>
       </div>
-    <p class="mono spot__src">Model počítá z měsíčních dat o slunečním záření pro osm míst v ČR (PVGIS, Společné výzkumné středisko Evropské komise, průměr let 2020–2023) a ověřuje se proti němu — průměrná odchylka 0,3 %, největší 1,4 %. Počítá se se ztrátami 14 %, což je běžná hodnota pro dobře provedenou instalaci. Skutečná výroba závisí na zastínění, znečištění panelů a počasí v daném roce; přesný výpočet pro vaši střechu vám připravíme v nabídce.</p>
+    <p class="mono spot__src">Model počítá z měsíčních dat o slunečním záření pro osm míst v ČR (PVGIS, Společné výzkumné středisko Evropské komise, průměr let 2020–2023). Proti PVGIS pro stejné místo se liší o desetiny procenta. <strong>Počítá se ale pro zvolenou oblast, ne pro vaši konkrétní adresu</strong> – v horách se hodnoty na vzdálenost několika kilometrů liší i o jednotky procent a model nezná stínění okolní zástavbou, stromy ani terénem. Uvažují se ztráty 14 %, což je běžná hodnota pro dobře provedenou instalaci. Přesný výpočet pro vaši střechu vám připravíme v nabídce.</p>
   </div>
 </section>
 <script src="/odhad-produkce.js"></script>
