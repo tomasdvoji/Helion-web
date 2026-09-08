@@ -1055,7 +1055,13 @@ img { content-visibility: auto; }
 .pop-skupina { font-size: 15px; margin: 20px 0 8px; }
 .pop-mrizka { display: grid; gap: 14px 18px; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); }
 .pop-napoveda { display: block; font-size: 13px; color: var(--muted); margin-top: 4px; font-weight: 400; }
-.pop-volby { display: flex; flex-wrap: wrap; gap: 10px 20px; margin-top: 8px; }
+/* Zaškrtávátka do sloupců, ne do zalamovaného řádku. Při lámání podle
+   šířky skončí "Tepelné čerpadlo" samo na řádku a "Elektrokotel" s
+   "Přímotopy" vedle sebe — vypadá to jako chyba, i když to chyba není. */
+.pop-volby { display: grid; grid-template-columns: repeat(auto-fill, minmax(215px, 1fr));
+  gap: 10px 18px; margin-top: 8px; }
+/* Volby potřebují celou šířku mřížky, jinak se mačkají do jednoho sloupce. */
+.pop-mrizka > .pop-siroke { grid-column: 1 / -1; }
 /* Formulář má .inquiry__form label { flex-direction: column }, takže by se
    text zaškrtávátka stavěl POD čtvereček. Proto se to tady přebíjí se stejnou
    silou selektoru — bez .inquiry__form by pravidlo prohrálo. */
