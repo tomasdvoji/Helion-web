@@ -98,10 +98,16 @@
 
   /* ---------- 3) generate_lead → tři příjemci ---------- */
 
+  /* Typy poptávek, které se do reklamy nepočítají jako konverze.
+     Zatím jediný: záruční reklamace na vlastní instalaci. Servis cizí
+     elektrárny konverze JE — to je placená zakázka od nového zákazníka. */
+  var NEPOCITAT = { zaruka: 1 };
+
   /* Select na webu nemá value, posílá se celý text volby. Do GA4 chceme
      krátký kód, ať se dá segmentovat; původní text jdeme taky, ať je dohledatelný. */
   function leadKod(text) {
     var t = (text || '').toLowerCase();
+    if (/z[aá]ru[cč]/.test(t))       return 'zaruka';
     if (/rodinn/.test(t))            return 'rd';
     if (/bytov|svj/.test(t))         return 'svj';
     if (/firm/.test(t))              return 'firma';
@@ -145,7 +151,11 @@
 
     gtag('event', 'generate_lead', d);
 
-    if (ADS_LBL) {
+    /* Záruční reklamace na naši vlastní instalaci NENÍ konverze.
+       Kdyby se posílala do Ads, Google by se učil přivádět jich víc —
+       a platilo by se dvakrát: za proklik a pak za výjezd, který se
+       podle ceníku neúčtuje. Do GA4 jde dál, ať je vidět, kolik jich je. */
+    if (ADS_LBL && !NEPOCITAT[d.lead_type]) {
       var c = { send_to: ADS_LBL };
       if (d.value) { c.value = d.value; c.currency = d.currency; }
       gtag('event', 'conversion', c);
