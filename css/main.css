@@ -1055,7 +1055,12 @@ img { content-visibility: auto; }
 .pop-skupina { font-size: 15px; margin: 20px 0 8px; }
 .pop-mrizka { display: grid; gap: 14px 18px; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); }
 .pop-napoveda { display: block; font-size: 13px; color: var(--muted); margin-top: 4px; font-weight: 400; }
-.pop-volby { display: flex; flex-wrap: wrap; gap: 6px 16px; margin-top: 6px; }
-.pop-volba { display: flex; align-items: center; gap: 7px; font-weight: 400; }
-.pop-volba input { width: 17px; height: 17px; flex: none; accent-color: #f7a600; }
+.pop-volby { display: flex; flex-wrap: wrap; gap: 10px 20px; margin-top: 8px; }
+/* Formulář má .inquiry__form label { flex-direction: column }, takže by se
+   text zaškrtávátka stavěl POD čtvereček. Proto se to tady přebíjí se stejnou
+   silou selektoru — bez .inquiry__form by pravidlo prohrálo. */
+.inquiry__form .pop-volba { flex-direction: row; align-items: center; gap: 8px;
+  font-weight: 400; font-size: 15px; cursor: pointer; }
+.inquiry__form .pop-volba input[type="checkbox"] { width: 18px; height: 18px;
+  flex: 0 0 auto; padding: 0; margin: 0; accent-color: #f7a600; }
 @media (max-width: 560px) { .pop-mrizka { grid-template-columns: 1fr; } }
