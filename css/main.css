@@ -1047,7 +1047,7 @@ img { content-visibility: auto; }
 .pop-detaily > summary::-webkit-details-marker { display: none; }
 .pop-detaily > summary::after { content: "+"; float: right; font: 700 22px/1 var(--display);
   color: var(--muted); margin-top: -2px; }
-.pop-detaily[open] > summary::after { content: "2"; }
+.pop-detaily[open] > summary::after { content: "\2212"; }
 .pop-detaily > summary strong { display: block; }
 .pop-detaily > summary span { display: block; font-size: 14px; color: var(--muted); margin-top: 3px; }
 .pop-detaily > *:not(summary) { padding: 0 18px; }
@@ -1091,3 +1091,4 @@ img { content-visibility: auto; }
 .support__table--lhuty td:first-child { width: 26%; font-weight: 600; color: var(--ink); }
 .support__table--lhuty .lhuta { width: 1%; white-space: nowrap; color: var(--orange); font-weight: 700; }
 @media (max-width: 700px) { .support__table--lhuty td:first-child { width: auto; } }
+
