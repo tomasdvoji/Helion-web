@@ -119,6 +119,25 @@
     return 'jine';
   }
 
+  /* AŽ SE SEM BUDE PŘIDÁVAT MICROSOFT (UET), POZOR NA MĚNU.
+     ------------------------------------------------------
+     Účet Microsoft Ads běží v EURECH. Koruna mezi měnami účtu není —
+     Microsoft jich nabízí 28 a ze střední Evropy jen polský zlotý,
+     takže při zakládání účtu bylo euro jediná rozumná volba.
+
+     Hodnotu konverze ale POSÍLAT V KORUNÁCH LZE, CZK je v seznamu měn
+     pro ConversionGoalRevenue a Microsoft si to přepočte sám. Podmínka
+     je, že se měna uvede VÝSLOVNĚ. Z dokumentace:
+
+       "If not, the value is treated as being in the account currency,
+        which can lead to inflated or incorrect revenue reporting."
+
+     Prakticky: zakázka za 252 000 poslaná bez měny se přečte jako
+     252 000 EUR, tedy zhruba šest milionů korun, a optimalizace se bude
+     učit na dvacetkrát nadsazené hodnotě.
+
+     https://learn.microsoft.com/en-us/advertising/guides/currencies */
+
   function sendMeta(d) {
     if (!window.fbq) return;
     var p = {
