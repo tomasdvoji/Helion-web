@@ -1157,3 +1157,18 @@ img { content-visibility: auto; }
   .vzor__cisla b { font-size: 20px; }
   .prod-item .e-btn + .e-btn { margin-left: 0; }
 }
+
+/* --- schéma místo fotky ----------------------------------------------------
+   Fotku je správné ořezat na 4:3, diagram ne — u něj se ořízne text po
+   stranách a zbude obrázek, ze kterého se nedá nic vyčíst. Proto contain
+   a podklad, aby průhledné okraje nesplynuly s okolím.
+-------------------------------------------------------------------------- */
+
+.prod-item__img--schema { background: var(--white); border: 1px solid var(--line); }
+.prod-item__img--schema img {
+  object-fit: contain;
+  aspect-ratio: auto;
+  max-height: 340px;
+  padding: 14px;
+}
+.prod-item__img--schema:hover img { transform: none; }
