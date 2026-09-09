@@ -1096,3 +1096,64 @@ img { content-visibility: auto; }
 .faq-skupina { margin: 42px 0 14px; font-size: clamp(21px, 2.2vw, 26px); }
 .faq-skupina:first-of-type { margin-top: 26px; }
 .faq .lead { margin-bottom: 6px; }
+
+/* --- vzorový dům -----------------------------------------------------------
+   Konkrétní čísla z letáku do vesnic. Je to nejsilnější věc, kterou firma má,
+   a zároveň přesně to, kvůli čemu člověk z inzerátu klikl — má je vidět hned,
+   ne až po třech odstavcích.
+
+   Zarovnání číslic je tabulární schválně: sloupec, který skáče, se hůř čte
+   a působí méně spolehlivě než ten, co drží linku.
+-------------------------------------------------------------------------- */
+
+.vzor {
+  margin: 22px 0 18px;
+  padding: 20px 22px;
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--orange);
+  border-radius: var(--radius-sm);
+  background: var(--paper);
+}
+.vzor__titulek {
+  margin: 0 0 14px;
+  font-family: var(--display);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.vzor__cisla {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 16px;
+}
+.vzor__cisla li { display: flex; flex-direction: column; gap: 2px; }
+.vzor__cisla b {
+  font-family: var(--display);
+  font-size: 24px;
+  line-height: 1.15;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+.vzor__cisla span { font-size: 13px; line-height: 1.4; color: var(--muted); }
+.vzor--duraz b { color: var(--orange); }
+.vzor__pozn {
+  margin: 16px 0 0 !important;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--muted);
+}
+
+/* Dvě tlačítka vedle sebe. Bez tohohle by se slepila. */
+.prod-item .e-btn + .e-btn { margin-left: 10px; }
+
+@media (max-width: 560px) {
+  .vzor { padding: 16px 16px; }
+  .vzor__cisla { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .vzor__cisla b { font-size: 20px; }
+  .prod-item .e-btn + .e-btn { margin-left: 0; }
+}
