@@ -61,9 +61,13 @@
      konfigurátor a jen tehdy se posílá. Stejná úvaha jako u Googlu a Mety. */
   var SKLIK_KONVERZE = 100288930;
 
-  /* Microsoft Advertising — ID značky UET z rozhraní: Nástroje → UET tag.
-     Prázdné znamená VYPNUTO a bat.js se nenačítá. */
-  var UET_ID = '';
+  /* Microsoft Advertising — ID značky UET, založená 10. 9. 2026.
+     Prázdné znamená VYPNUTO a bat.js se pak vůbec nenačítá.
+
+     ÚRYVEK OD MICROSOFTU SEM NEVKLÁDAT. Načítač značky je pár řádků níž;
+     kdyby se přidal i jejich hotový kód, značka by se načetla dvakrát
+     a každá návštěva by se počítala dvakrát. */
+  var UET_ID = '187273651';
 
   window.dataLayer = window.dataLayer || [];
   function gtag() { window.dataLayer.push(arguments); }
