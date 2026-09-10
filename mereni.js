@@ -52,8 +52,14 @@
      „vytvoření objednávky" a obě pojmenované Objednávka (100043919
      a 100043986). Poptávka na fotovoltaiku objednávka není; dosadit sem
      jednu z nich by znamenalo číst v reportech něco jiného, než se stalo.
-     Patří sem konverze typu odeslání formuláře, založená pro tenhle účel. */
-  var SKLIK_KONVERZE = 0;
+     Proto vznikla 10. 9. 2026 konverze „Odeslání poptávky" typu odeslání
+     formuláře, ID 100288930. To je ta, která patří sem.
+
+     Výchozí hodnota je u ní ZÁMĚRNĚ prázdná. Sklik by ji jinak otiskl
+     každé konverzi, u které kód žádnou nepošle, a to je většina poptávek —
+     hodnotu zakázky v okamžiku odeslání formuláře neznáme. Spočítá ji až
+     konfigurátor a jen tehdy se posílá. Stejná úvaha jako u Googlu a Mety. */
+  var SKLIK_KONVERZE = 100288930;
 
   /* Microsoft Advertising — ID značky UET z rozhraní: Nástroje → UET tag.
      Prázdné znamená VYPNUTO a bat.js se nenačítá. */
