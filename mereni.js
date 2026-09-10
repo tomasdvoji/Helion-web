@@ -10,10 +10,14 @@
  * Co dělá:
  *   1. načte GA4 (gtag.js). Consent Mode v2 už nastavil consent.js na denied,
  *      takže do souhlasu jdou jen bezcookie pingy — to je správné chování.
+ *   1b. načte značku UET od Microsoftu. Ta má vlastní consent mode, takže
+ *      se stejně jako GA4 načítá hned a do souhlasu jede v režimu denied.
  *   2. Meta pixel načte AŽ po souhlasu s marketingem. Meta Consent Mode
  *      nerespektuje, gating tedy musí být tady.
+ *   2b. Sklik (rc.js) načte LÍNĚ, až je co poslat. Retargeting neměříme,
+ *      takže na běžné stránce nemá co dělat.
  *   3. odchytává událost generate_lead z attribution.js a rozešle ji
- *      do GA4, do Meta a (až bude účet) do Google Ads.
+ *      do GA4, do Meta, do Google Ads, do Skliku a do Microsoftu.
  *
  * OVĚŘENO 7. 9. 2026 A OPRAVENO. V docs/ga4.md bylo pro nový web uvedeno
  * G-6CPT4HZRMY. To ID ale do property 362903270, kterou čte HME, NEPATŘÍ —
@@ -41,6 +45,20 @@
   var ADS_ID   = 'AW-973730074';
   var ADS_LBL  = 'AW-973730074/A7N9CLusi_EcEJrip9AD';
 
+  /* Sklik — ID konverzní akce z rozhraní: Nástroje → Měření konverzí.
+     Nula znamená VYPNUTO a rc.js se pak vůbec nenačítá.
+
+     POZOR NA VÝBĚR AKCE. V účtu jsou k 10. 9. 2026 dvě konverze, obě typu
+     „vytvoření objednávky" a obě pojmenované Objednávka (100043919
+     a 100043986). Poptávka na fotovoltaiku objednávka není; dosadit sem
+     jednu z nich by znamenalo číst v reportech něco jiného, než se stalo.
+     Patří sem konverze typu odeslání formuláře, založená pro tenhle účel. */
+  var SKLIK_KONVERZE = 0;
+
+  /* Microsoft Advertising — ID značky UET z rozhraní: Nástroje → UET tag.
+     Prázdné znamená VYPNUTO a bat.js se nenačítá. */
+  var UET_ID = '';
+
   window.dataLayer = window.dataLayer || [];
   function gtag() { window.dataLayer.push(arguments); }
 
@@ -58,6 +76,58 @@
   gtag('js', new Date());
   gtag('config', GA4_ID, { send_page_view: true });
   if (ADS_ID) gtag('config', ADS_ID);
+
+  /* ---------- 1b) Microsoft Advertising (UET) ---------- */
+
+  /* Načítá se hned jako GA4, ne až po souhlasu. Microsoft má vlastní
+     consent mode a chce ho nastavený co nejdřív — než se stránka donačte.
+     Do souhlasu tedy značka jede v režimu ad_storage: denied, což je
+     totéž chování jako u GA4: měří se, ale bez ukládání na zařízení.
+
+     Meta se načítá až po souhlasu proto, že žádný consent mode nemá.
+     Rozdíl v přístupu je rozdíl v tom, co ty nástroje umí. */
+
+  function uetPush() {
+    window.uetq = window.uetq || [];
+    window.uetq.push.apply(window.uetq, arguments);
+  }
+
+  if (UET_ID) {
+    window.uetq = window.uetq || [];
+    uetPush('consent', 'default', { ad_storage: 'denied' });
+
+    (function (w, d, t, r, u) {
+      var f, n, i;
+      w[u] = w[u] || [];
+      f = function () {
+        var o = { ti: UET_ID, enableAutoSpaTracking: false };
+        o.q = w[u];
+        w[u] = new w.UET(o);
+        w[u].push('pageLoad');
+      };
+      n = d.createElement(t); n.src = r; n.async = 1;
+      n.onload = n.onreadystatechange = function () {
+        var st = this.readyState;
+        if (st && st !== 'loaded' && st !== 'complete') return;
+        f(); n.onload = n.onreadystatechange = null;
+      };
+      i = d.getElementsByTagName(t)[0];
+      i.parentNode.insertBefore(n, i);
+    })(window, document, 'script', 'https://bat.bing.com/bat.js', 'uetq');
+  }
+
+  /* Posílá se jen při ZMĚNĚ. Consent.js hlásí souhlas dvakrát — jednou
+     z localStorage při načtení a jednou přes dataLayer — a dvě stejné
+     aktualizace za sebou by ve frontě jen přidávaly šum. */
+  var uetStav = null;
+
+  function uetSouhlas(granted) {
+    if (!UET_ID) return;
+    var novy = !!granted;
+    if (uetStav === novy) return;
+    uetStav = novy;
+    uetPush('consent', 'update', { ad_storage: novy ? 'granted' : 'denied' });
+  }
 
   /* ---------- 2) Meta pixel — až po souhlasu s marketingem ---------- */
 
@@ -94,7 +164,7 @@
 
   /* consent.js mohl souhlas obnovit z localStorage ještě před načtením
      tohohle souboru — spoléhat jen na událost by tichý pixel nechal ležet. */
-  if (marketingGranted()) loadMeta();
+  if (marketingGranted()) { loadMeta(); uetSouhlas(true); }
 
   /* ---------- 3) generate_lead → tři příjemci ---------- */
 
@@ -138,6 +208,61 @@
 
      https://learn.microsoft.com/en-us/advertising/guides/currencies */
 
+  /* ---------- 2b) Sklik ---------- */
+
+  /* rc.js se načítá LÍNĚ, až když je co poslat. Na rozdíl od GA4 a UET
+     neměří zobrazení stránky — retargeting nemáme zapnutý — takže by na
+     každé stránce jen visel a stahoval se pro nic.
+
+     Souhlas se Skliku PŘEDÁVÁ, neblokuje se jím načtení. `consent: 0`
+     je Seznamem zamýšlený režim: konverze se započítá, ale nespáruje se
+     s člověkem. Zahodit ji úplně by znamenalo, že by účet bez souhlasu
+     neviděl vůbec nic a kampaň by se neměla podle čeho učit. Stejná
+     úvaha jako u Consent Mode od Googlu. */
+
+  var sklikNacita = false;
+  var sklikFronta = [];
+
+  function sklikOdeslat(konf) {
+    if (window.rc && window.rc.conversionHit) {
+      window.rc.conversionHit(konf);
+      return;
+    }
+    sklikFronta.push(konf);
+    if (sklikNacita) return;
+    sklikNacita = true;
+
+    var sc = document.createElement('script');
+    sc.async = true;
+    sc.src = 'https://c.seznam.cz/js/rc.js';
+    sc.onload = function () {
+      if (!window.rc || !window.rc.conversionHit) return;
+      while (sklikFronta.length) window.rc.conversionHit(sklikFronta.shift());
+    };
+    (document.head || document.documentElement).appendChild(sc);
+  }
+
+  function sendSklik(d) {
+    if (!SKLIK_KONVERZE) return;
+    var konf = { id: SKLIK_KONVERZE, consent: marketingGranted() ? 1 : 0 };
+    /* Hodnota jen když ji známe. Sklik ji čte v KORUNÁCH, žádné haléře
+       jako v API — tam jsou haléře, tady koruny. */
+    if (d.value) konf.value = d.value;
+    sklikOdeslat(konf);
+  }
+
+  function sendUet(d) {
+    if (!UET_ID) return;
+    var p = {
+      event_category: 'poptavka',
+      event_label: d.lead_type || ''
+    };
+    /* MĚNU UVÁDĚT VŽDY, viz poznámka výš. Účet běží v eurech a hodnota
+       bez měny by se přečetla jako eura. */
+    if (d.value) { p.revenue_value = d.value; p.currency = d.currency || 'CZK'; }
+    uetPush('event', 'submit_lead_form', p);
+  }
+
   function sendMeta(d) {
     if (!window.fbq) return;
     var p = {
@@ -174,10 +299,17 @@
        Kdyby se posílala do Ads, Google by se učil přivádět jich víc —
        a platilo by se dvakrát: za proklik a pak za výjezd, který se
        podle ceníku neúčtuje. Do GA4 jde dál, ať je vidět, kolik jich je. */
-    if (ADS_LBL && !NEPOCITAT[d.lead_type]) {
-      var c = { send_to: ADS_LBL };
-      if (d.value) { c.value = d.value; c.currency = d.currency; }
-      gtag('event', 'conversion', c);
+    if (!NEPOCITAT[d.lead_type]) {
+      if (ADS_LBL) {
+        var c = { send_to: ADS_LBL };
+        if (d.value) { c.value = d.value; c.currency = d.currency; }
+        gtag('event', 'conversion', c);
+      }
+      /* Sklik a Microsoft jdou pod stejnou podmínkou jako Google Ads.
+         Reklamní systém, který se učí přivádět záruční reklamace, je
+         drahý omyl bez ohledu na to, čí je. */
+      sendSklik(d);
+      sendUet(d);
     }
 
     if (window.fbq) sendMeta(d);
@@ -195,7 +327,10 @@
       var a = arguments[i];
       if (!a || typeof a !== 'object' || !a.event) continue;
       if (a.event === 'generate_lead')   odeslatLead(a);
-      if (a.event === 'consent_resolved' && a.consent_marketing) loadMeta();
+      if (a.event === 'consent_resolved') {
+        uetSouhlas(a.consent_marketing);
+        if (a.consent_marketing) loadMeta();
+      }
     }
     return out;
   };
@@ -203,6 +338,9 @@
   /* Události, které stihly proletět dřív, než jsme push obalili. */
   for (var i = 0; i < window.dataLayer.length; i++) {
     var a = window.dataLayer[i];
-    if (a && a.event === 'consent_resolved' && a.consent_marketing) loadMeta();
+    if (a && a.event === 'consent_resolved') {
+      uetSouhlas(a.consent_marketing);
+      if (a.consent_marketing) loadMeta();
+    }
   }
 })();
