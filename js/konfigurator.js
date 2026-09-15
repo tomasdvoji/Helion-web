@@ -158,7 +158,7 @@ function sestavCenu(inp, panelKs, moduly, sHA, sWallbox) {
   c += polozka(rozpis, 'Úprava elektroměrového rozvaděče dle PPDS', 1, 1000, 400);
   c += polozka(rozpis, 'Doprava pracovníků', 1, 2000, 2000);
   c += polozka(rozpis, 'Montáž a zprovoznění FV systému, zaškolení', 1, 0, 2000);
-  c += polozka(rozpis, 'Projektová dokumentace, revize, vyřízení dotace, připojení k DS', 1, 0, 10200);
+  c += polozka(rozpis, 'Projektová dokumentace, revize, vyřízení podpory NZÚ, připojení k DS', 1, 0, 10200);
 
   const bezDph = Math.ceil(c);
   const sDph = Math.round(bezDph * (1 + DPH));
@@ -167,6 +167,9 @@ function sestavCenu(inp, panelKs, moduly, sHA, sWallbox) {
 
 // ---------- dotace NZÚ ----------
 function dotace(kwp, kwhBat, sWallbox, sHA, cenaSDph) {
+  // ponytail: od 6/2026 NZÚ pro běžné domácnosti přímou dotaci na FVE nedává (jen bezúročný úvěr),
+  // proto 0. Až se dotace vrátí, stačí smazat tento return a doladit sazby níže.
+  return 0;
   if (kwp < 2 || kwhBat < kwp) return 0;
   const zaklad = kwp * 10000 + kwhBat * 10000 + (sWallbox ? 10000 : 0);
   let d = Math.min(100000, zaklad);
@@ -217,7 +220,7 @@ function spocitej(inp) {
   return {
     spotrebaRok: Math.round(spotrebaRok), maxPanelu,
     varianty: [
-      variant('Úsporná', 0.7, 1.0, false, false, 'Nejnižší pořizovací cena, baterie jen pro dotaci'),
+      variant('Úsporná', 0.7, 1.0, false, false, 'Nejnižší pořizovací cena, menší baterie'),
       variant('Doporučená', 1.0, 1.5, true, false, 'Nejlepší poměr cena / úspora, s chytrým řízením'),
       variant('Maximální', 1.0, 2.0, true, true, 'Maximální soběstačnost – větší baterie, chytré řízení i wallbox'),
     ],

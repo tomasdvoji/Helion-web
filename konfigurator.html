@@ -83,7 +83,7 @@
 <!-- ==== konec měřicí vrstvy ==== -->
 
 <title>Konfigurátor FVE | Helion.cz</title>
-<meta name="description" content="Navrhněte si fotovoltaiku na míru: zadejte dům a spotřebu, my spočítáme velikost FVE, baterii, cenu, dotaci i návratnost.">
+<meta name="description" content="Navrhněte si fotovoltaiku na míru: zadejte dům a spotřebu, my spočítáme velikost FVE, baterii, cenu i návratnost.">
 <link rel="icon" href="media/wp/themes/helion/images/favicon.png">
 <link rel="preconnect" href="https://www.helion.cz">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -155,7 +155,7 @@
     <p class="kicker light">Aplikace · návrh na míru</p>
     <h1>Konfigurátor FVE</h1>
     <p class="page-hero__sub">Odpovězte na pár otázek o svém domě a my navrhneme velikost elektrárny i baterie
-    a spočítáme cenu, dotaci a návratnost.</p>
+    a spočítáme cenu a návratnost.</p>
   </div>
 </section>
 
@@ -292,7 +292,7 @@
           <button class="e-btn magnetic" id="lead-odeslat">Odeslat poptávku</button>
         </div>
       </div>
-      <p class="mono spot__src">Orientační návrh a ceny vč. 12% DPH podle aktuálního ceníku. Přesnou nabídku potvrdíme po technické konzultaci; dotace NZÚ dle aktuálních podmínek programu.</p>
+      <p class="mono spot__src">Orientační návrh a ceny vč. 12% DPH podle aktuálního ceníku. Přesnou nabídku potvrdíme po technické konzultaci; přímá dotace NZÚ na FVE pro běžné domácnosti od června 2026 není, stát nabízí bezúročný úvěr (úroky hradí SFŽP).</p>
     </div>
 
   </div>
@@ -486,7 +486,7 @@
         ${i === 1 ? '<span class="chip">Doporučujeme</span>' : `<span class="chip">${i === 0 ? 'nejnižší cena' : 'maximum'}</span>`}
         <h3>${v.nazev}</h3>
         <p class="popis">${v.sWallbox ? v.popis : v.popis.replace(' i wallbox', '').replace(', chytré řízení i wallbox', ' a chytré řízení')}</p>
-        <div class="cena">${f(v.poDotaci)} Kč<small>po dotaci NZÚ · s DPH ${f(v.cena.sDph)} Kč − dotace ${f(v.dot)} Kč</small></div>
+        <div class="cena">${f(v.cena.sDph)} Kč<small>s DPH · lze financovat bezúročným úvěrem NZÚ</small></div>
         <ul>
           <li><span>Výkon FVE</span><b>${v.cena.kwp.toFixed(1).replace('.', ',')} kWp</b></li>
           <li><span>Počet panelů</span><b>${v.ks}× 450 Wp</b></li>
@@ -522,7 +522,7 @@
       `FVE ${v.cena.kwp.toFixed(1)} kWp (${v.ks}x panel), baterie ${v.cena.kwhBat} kWh`,
       `Měnič: ${v.cena.menic}`,
       `Chytré řízení: ${v.sHA ? 'ano' : 'ne'}, wallbox: ${v.sWallbox ? 'ano' : 'ne'}`,
-      `Cena s DPH: ${f(v.cena.sDph)} Kč, dotace: ${f(v.dot)} Kč, po dotaci: ${f(v.poDotaci)} Kč`,
+      `Cena s DPH: ${f(v.cena.sDph)} Kč`,
       `Výroba: ${f(v.vyroba)} kWh/rok, pokrytí spotřeby ${v.pokryti} %, úspora 1. rok ${f(v.usporaRok1)} Kč, návratnost ${v.navratnost} let`, '',
       `=== VSTUPY ===`,
       `Střecha: ${S.strecha}, orientace ${ORIENTACE_POPIS[S.orientace]}, sklon ${$('sklon').value}°, stínění ${S.stineni}, plocha ${i.plocha} m²`,
@@ -620,7 +620,7 @@
     </div>
   </div>
 </footer>
-<script src="js/main.js?v=servis02"></script>
+<script src="js/main.js?v=servis04"></script>
 <script src="/konfigurator-mereni.js"></script>
 </body>
 </html>

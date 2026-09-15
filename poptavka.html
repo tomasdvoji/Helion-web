@@ -204,22 +204,32 @@
       </div>
       <div id="kontrola-box" class="servis-box" hidden>
         <p class="servis-box__title">Balíčky kontrolní prohlídky (FVE do 20 kWp)</p>
-        <ul class="servis-box__list">
-          <li><strong>3 500 Kč</strong> <strong>Základ</strong> – střídač, rozvaděče, měření stringů,
-            přepěťové ochrany, hesla a servisní zpráva</li>
-          <li><strong>4 800 Kč</strong> <strong>Standard</strong> – navíc termovize rozvaděčů,
-            kontrola panelů dronem, aktualizace firmwaru a nastavení wallboxu</li>
-          <li><strong>8 800 Kč</strong> <strong>Premium</strong> – navíc termovizní kontrola panelů
-            dronem a elektronická evidence</li>
-        </ul>
-        <p class="servis-box__note">Ceny bez dopravy a DPH. Do zprávy napište, který balíček chcete –
-          nebo napište, co vás trápí, a doporučíme.
+        <div class="balicky">
+          <label class="calc__check"><input type="radio" name="balicek" value="Základ"> <strong>Základ – 3 500 Kč</strong> <span>střídač, rozvaděče, měření stringů, přepěťové ochrany, hesla a servisní zpráva</span></label>
+          <label class="calc__check"><input type="radio" name="balicek" value="Standard"> <strong>Standard – 4 800 Kč</strong> <span>navíc termovize rozvaděčů, kontrola panelů dronem, aktualizace firmwaru a nastavení wallboxu</span></label>
+          <label class="calc__check"><input type="radio" name="balicek" value="Premium"> <strong>Premium – 8 800 Kč</strong> <span>navíc termovizní kontrola panelů dronem a elektronická evidence</span></label>
+          <label class="calc__check"><input type="radio" name="balicek" value="Nevím, poraďte"> <strong>Nevím, poraďte</strong> <span>napište do zprávy, co vás trápí</span></label>
+        </div>
+        <p class="servis-box__note">Ceny bez dopravy a DPH.
           <a href="podpora.html#servisni-cenik">Úplné srovnání balíčků →</a><br>
           Elektrárny nad 20 kWp naceňujeme individuálně, napište výkon do zprávy.</p>
       </div>
         <label>Zpráva
           <textarea name="msg" rows="4"></textarea>
         </label>
+        <label>Slyšeli jste o nás i mimo internet?
+            <select name="heard_from">
+              <option value="">— vyberte —</option>
+              <option value="Plakát nebo billboard">Plakát nebo billboard</option>
+              <option value="Rádio">Rádio</option>
+              <option value="Akce nebo veletrh">Akce nebo veletrh</option>
+              <option value="Doporučení od známého">Doporučení od známého</option>
+              <option value="Naše auto nebo polep">Naše auto nebo polep</option>
+              <option value="Viděl jsem vaši realizaci">Viděl jsem vaši realizaci</option>
+              <option value="Jinde">Jinde</option>
+            </select>
+            <span class="pop-napoveda">Nepovinné. Pomůže nám poznat, jestli má plakát nebo rádio smysl.</span>
+          </label>
 
       <details class="pop-detaily">
         <summary>
@@ -367,23 +377,7 @@
             </select>
           </label>
         </div>
-        <h3 class="pop-skupina">Ještě jedna věc</h3>
-        <div class="pop-mrizka">
-          <label>Slyšeli jste o nás i mimo internet?
-            <select name="heard_from">
-              <option value="">— vyberte —</option>
-              <option value="Plakát nebo billboard">Plakát nebo billboard</option>
-              <option value="Rádio">Rádio</option>
-              <option value="Akce nebo veletrh">Akce nebo veletrh</option>
-              <option value="Doporučení od známého">Doporučení od známého</option>
-              <option value="Naše auto nebo polep">Naše auto nebo polep</option>
-              <option value="Viděl jsem vaši realizaci">Viděl jsem vaši realizaci</option>
-              <option value="Jinde">Jinde</option>
-            </select>
-            <span class="pop-napoveda">Nepovinné. Pomůže nám poznat, jestli má plakát nebo rádio smysl.</span>
-          </label>
-        </div>
-      </details>
+</details>
 
       <button class="e-btn magnetic" type="submit">Odeslat poptávku</button>
     </form>
@@ -440,6 +434,6 @@
     </div>
   </div>
 </footer>
-<script src="js/main.js?v=servis02"></script>
+<script src="js/main.js?v=servis04"></script>
 </body>
 </html>

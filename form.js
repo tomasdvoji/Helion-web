@@ -188,6 +188,14 @@
           if (v === '') return;                       // nevyplněné neposílat
           data[k] = (k in data) ? data[k] + ', ' + v : v;
         });
+        /* Balíček prohlídky jde i do zprávy, ať ho import do Accessu
+           nepřehlédne, i kdyby samostatné pole neznal. */
+        var hlavicka = [];
+        if (data.balicek) hlavicka.push('Balíček prohlídky: ' + data.balicek);
+        if (data.cenik) hlavicka.push('Souhlas se servisním ceníkem (800 Kč výjezd, 700 Kč/hod, 20 Kč/km, bez DPH): ANO');
+        if (hlavicka.length) data.msg = hlavicka.join('
+') + (data.msg ? '
+' + data.msg : '');
         data.form_id = 'poptavka';
 
         var puvodni = btn ? btn.textContent : '';

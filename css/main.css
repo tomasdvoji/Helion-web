@@ -1021,6 +1021,10 @@ img { content-visibility: auto; }
 .servis-box__list strong { color: var(--ink); }
 .servis-box__note { font-size: 13.5px; color: var(--muted); margin-bottom: 12px; }
 .servis-box .calc__check { font-weight: 700; }
+.balicky { display: grid; gap: 8px; margin: 0 0 12px; }
+.balicky .calc__check { align-items: baseline; }
+.balicky span { font-weight: 400; }
+.balicky span { color: var(--muted); font-size: 14px; }
 .servis-inline { background: var(--paper); border-left: 4px solid var(--blue); padding: 12px 16px; border-radius: 0 var(--radius-sm) var(--radius-sm) 0; }
 .servis-cenik .bento__tile--dark .bento__big { color: var(--blue); }
 
