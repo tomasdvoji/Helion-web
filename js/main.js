@@ -121,6 +121,8 @@ if (lb) {
         (card.querySelector('figcaption p') ? ' — ' + card.querySelector('figcaption p').textContent : '');
       lb.hidden = false;
       document.body.style.overflow = 'hidden';
+      // klik na kartu umí založit výběr; označený obrázek se barví barvou ::selection
+      const sel = window.getSelection(); if (sel) sel.removeAllRanges();
     };
     card.addEventListener('click', open);
     card.addEventListener('keydown', e => { if (e.key === 'Enter') open(); });

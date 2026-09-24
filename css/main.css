@@ -636,7 +636,9 @@ body.scrolled .e-header { box-shadow: 0 10px 40px rgba(10, 13, 18, 0.12); }
   backdrop-filter: blur(6px);
 }
 .lightbox[hidden] { display: none; }
-.lightbox img { max-width: min(1100px, 92vw); max-height: 78vh; border-radius: 12px; box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5); }
+.lightbox img { max-width: min(1100px, 92vw); max-height: 78vh; border-radius: 12px; box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5); user-select: none; -webkit-user-drag: none; }
+/* Klik na kartu umí založit výběr textu a ::selection je žlutá — označený obrázek by zežloutl celý. */
+.lightbox, .ref-card { user-select: none; }
 .lightbox p { color: rgba(255, 255, 255, 0.8); }
 .lightbox__close {
   position: absolute; top: 24px; right: 30px;
