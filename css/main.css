@@ -197,14 +197,31 @@ h4 { font-size: 21px; line-height: 1.25; font-weight: 700; }
 body.scrolled .e-header { box-shadow: 0 10px 40px rgba(10, 13, 18, 0.12); }
 .e-header__inner { display: flex; align-items: center; gap: 30px; padding-top: 14px; padding-bottom: 14px; }
 /* Základní logo ze značkového manuálu (slunce nad HELION.CZ). Je na výšku,
-   proto 64 px: v menší výšce by nápis HELION.CZ nebyl čitelný. SVG je
-   oříznuté těsně na obsah, ochrannou zónu (šířka písmene H) tvoří mezera
-   k navigaci. */
+   a aby byl nápis čitelný, je velké: 100 px. Slunce přesahuje o 30 px nahoru
+   do tmavého proužku, takže hlavička zůstává nízká. Hlavička je proto nad
+   proužkem (z-index 120 proti 110). Při posunu stránky proužek odjede
+   a logo se transformací zmenší, aby slunce neuřízl okraj okna; transform
+   nemění výšku hlavičky, takže obsah pod ní neposkočí. */
+.e-header { z-index: 120; }
 .logo { display: flex; align-items: center; flex: none; }
-.logo img { display: block; height: 64px; width: auto; }
+.logo img {
+  display: block;
+  height: 100px;
+  width: auto;
+  margin-top: -30px;
+  transform-origin: left bottom;
+  transition: transform .25s ease;
+}
+body.scrolled .logo img { transform: scale(.72); }
 .e-header__inner { padding-top: 10px; padding-bottom: 10px; }
-@media (max-width: 980px) { .logo img { height: 52px; } }
-@media (max-width: 480px) { .logo img { height: 46px; } }
+/* Texty v proužku začínají až za logem, blíž ke středu. */
+.topbar__info { margin-left: 250px; }
+@media (max-width: 980px) {
+  .logo img { height: 56px; margin-top: 0; }
+  body.scrolled .logo img { transform: none; }
+  .topbar__info { margin-left: 0; }
+}
+@media (max-width: 480px) { .logo img { height: 50px; } }
 .primary-nav { flex: 1; }
 .primary-nav > ul { display: flex; gap: 2px; justify-content: center; }
 .primary-nav > ul > li { position: relative; }
