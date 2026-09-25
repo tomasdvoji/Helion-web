@@ -23,6 +23,7 @@ lastmod bere z gitu, ne ze souborového systému. Datum souboru se změní
 při každém checkoutu, datum commitu je to, kdy se obsah opravdu měnil.
 """
 
+import datetime
 import io
 import os
 import subprocess
@@ -59,6 +60,15 @@ ZALOZNI_DATUM = "2026-09-04"   # nasazení nového webu na ASPone
 
 def datum(repo, rel):
     try:
+        # Rozpracovaný (necommitnutý) soubor dostane dnešek: commit, který ho
+        # vzápětí uloží, bude mít stejné datum a CI kontrola projde. Bez toho
+        # by sitemap vždy nesla datum předchozího commitu a padala by.
+        zmena = subprocess.run(
+            ["git", "-C", repo, "status", "--porcelain", "--", rel],
+            capture_output=True, text=True, timeout=20,
+        ).stdout.strip()
+        if zmena:
+            return datetime.date.today().isoformat()
         d = subprocess.run(
             ["git", "-C", repo, "log", "-1", "--format=%cs", "--", rel],
             capture_output=True, text=True, timeout=20,
