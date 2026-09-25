@@ -1220,3 +1220,15 @@ img { content-visibility: auto; }
 /* Servis má v textovém sloupci dvě karty vedle sebe; potřebuje víc místa. */
 #servis { grid-template-columns: 1.45fr 1fr; }
 @media (max-width: 980px) { #servis { grid-template-columns: 1fr; } }
+
+/* NZÚ: fotka s logem programu přes roh. Logo je zvlášť jako PNG, ne
+   vypálené do fotky: fotka má jen 800 px a logo by se v ní rozmazalo. */
+.prod-item__img--logo { position: relative; }
+.prod-item__img--logo .prod-item__logo {
+  position: absolute; left: 18px; bottom: 18px;
+  width: 26%; min-width: 92px; height: auto; max-height: none;
+  aspect-ratio: 360 / 321; object-fit: contain;
+  padding: 10px; background: #fff; border-radius: 10px;
+  box-shadow: 0 6px 18px rgb(0 0 0 / .18);
+}
+.prod-item__img--logo:hover .prod-item__logo { transform: none; }
