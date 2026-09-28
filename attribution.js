@@ -78,6 +78,10 @@
     if (!store.first) store.first = touch;   // co přivedlo poprvé — už se nepřepisuje
     store.last = touch;                       // poslední zdroj před konverzí
     store.visits = (store.visits || 0) + 1;
+    /* Čas posledního prokliku s click ID: reklamní systémy přijmou offline
+       konverzi jen v okně od prokliku (Google 90 dní), HME ho proto ukládá. */
+    if (CLICK_IDS.some(function (k) { return touch[k]; })) store.clickTs = touch.ts;
+    if (touch.fbclid) store.fbclidTs = touch.ts;
     write(store);
   } else if (!store.first) {
     /* Přímý vstup bez jakéhokoli zdroje — zaznamenáme, ať víme, že to byl opravdu Direct. */
@@ -99,6 +103,10 @@
     out.first_referrer = f.ref || '';
     out.first_seen = f.ts ? new Date(f.ts).toISOString() : '';
     out.visits = store.visits || 1;
+    if (store.clickTs) out.click_at = new Date(store.clickTs).toISOString();
+    /* fbc ve tvaru Mety (fb.1.<čas prokliku v ms>.<fbclid>) pro Conversions API,
+       když cookie _fbc chybí (pixel se bez souhlasu nenačte). */
+    if (l.fbclid) out.fbc = 'fb.1.' + (store.fbclidTs || l.ts || now()) + '.' + l.fbclid;
     return out;
   }
 

@@ -73,6 +73,11 @@
    * Pošle poptávku a vrátí Promise. Konverzi do dataLayeru hlásí sama,
    * až když server potvrdí uložení.
    */
+  function cookie(jmeno) {
+    var m = document.cookie.match(new RegExp('(?:^|; )' + jmeno + '=([^;]*)'));
+    return m ? decodeURIComponent(m[1]) : '';
+  }
+
   function odeslat(data) {
     var telo = {};
     Object.keys(data).forEach(function (k) {
@@ -86,6 +91,18 @@
         if (telo[k] === undefined && a[k] !== '' && a[k] !== undefined) telo[k] = a[k];
       });
     }
+
+    /* Souhlas s marketingem v okamžiku odeslání a cookies Mety. HME podle
+       souhlasu rozhoduje, jestli smí výsledek poptávky vrátit do Google Ads
+       a Mety (offline konverze). Bez souhlasu se nic neposílá. */
+    var souhlas = window.helionConsent && window.helionConsent.state();
+    if (souhlas) {
+      telo.consent_ad_user_data = !!souhlas.marketing;
+      telo.consent_ad_personalization = !!souhlas.marketing;
+    }
+    var fbp = cookie('_fbp'), fbc = cookie('_fbc');
+    if (fbp) telo.fbp = fbp;
+    if (fbc) telo.fbc = fbc;           // přednost před složeným z fbclid
 
     return fetch(ENDPOINT, {
       method: 'POST',
@@ -193,9 +210,7 @@
         var hlavicka = [];
         if (data.balicek) hlavicka.push('Balíček prohlídky: ' + data.balicek);
         if (data.cenik) hlavicka.push('Souhlas se servisním ceníkem (800 Kč výjezd, 700 Kč/hod, 20 Kč/km, bez DPH): ANO');
-        if (hlavicka.length) data.msg = hlavicka.join('
-') + (data.msg ? '
-' + data.msg : '');
+        if (hlavicka.length) data.msg = hlavicka.join('\n') + (data.msg ? '\n' + data.msg : '');
         data.form_id = 'poptavka';
 
         var puvodni = btn ? btn.textContent : '';
