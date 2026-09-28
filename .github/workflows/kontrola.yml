@@ -29,6 +29,17 @@ jobs:
         with:
           python-version: "3.12"
 
+      # 24.–28. 9. 2026 byl na webu form.js se skutečným koncem řádku uvnitř
+      # řetězce; prohlížeč skript odmítl a formuláře čtyři dny neposílaly
+      # poptávky. Syntaxi JavaScriptu proto kontrolujeme u každého pushe.
+      - name: Syntaxe JavaScriptu
+        run: |
+          chyba=0
+          for f in $(git ls-files '*.js'); do
+            node --check "$f" || { echo "::error file=$f::syntaktická chyba"; chyba=1; }
+          done
+          exit $chyba
+
       - name: SEO a struktura
         run: python tools/seo-kontrola.py .
 
