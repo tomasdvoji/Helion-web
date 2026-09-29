@@ -82,6 +82,16 @@
        konverzi jen v okně od prokliku (Google 90 dní), HME ho proto ukládá. */
     if (CLICK_IDS.some(function (k) { return touch[k]; })) store.clickTs = touch.ts;
     if (touch.fbclid) store.fbclidTs = touch.ts;
+    /* Celá cesta (HME, P6): každý příchod ze zdroje, nejvýš posledních 20.
+       Znovunačtení stejné adresy do 30 minut se nepočítá jako nový dotyk. */
+    var cesta = store.touches || [];
+    var predchozi = cesta[cesta.length - 1];
+    var stejny = predchozi && touch.ts - predchozi.ts < 30 * 60 * 1000 &&
+      CLICK_IDS.concat(UTMS).every(function (k) { return (predchozi[k] || '') === (touch[k] || ''); });
+    if (!stejny) {
+      cesta.push(touch);
+      store.touches = cesta.slice(-20);
+    }
     write(store);
   } else if (!store.first) {
     /* Přímý vstup bez jakéhokoli zdroje — zaznamenáme, ať víme, že to byl opravdu Direct. */
@@ -111,6 +121,17 @@
   }
 
   window.helionAttribution = flat;
+
+  /* Cesta a anonymní ID návštěvníka pro HME. ID je náhodné, vzniká
+     v prohlížeči a nic o člověku neříká — jen spojí dotyky jedné cesty. */
+  window.helionCesta = function () {
+    if (!store.vid) {
+      store.vid = (window.crypto && crypto.randomUUID) ? crypto.randomUUID()
+        : String(now()) + '-' + Math.random().toString(36).slice(2);
+      write(store);
+    }
+    return { touches: store.touches || [], visitor_id: store.vid };
+  };
 
   /* Doplní skrytá pole do formuláře. Volat i po dynamickém vykreslení. */
   function fillForm(form) {

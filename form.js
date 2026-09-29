@@ -100,6 +100,11 @@
       telo.consent_ad_user_data = !!souhlas.marketing;
       telo.consent_ad_personalization = !!souhlas.marketing;
     }
+    if (window.helionCesta) {
+      var cesta = window.helionCesta();
+      if (cesta.touches.length) telo.touches = cesta.touches;
+      telo.visitor_id = cesta.visitor_id;
+    }
     var fbp = cookie('_fbp'), fbc = cookie('_fbc');
     if (fbp) telo.fbp = fbp;
     if (fbc) telo.fbc = fbc;           // přednost před složeným z fbclid
