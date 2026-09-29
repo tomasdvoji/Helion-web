@@ -141,8 +141,11 @@ if (form) {
   const kontrolaBox = document.getElementById('kontrola-box');
   const isServis = () => /^servis/i.test(typeSel.value);
   const isKontrola = () => /prohlídka/i.test(typeSel.value);
-  // ?typ=fve|servis|kontrola předvyplní typ poptávky (rozcestník)
-  const typRe = { fve: /rodinný/i, servis: /^servis/i, kontrola: /prohlídka/i }[new URLSearchParams(location.search).get('typ')];
+  // ?typ=fve|svj|firma|chytra|termovize|servis|kontrola předvyplní typ poptávky
+  // Bez ?typ= zůstává „— vyberte —“ (29. 9. 2026: předvybraný „rodinný dům“
+  // zařadil jako RD i poptávku na bytový dům, kde typ nikdo nevybíral).
+  const typRe = { fve: /rodinný/i, svj: /bytový/i, firma: /firma/i, chytra: /chytrá/i, termovize: /termovizní/i,
+                  servis: /^servis/i, kontrola: /prohlídka/i }[new URLSearchParams(location.search).get('typ')];
   if (typRe) [...typeSel.options].some(o => typRe.test(o.text) && (typeSel.value = o.value, true));
   const syncServis = () => {
     if (servisBox) servisBox.hidden = !isServis();
