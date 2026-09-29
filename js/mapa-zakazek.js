@@ -46,8 +46,9 @@
     return { misto, pad, s };
   }
 
+  // Při omezených animacích v systému panely jen přibývají (bez padání).
   const klid = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (klid || !('IntersectionObserver' in window) || !Element.prototype.animate) {
+  if (!('IntersectionObserver' in window)) {
     body.forEach(symbol);
     if (rok) rok.textContent = '2003–' + (2003 + posledniRok);
     return;
@@ -72,7 +73,7 @@
     const sym = symbol(b);
     vsechny.push(sym);
     const vyska = b.y + 260;          // padá odshora, nad okrajem mapy
-    sym.pad.animate([
+    if (!klid && sym.pad.animate) sym.pad.animate([
       { transform: `translate(-26px, -${vyska}px) rotate(-35deg)`, opacity: 0 },
       { transform: `translate(-17px, -${vyska * 0.8}px) rotate(-24deg)`, opacity: 1, offset: 0.15 },
       { transform: 'translate(0, 3px) rotate(3deg)', opacity: 1, offset: 0.86 },
@@ -85,7 +86,7 @@
 
   function odznova() {
     const stare = vsechny.splice(0);
-    stare.forEach(sym => sym.misto.animate([{ opacity: 1 }, { opacity: 0 }], { duration: ZMIZENI_MS, fill: 'forwards' }));
+    stare.forEach(sym => { if (sym.misto.animate) sym.misto.animate([{ opacity: 1 }, { opacity: 0 }], { duration: ZMIZENI_MS, fill: 'forwards' }); });
     setTimeout(() => stare.forEach(sym => sym.misto.remove()), ZMIZENI_MS);
     hlava = 0; i = 0; aktualni = null;
   }
@@ -114,10 +115,12 @@
     if (vidim === bezi) return;
     bezi = vidim;
     posledni = 0;
-    svg.getAnimations({ subtree: true }).forEach(a => (vidim ? a.play() : a.pause()));
+    if (svg.getAnimations) svg.getAnimations({ subtree: true }).forEach(a => (vidim ? a.play() : a.pause()));
     if (vidim) requestAnimationFrame(snimek);
   }
 
-  new IntersectionObserver(z => nastav(z[z.length - 1].intersectionRatio >= 0.95),
-    { threshold: [0, 0.95] }).observe(box);
+  // „Vidět celá" s rezervou: při zvětšení stránky Chrome hlásí třeba 0,949
+  // místo 0,95 a přesná hranice by animaci nikdy nespustila.
+  new IntersectionObserver(z => nastav(z[z.length - 1].intersectionRatio >= 0.8),
+    { threshold: [0, 0.25, 0.5, 0.8, 0.9, 1] }).observe(box);
 })();
