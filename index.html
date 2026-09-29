@@ -89,7 +89,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/main.css?v=prod05">
+<link rel="stylesheet" href="css/main.css?v=mapa01">
 </head>
 <body class="p-front-page">
 
@@ -183,22 +183,17 @@
     <div class="hp-intro-block__top">
       <p class="kicker"><span class="mono num">01</span>Zkušení, poctiví, ověření</p>
       <h2>Už od roku 2003 se věnujeme tomu, aby slunce pracovalo za Vás</h2>
-      <div class="bento">
+      <div class="bento bento--mapa">
         <div class="bento__tile bento__tile--dark">
           <p class="bento__big"><span class="number" data-count="22">0</span></p>
           <p class="label">let zkušeností na trhu</p>
         </div>
-        <div class="bento__tile">
-          <p class="bento__big"><span class="number" data-count="484162">0</span></p>
-          <p class="label">podpořených žádostí NZÚ</p>
-        </div>
-        <div class="bento__tile bento__tile--accent">
-          <p class="bento__big"><span class="number" data-count="201000">0</span><span class="plus">+</span></p>
-          <p class="label">instalovaných fotovoltaik v ČR</p>
-        </div>
-        <div class="bento__tile">
-          <p class="bento__big"><span class="number" data-count="87356">0</span></p>
-          <p class="label">domácností v programu NZÚ Light</p>
+        <div class="bento__tile bento__tile--mapa">
+          <div class="mapa-zakazek" id="mapa-zakazek"></div>
+          <div class="mapa-text">
+            <p class="bento__big mapa-rok" aria-hidden="true">2003</p>
+            <p class="label">kde všude jsme od roku 2003 pracovali</p>
+          </div>
         </div>
       </div>
     </div>
@@ -409,5 +404,7 @@
   </div>
 </footer>
 <script src="js/main.js?v=servis04"></script>
+<script src="js/mapa-zakazek-data.js?v=mapa01" defer></script>
+<script src="js/mapa-zakazek.js?v=mapa01" defer></script>
 </body>
 </html>

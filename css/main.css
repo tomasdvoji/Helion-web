@@ -388,6 +388,21 @@ body.scrolled .logo img { transform: scale(.72); }
 .bento__tile .plus { font-size: 0.6em; vertical-align: super; }
 .bento__tile .label { margin-top: 10px; color: var(--muted); font-size: 15px; }
 
+/* úvodní řádek: 22 let + mapka zakázek */
+.bento.bento--mapa { grid-template-columns: 1fr 2fr; }
+.bento__tile--dark .bento__big { color: var(--blue); }
+.bento__tile--mapa { padding: 18px 22px; display: flex; align-items: center; gap: 24px; }
+.bento__tile--mapa:hover { transform: none; box-shadow: none; }
+.mapa-zakazek { flex: 0 1 300px; min-width: 0; }
+.mapa-zakazek svg { display: block; width: 100%; height: auto; overflow: visible; }
+.mapa-text { flex: 1; }
+.mapa-text .bento__big { font-size: clamp(26px, 2.2vw, 38px); white-space: nowrap; }
+.mapa-kraje { fill: #e7e9ed; stroke: #fff; stroke-width: 2; stroke-linejoin: round; }
+.mapa-panel { fill: var(--navy); stroke: #fff; stroke-width: 0.8; transition: fill .6s; }
+.mapa-panel.je-novy { fill: #f7a600; }
+@media (max-width: 1200px) { .bento.bento--mapa { grid-template-columns: 1fr 2fr; } }
+@media (max-width: 700px) { .bento.bento--mapa { grid-template-columns: 1fr; } .bento__tile--mapa { flex-direction: column; align-items: stretch; } .mapa-zakazek { flex-basis: auto; } }
+
 .hp-intro-block__bottom { display: grid; grid-template-columns: 1.15fr 1fr; gap: clamp(40px, 6vw, 90px); align-items: center; }
 .hp-intro-block__imgs { position: relative; }
 .img-main { overflow: hidden; border-radius: var(--radius); clip-path: inset(0 round var(--radius)); }
