@@ -19,6 +19,13 @@
   const vrstva = el('g', {}, svg);
   box.append(svg);
   const rok = box.parentElement.querySelector('.mapa-rok');
+  const popis = box.parentElement.querySelector('.mapa-text .label');
+  const fmt = n => n.toLocaleString('cs-CZ');
+  // Velké číslo = kolik zakázek už na mapě je (i zamrzlý snímek pak dává smysl), rok v popisku.
+  const ukaz = (n, r, hotovo) => {
+    if (rok) rok.textContent = fmt(n);
+    if (popis) popis.textContent = hotovo ? 'zakázek po celé ČR, 2003–' + r : 'zakázek po celé ČR, 2003–' + r + '…';
+  };
 
   const body = [];
   for (let i = 0; i < m.body.length; i += 4) {
@@ -50,7 +57,7 @@
   const klid = matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (!('IntersectionObserver' in window)) {
     body.forEach(symbol);
-    if (rok) rok.textContent = '2003–' + (2003 + posledniRok);
+    ukaz(body.length, 2003 + posledniRok, true);
     return;
   }
 
@@ -101,9 +108,9 @@
     } else {
       hlava += dt;
       while (i < body.length && kdy[i] <= hlava) pust(body[i++]);
-      if (rok) rok.textContent = String(2003 + Math.min(posledniRok, Math.floor(hlava / ROK_MS)));
+      ukaz(i, 2003 + Math.min(posledniRok, Math.floor(hlava / ROK_MS)), false);
       if (hlava >= KONEC) {
-        if (rok) rok.textContent = '2003–' + (2003 + posledniRok);
+        ukaz(body.length, 2003 + posledniRok, true);
         if (aktualni) aktualni.classList.remove('je-aktualni');
         pauzaDo = PAUZA_MS;
       }
