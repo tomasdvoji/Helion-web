@@ -5,7 +5,7 @@ Vstup (mimo repozitář, obsahuje jména zákazníků):
     typed.json   — řádky evidence {year, location: {lat, lon, ...}, name, ...}
     kraje.json   — hranice krajů ČR (GeoJSON, ČÚZK / siwekm, CC BY 4.0)
 
-Na web jde JEN: obrys ČR s kraji a u každé zakázky rok a poloha obce
+Na web jde JEN: obrys ČR s kraji a u každé zakázky rok, druh (FVE/kolektor/TČ) a poloha obce
 posunutá náhodně o 1–3 km (deterministicky podle pořadí). Žádná jména,
 čísla zakázek ani adresy.
 
@@ -19,6 +19,8 @@ import sys
 from pathlib import Path
 
 SIRKA = 1000.0
+# 0 fotovoltaika, 1 solární kolektor, 2 tepelné čerpadlo, 3 neurčeno
+TYPY = {"Fotovoltaika": 0, "Solární kolektor": 1, "Tepelné čerpadlo": 2}
 SIROKA_STRED = 49.8
 KX = math.cos(math.radians(SIROKA_STRED))
 
@@ -71,7 +73,7 @@ def main(slozka: Path) -> None:
         la = l["lat"] + km * math.sin(uhel) / 111.32
         lo = l["lon"] + km * math.cos(uhel) / (111.32 * math.cos(math.radians(l["lat"])))
         x, y = xy(lo, la)
-        body += [x, y, r["year"] - 2003]
+        body += [x, y, r["year"] - 2003, TYPY.get(r.get("technology"), 3)]
 
     vystup = Path(__file__).resolve().parent.parent / "js" / "mapa-zakazek-data.js"
     vystup.write_text(
@@ -80,7 +82,7 @@ def main(slozka: Path) -> None:
         f"window.HELION_MAPA={{w:{SIRKA:g},h:{vyska},kraje:{json.dumps(cesta)},"
         f"body:{json.dumps(body, separators=(',', ':'))}}};\n",
         encoding="utf-8")
-    print(f"{len(body) // 3} bodů, {len(prstence)} obrysů, výška {vyska}, {vystup.stat().st_size} B")
+    print(f"{len(body) // 4} bodů, {len(prstence)} obrysů, výška {vyska}, {vystup.stat().st_size} B")
 
 
 if __name__ == "__main__":

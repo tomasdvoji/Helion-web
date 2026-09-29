@@ -1,76 +1,123 @@
-/* Mapka zakázek na úvodní stránce: kraje ČR a do nich „napadají" panely
-   zakázek po letech, až když je mapka vidět celá. Bez ovládání. */
+/* Mapka zakázek na úvodní stránce: do krajů ČR padají shora panely zakázek
+   rok po roku (FVE, kolektory, tepelná čerpadla). Hraje dokola, jen když je
+   mapka vidět celá; mimo obrazovku stojí. Bez ovládání. */
 (function () {
   const box = document.getElementById('mapa-zakazek');
   const m = window.HELION_MAPA;
   if (!box || !m) return;
   const NS = 'http://www.w3.org/2000/svg';
-  const svg = document.createElementNS(NS, 'svg');
-  svg.setAttribute('viewBox', `-12 -12 ${m.w + 24} ${m.h + 24}`);
-  svg.setAttribute('role', 'img');
-  svg.setAttribute('aria-label', 'Mapa České republiky s místy, kde HELION od roku 2003 pracoval');
-  const kraje = document.createElementNS(NS, 'path');
-  kraje.setAttribute('d', m.kraje);
-  kraje.setAttribute('class', 'mapa-kraje');
-  svg.append(kraje);
-  const vrstva = document.createElementNS(NS, 'g');
-  svg.append(vrstva);
+  const el = (jmeno, atributy, rodic) => {
+    const e = document.createElementNS(NS, jmeno);
+    for (const k in atributy) e.setAttribute(k, atributy[k]);
+    if (rodic) rodic.append(e);
+    return e;
+  };
+
+  const svg = el('svg', { viewBox: `-15 -15 ${m.w + 30} ${m.h + 30}`, role: 'img',
+    'aria-label': 'Mapa České republiky s místy, kde HELION od roku 2003 pracoval' });
+  el('path', { d: m.kraje, class: 'mapa-kraje' }, svg);
+  const vrstva = el('g', {}, svg);
   box.append(svg);
   const rok = box.parentElement.querySelector('.mapa-rok');
 
   const body = [];
-  for (let i = 0; i < m.body.length; i += 3) body.push({ x: m.body[i], y: m.body[i + 1], r: m.body[i + 2] });
+  for (let i = 0; i < m.body.length; i += 4) {
+    body.push({ x: m.body[i], y: m.body[i + 1], r: m.body[i + 2], typ: m.body[i + 3] });
+  }
+  const posledniRok = body[body.length - 1].r;
 
-  function panel(b) {
-    const g = document.createElementNS(NS, 'g');
-    g.setAttribute('transform', `translate(${b.x} ${b.y}) rotate(-12)`);
-    const r = document.createElementNS(NS, 'rect');
-    r.setAttribute('x', -5);
-    r.setAttribute('y', -3.5);
-    r.setAttribute('width', 10);
-    r.setAttribute('height', 7);
-    r.setAttribute('rx', 1);
-    r.setAttribute('class', 'mapa-panel');
-    g.append(r);
-    vrstva.append(g);
-    return r;
+  // Symboly převzaté z velké mapy: FVE panel s mřížkou, trubicový kolektor,
+  // venkovní jednotka tepelného čerpadla, šedomodrý panel = druh neuveden.
+  function symbol(b) {
+    const misto = el('g', { transform: `translate(${b.x} ${b.y})` }, vrstva);
+    const pad = el('g', { class: 'mapa-pad' }, misto);
+    const s = el('g', { transform: 'scale(1.9) rotate(-12)', class: 'mapa-symbol' }, pad);
+    if (b.typ === 1) {
+      el('rect', { class: 'kolektor', x: -6, y: -5, width: 12, height: 9, rx: 1 }, s);
+      el('path', { class: 'kolektor-trubky', d: 'M-4,-3V2 M-1.4,-3V2 M1.4,-3V2 M4,-3V2' }, s);
+    } else if (b.typ === 2) {
+      el('rect', { class: 'cerpadlo', x: -7, y: -5, width: 14, height: 10, rx: 1 }, s);
+      el('circle', { class: 'cerpadlo-vetrak', cx: -2, r: 3.3 }, s);
+    } else {
+      el('rect', { class: 'stin', x: -5, y: -2, width: 12, height: 9, rx: 1 }, s);
+      el('rect', { class: b.typ === 0 ? 'panel' : 'panel panel-jiny', x: -6, y: -5, width: 12, height: 8, rx: 0.5 }, s);
+      el('path', { class: 'panel-mrizka', d: 'M-2,-5V3 M2,-5V3 M-6,-1H6' }, s);
+    }
+    return { misto, pad, s };
   }
 
   const klid = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (klid || !('IntersectionObserver' in window)) {
-    body.forEach(panel);
-    if (rok) rok.textContent = '2003–' + (2003 + body[body.length - 1].r);
+  if (klid || !('IntersectionObserver' in window) || !Element.prototype.animate) {
+    body.forEach(symbol);
+    if (rok) rok.textContent = '2003–' + (2003 + posledniRok);
     return;
   }
 
-  const DELKA = 4200;   // ms na celou historii
-  const posledniRok = body[body.length - 1].r;
-  function prehrat() {
-    const t0 = performance.now();
-    let i = 0;
-    function krok(ted) {
-      const hotovo = Math.min(1, (ted - t0) / DELKA);
-      const doRoku = hotovo * (posledniRok + 1);
-      while (i < body.length && body[i].r < doRoku) {
-        const r = panel(body[i]);
-        r.animate([
-          { transform: 'translate(-8px, -70px) rotate(-25deg)', opacity: 0 },
-          { opacity: 1, offset: 0.3 },
-          { transform: 'translate(0, 0) rotate(0)', opacity: 1 }
-        ], { duration: 520, easing: 'cubic-bezier(.3,0,.7,1)' });
-        r.classList.add('je-novy');
-        setTimeout(() => r.classList.remove('je-novy'), 700);
-        i++;
-      }
-      if (rok) rok.textContent = String(2003 + Math.min(posledniRok, Math.floor(doRoku)));
-      if (hotovo < 1) requestAnimationFrame(krok);
-      else if (rok) rok.textContent = '2003–' + (2003 + posledniRok);
-    }
-    requestAnimationFrame(krok);
+  // Časová osa: každý rok stejně dlouhý úsek, zakázky roku rovnoměrně v něm.
+  const ROK_MS = 420, PAUZA_MS = 4500, ZMIZENI_MS = 900;
+  const poRocich = new Map();
+  body.forEach(b => poRocich.set(b.r, (poRocich.get(b.r) || 0) + 1));
+  const videno = new Map();
+  const kdy = body.map(b => {
+    const n = videno.get(b.r) || 0;
+    videno.set(b.r, n + 1);
+    return b.r * ROK_MS + (n / poRocich.get(b.r)) * ROK_MS;
+  });
+  const KONEC = (posledniRok + 1) * ROK_MS;
+
+  let hlava = 0, i = 0, posledni = 0, bezi = false, aktualni = null, pauzaDo = 0;
+  const vsechny = [];
+
+  function pust(b) {
+    const sym = symbol(b);
+    vsechny.push(sym);
+    const vyska = b.y + 260;          // padá odshora, nad okrajem mapy
+    sym.pad.animate([
+      { transform: `translate(-26px, -${vyska}px) rotate(-35deg)`, opacity: 0 },
+      { transform: `translate(-17px, -${vyska * 0.8}px) rotate(-24deg)`, opacity: 1, offset: 0.15 },
+      { transform: 'translate(0, 3px) rotate(3deg)', opacity: 1, offset: 0.86 },
+      { transform: 'translate(0, 0) rotate(0)', opacity: 1 }
+    ], { duration: 620, easing: 'cubic-bezier(.4,0,.8,1)' });
+    if (aktualni) aktualni.classList.remove('je-aktualni');
+    aktualni = sym.s;
+    aktualni.classList.add('je-aktualni');
   }
 
-  const io = new IntersectionObserver((zaznamy) => {
-    if (zaznamy.some(z => z.intersectionRatio >= 0.95)) { io.disconnect(); prehrat(); }
-  }, { threshold: [0.95] });
-  io.observe(box);
+  function odznova() {
+    const stare = vsechny.splice(0);
+    stare.forEach(sym => sym.misto.animate([{ opacity: 1 }, { opacity: 0 }], { duration: ZMIZENI_MS, fill: 'forwards' }));
+    setTimeout(() => stare.forEach(sym => sym.misto.remove()), ZMIZENI_MS);
+    hlava = 0; i = 0; aktualni = null;
+  }
+
+  function snimek(t) {
+    if (!bezi) return;
+    const dt = posledni ? Math.min(t - posledni, 100) : 0;
+    posledni = t;
+    if (pauzaDo) {
+      pauzaDo -= dt;
+      if (pauzaDo <= 0) { pauzaDo = 0; odznova(); }
+    } else {
+      hlava += dt;
+      while (i < body.length && kdy[i] <= hlava) pust(body[i++]);
+      if (rok) rok.textContent = String(2003 + Math.min(posledniRok, Math.floor(hlava / ROK_MS)));
+      if (hlava >= KONEC) {
+        if (rok) rok.textContent = '2003–' + (2003 + posledniRok);
+        if (aktualni) aktualni.classList.remove('je-aktualni');
+        pauzaDo = PAUZA_MS;
+      }
+    }
+    requestAnimationFrame(snimek);
+  }
+
+  function nastav(vidim) {
+    if (vidim === bezi) return;
+    bezi = vidim;
+    posledni = 0;
+    svg.getAnimations({ subtree: true }).forEach(a => (vidim ? a.play() : a.pause()));
+    if (vidim) requestAnimationFrame(snimek);
+  }
+
+  new IntersectionObserver(z => nastav(z[z.length - 1].intersectionRatio >= 0.95),
+    { threshold: [0, 0.95] }).observe(box);
 })();
