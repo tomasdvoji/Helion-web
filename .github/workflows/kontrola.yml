@@ -45,11 +45,14 @@ jobs:
 
       - name: Sitemap odpovídá skutečným stránkám
         run: |
+          # Porovnává se jen seznam adres. lastmod bere datum z commitu,
+          # takže po každém commitu stránky nutně nesedí — hlídat ho tu nejde.
+          git show HEAD:sitemap.xml | grep -v '<lastmod>' > /tmp/sitemap-commit.xml
           python tools/sitemap.py .
-          if ! git diff --quiet -- sitemap.xml; then
+          grep -v '<lastmod>' sitemap.xml > /tmp/sitemap-nova.xml
+          if ! diff -u /tmp/sitemap-commit.xml /tmp/sitemap-nova.xml; then
             echo "::error::sitemap.xml neodpovídá stránkám v repozitáři."
             echo "Spusťte 'python tools/sitemap.py .' a výsledek commitněte."
-            git --no-pager diff -- sitemap.xml
             exit 1
           fi
           echo "sitemap.xml je aktuální"
