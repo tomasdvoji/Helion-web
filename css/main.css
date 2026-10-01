@@ -1268,7 +1268,6 @@ img { content-visibility: auto; }
 }
 .prod-item__img--logo:hover .prod-item__logo { transform: none; }
 
-/* video v sekci Bytové domy, SVJ (na mobilu verze na výšku) */
-.prod-item__img--video { background: #000; align-self: center; width: 100%; min-width: 0; justify-self: stretch; }
-.prod-item__img--video video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; }
-@media (max-width: 700px) { .prod-item__img--video video { aspect-ratio: 9 / 16; } }
+/* odkaz na video v sekci Bytové domy, SVJ */
+.odkaz-video { margin-top: 14px; font-size: 15px; }
+.odkaz-video a { color: var(--ink); }
