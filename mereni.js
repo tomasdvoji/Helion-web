@@ -188,6 +188,7 @@
   function leadKod(text) {
     var t = (text || '').toLowerCase();
     if (/z[aá]ru[cč]/.test(t))       return 'zaruka';
+    if (/nab[ií]jec|wallbox/.test(t)) return 'nabijeni';
     if (/rodinn/.test(t))            return 'rd';
     if (/bytov|svj/.test(t))         return 'svj';
     if (/firm/.test(t))              return 'firma';
